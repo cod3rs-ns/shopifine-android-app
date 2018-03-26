@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:paddingStart="@dimen/paddingSide"
+    android:paddingEnd="@dimen/paddingSide"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:drawablePadding="@dimen/paddingIconLabel"
+            android:drawableStart="@drawable/ic_person_white_24dp"
+            android:hint="@string/username"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorAccent" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <!-- Password Text Field -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:drawablePadding="@dimen/paddingIconLabel"
+            android:drawableStart="@drawable/ic_lock_white_24dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorAccent" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/log_in"
+        android:minWidth="@dimen/buttonMinWidth"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/buttonHeight"
+        android:layout_marginTop="@dimen/buttonMarginOutside"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/log_in"
+        android:textColor="@color/colorWhite" />
+
+    <Button
+        android:id="@+id/sign_up"
+        android:minWidth="@dimen/buttonMinWidth"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/buttonHeight"
+        android:layout_marginTop="@dimen/buttonMarginOutside"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/sign_up"
+        android:textColor="@color/colorWhite" />
+
+</LinearLayout>
