@@ -13,8 +13,7 @@ import rs.cod3rs.shopifine.hateoas.UserAuthResponse;
 @Rest(
         rootUrl = Config.SERVICE_URL,
         converters = MappingJackson2HttpMessageConverter.class,
-        interceptors = AuthInterceptor.class,
-        responseErrorHandler = ErrorHandler.class
+        interceptors = AuthInterceptor.class
 )
 public interface Users extends RestClientErrorHandling {
 

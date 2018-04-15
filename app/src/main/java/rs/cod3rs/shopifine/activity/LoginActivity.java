@@ -47,6 +47,11 @@ public class LoginActivity extends Activity {
         auth(username.getText().toString(), password.getText().toString());
     }
 
+    @Click(R.id.sign_up_link)
+    void signUp() {
+        RegisterActivity_.intent(this).start();
+    }
+
     @Background
     void auth(final String username, final String password) {
         final UserAuthResponse res = users.auth(new UserAuthRequest(username, password));

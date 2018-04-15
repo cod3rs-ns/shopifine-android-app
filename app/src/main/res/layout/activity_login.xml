@@ -61,7 +61,7 @@
         android:textColor="@color/colorWhite" />
 
     <Button
-        android:id="@+id/sign_up"
+        android:id="@+id/sign_up_link"
         android:minWidth="@dimen/buttonMinWidth"
         android:layout_width="match_parent"
         android:layout_height="@dimen/buttonHeight"
