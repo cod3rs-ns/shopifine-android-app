@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Shopifine</string>
 
+    <string name="navigation_drawer_open">A</string>
+    <string name="navigation_drawer_close">B</string>
+
     <string name="username">Username</string>
     <string name="password">Password</string>
 
