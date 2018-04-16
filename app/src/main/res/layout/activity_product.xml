@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/productCover"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/productCoverHeight"
+                android:orientation="horizontal"
+                android:src="@drawable/sunglasses" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/discountCircleMargin"
+                android:background="@drawable/circle">
+
+                <TextView
+                    android:layout_width="@dimen/discountCircleSize"
+                    android:layout_height="@dimen/discountCircleSize"
+                    android:gravity="center"
+                    android:text="-50%"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/fontTitleSize"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/productInfoHeight"
+            android:background="@color/colorPrimaryLight"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/anchor"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".70"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="@dimen/productInfoPaddingSide"
+                    android:paddingStart="@dimen/productInfoPaddingSide"
+                    android:paddingTop="@dimen/productInfoPaddingTop"
+                    android:text="Ray ban aviator blue"
+                    android:textSize="@dimen/fontHeadlineSize" />
+
+                <RelativeLayout
+                    android:id="@+id/InnerRelativeLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true">
+
+                    <TextView
+                        android:id="@+id/productCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/productInfoPaddingSide"
+                        android:paddingEnd="@dimen/productInfoPaddingSide"
+                        android:paddingStart="@dimen/productInfoPaddingSide"
+                        android:text="sunglasses"
+                        android:textSize="@dimen/fontSubheadingSize" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="@dimen/productPricePadding"
+                    android:text="356$"
+                    android:textSize="@dimen/fontDisplaySize" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/paddingListItemSide"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/product_categories_title"
+                android:textSize="@dimen/fontSubheadingSize"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/paddingListItem">
+
+                        <ImageView
+                            android:layout_width="@dimen/listItemHeight"
+                            android:layout_height="@dimen/listItemHeight"
+                            android:src="@drawable/ic_launcher_background" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:paddingStart="@dimen/paddingListItem"
+                                android:text="Ray Ban"
+                                android:textSize="@dimen/fontTitleSize" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="@dimen/paddingListItem"
+                                android:text="818.99 €"
+                                android:textSize="@dimen/fontHeadlineSize"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/paddingListItem">
+
+                        <ImageView
+                            android:layout_width="@dimen/listItemHeight"
+                            android:layout_height="@dimen/listItemHeight"
+                            android:src="@drawable/ic_launcher_background" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:paddingStart="@dimen/paddingListItem"
+                                android:text="Ray Ban"
+                                android:textSize="@dimen/fontTitleSize" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="@dimen/paddingListItem"
+                                android:text="818.99 €"
+                                android:textSize="@dimen/fontHeadlineSize"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/paddingListItem">
+
+                        <ImageView
+                            android:layout_width="@dimen/listItemHeight"
+                            android:layout_height="@dimen/listItemHeight"
+                            android:src="@drawable/ic_launcher_background" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:paddingStart="@dimen/paddingListItem"
+                                android:text="Ray Ban"
+                                android:textSize="@dimen/fontTitleSize" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="@dimen/paddingListItem"
+                                android:text="818.99 €"
+                                android:textSize="@dimen/fontHeadlineSize"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/shoppingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_shopping_cart_white_24dp"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_anchor="@id/productCover"
+        app:layout_anchorGravity="bottom|right|end" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/whishListButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/productButtonsSpace"
+        android:src="@drawable/ic_favorite_border_white_24dp"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_anchor="@id/shoppingButton"
+        app:layout_anchorGravity="center_vertical|left" />
+</android.support.design.widget.CoordinatorLayout>

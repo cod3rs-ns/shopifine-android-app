@@ -11,6 +11,8 @@
     <string name="repeated_password">Retype password</string>
     <string name="address">Address</string>
 
+    <string name="product_categories_title">Products from same category</string>
+
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
 
