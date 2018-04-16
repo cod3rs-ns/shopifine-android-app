@@ -10,10 +10,19 @@
     
     <dimen name="paddingSide">16dp</dimen>
     <dimen name="paddingIconLabel">16dp</dimen>
+    <dimen name="paddingListItemSide">16dp</dimen>
+    <dimen name="paddingListItem">8dp</dimen>
 
     <dimen name="buttonHeight">36dp</dimen>
     <dimen name="buttonMinWidth">64dp</dimen>
     <dimen name="buttonPaddingSide">16dp</dimen>
     <dimen name="buttonMarginOutside">6dp</dimen>
+
+    <dimen name="listItemHeight">148dp</dimen>
+    <dimen name="listItemImageSize">132dp</dimen>
+
+    <dimen name="fontHeadlineSize">24sp</dimen>
+    <dimen name="fontTitleSize">20sp</dimen>
+    <dimen name="fontSubheadingSize">16sp</dimen>
 
 </resources>

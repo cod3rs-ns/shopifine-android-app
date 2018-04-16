@@ -6,4 +6,6 @@
 
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
+    <string name="add_to_shopping_cart">Add to Shopping Cart</string>
+    <string name="add_to_wishlist">add_to_wishlist</string>
 </resources>
