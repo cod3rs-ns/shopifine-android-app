@@ -11,7 +11,7 @@ public class Product {
 
     public Double price;
 
-    public Product(Long id, String name, String imageUrl, Long categoryId, Double price) {
+    public Product(final Long id, final String name, final String imageUrl, final Long categoryId, final Double price) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;

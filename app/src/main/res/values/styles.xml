@@ -16,6 +16,7 @@
     <dimen name="buttonHeight">36dp</dimen>
     <dimen name="buttonMinWidth">64dp</dimen>
     <dimen name="buttonPaddingSide">16dp</dimen>
+    <dimen name="buttonPaddingTop">8dp</dimen>
     <dimen name="buttonMarginOutside">6dp</dimen>
 
     <dimen name="listItemHeight">148dp</dimen>

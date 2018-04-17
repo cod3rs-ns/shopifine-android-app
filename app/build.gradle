@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     defaultConfig {
         applicationId "rs.cod3rs.shopifine"
-        minSdkVersion 21
+        minSdkVersion 25
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -22,6 +22,10 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/license.txt'
         exclude 'META-INF/notice.txt'
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 }
 
