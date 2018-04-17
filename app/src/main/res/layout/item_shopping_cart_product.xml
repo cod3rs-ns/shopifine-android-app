@@ -7,11 +7,12 @@
     android:paddingEnd="@dimen/paddingListItemSide"
     android:paddingTop="@dimen/paddingListItem"
     android:paddingBottom="@dimen/paddingListItem">
-    
-    <de.hdodenhof.circleimageview.CircleImageView
+
+    <android.support.v4.widget.CircleImageView
         android:id="@+id/productImage"
         android:layout_width="@dimen/listItemImageSize"
-        android:layout_height="@dimen/listItemImageSize"/>
+        android:layout_height="@dimen/listItemImageSize"
+        android:src="@drawable/ic_launcher_background"/>
 
     <LinearLayout
         android:id="@+id/productContent"

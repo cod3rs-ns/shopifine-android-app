@@ -60,7 +60,7 @@ public class LoginActivity extends Activity {
 
         if (res != null) {
             prefs.token().put(res.getToken());
-            ProductsActivity_.intent(getApplicationContext()).start();
+            ProductsActivity_.intent(this).start();
             finish();
         } else {
             // TODO Handle Error

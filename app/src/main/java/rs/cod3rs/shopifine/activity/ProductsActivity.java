@@ -1,10 +1,10 @@
 package rs.cod3rs.shopifine.activity;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -19,17 +19,18 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.rest.spring.annotations.RestService;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.adapter.ProductsAdapter;
 import rs.cod3rs.shopifine.domain.Product;
+import rs.cod3rs.shopifine.hateoas.ProductCollectionResponse;
 import rs.cod3rs.shopifine.hateoas.ProductResponseData;
 import rs.cod3rs.shopifine.http.Products;
 
 @EActivity(R.layout.activity_products)
-public class ProductsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ProductsActivity extends Activity implements NavigationView.OnNavigationItemSelectedListener {
 
     @RestService
     Products products;
@@ -52,11 +53,6 @@ public class ProductsActivity extends AppCompatActivity implements NavigationVie
     @AfterViews
     void bindAdapter() {
         productsView.setAdapter(adapter);
-    }
-
-    @AfterViews
-    void setToolbar() {
-        setSupportActionBar(toolbar);
     }
 
     @AfterViews
@@ -87,8 +83,12 @@ public class ProductsActivity extends AppCompatActivity implements NavigationVie
 
     @Background
     void getProducts() {
-        final List<Product> p = products.retrieveAll().getData().stream()
-                .map(ProductResponseData::toDomain).collect(Collectors.toList());
+        final ProductCollectionResponse res = products.retrieveAll();
+        final List<Product> p = new ArrayList<>();
+
+        for (final ProductResponseData data: res.getData()) {
+            p.add(data.toDomain());
+        }
 
         updateList(p);
     }

@@ -4,20 +4,27 @@ import java.util.List;
 
 public class ProductCollectionResponse {
 
-    private final List<ProductResponseData> data;
+    private List<ProductResponseData> data;
 
-    private final CollectionLinks links;
+    private CollectionLinks links;
 
-    public ProductCollectionResponse(final List<ProductResponseData> data, final CollectionLinks links) {
-        this.data = data;
-        this.links = links;
+    public ProductCollectionResponse() {
+        super();
     }
 
     public List<ProductResponseData> getData() {
         return data;
     }
 
+    public void setData(final List<ProductResponseData> data) {
+        this.data = data;
+    }
+
     public CollectionLinks getLinks() {
         return links;
+    }
+
+    public void setLinks(final CollectionLinks links) {
+        this.links = links;
     }
 }

@@ -22,4 +22,6 @@
     <string name="lets_shopping">Let\'s shopping!</string>
     <string name="category">Category</string>
     <string name="extra_points">Extra points</string>
+
+    <string name="checkout">Proceed to Checkout</string>
 </resources>
