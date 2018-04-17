@@ -13,6 +13,11 @@
 
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
+
     <string name="add_to_shopping_cart">Add to Shopping Cart</string>
     <string name="add_to_wishlist">add_to_wishlist</string>
+
+    <string name="lets_shopping">Let\'s shopping!</string>
+    <string name="category">Category</string>
+    <string name="extra_points">Extra points</string>
 </resources>
