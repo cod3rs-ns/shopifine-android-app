@@ -78,6 +78,19 @@ public class ProductsActivity extends Activity implements NavigationView.OnNavig
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.shoppingCart:
+                ShoppingCartActivity_.intent(this).start();
+//                finish();
+                break;
+            case R.id.profile:
+                ProfileActivity_.intent(this).start();
+                break;
+            case R.id.wishlist:
+                ProductActivity_.intent(this).start();
+                break;
+        }
+
         return false;
     }
 
