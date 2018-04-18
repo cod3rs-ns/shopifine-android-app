@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".activity.ProductsActivity_" />
         <activity android:name=".activity.RegisterActivity_" />
+        <activity android:name=".activity.ProfileActivity_" />
     </application>
 
 </manifest>

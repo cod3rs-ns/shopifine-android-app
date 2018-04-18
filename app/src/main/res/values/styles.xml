@@ -22,8 +22,16 @@
     <dimen name="listItemHeight">148dp</dimen>
     <dimen name="listItemImageSize">132dp</dimen>
 
+    <dimen name="fontDisplaySize">34sp</dimen>
     <dimen name="fontHeadlineSize">24sp</dimen>
     <dimen name="fontTitleSize">20sp</dimen>
     <dimen name="fontSubheadingSize">16sp</dimen>
 
+    <dimen name="headerImageHeight">150dp</dimen>
+    <dimen name="profileImageSize">200dp</dimen>
+
+    <dimen name="profileShoppingBtnSize">175dp</dimen>
+    <dimen name="profileSectionSpace">20dp</dimen>
+    <dimen name="profileImageBorderWidth">3dp</dimen>
+    <dimen name="profileInfoMargin">70dp</dimen>
 </resources>
