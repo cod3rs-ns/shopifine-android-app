@@ -1,6 +1,7 @@
 package rs.cod3rs.shopifine.activity;
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.EditText;
 
 import org.androidannotations.annotations.AfterInject;
@@ -50,7 +51,15 @@ public class LoginActivity extends Activity {
     @Background
     void auth(final String username, final String password) {
         final UserAuthResponse res = users.auth(new UserAuthRequest(username, password));
-        prefs.token().put(res.getToken());
+
+        if (res != null) {
+            prefs.token().put(res.getToken());
+            ProductsActivity_.intent(getApplicationContext()).start();
+            finish();
+        } else {
+            // TODO Handle Error
+            Log.d(LoginActivity.class.getSimpleName(), "Wrong credentials.");
+        }
     }
 
 }
