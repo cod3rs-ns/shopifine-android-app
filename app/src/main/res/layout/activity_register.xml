@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/paddingSide"
+    android:paddingStart="@dimen/paddingSide"
+    tools:context=".activity.RegisterActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/paddingSide"
+        android:paddingStart="@dimen/paddingSide"
+        tools:context=".activity.RegisterActivity">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher" />
+
+
+        <!-- First Name Text Field -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/sign_up_first_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/paddingIconLabel"
+                android:drawableStart="@drawable/ic_person_white_24dp"
+                android:hint="@string/first_name"
+                android:inputType="textWebEditText"
+                android:maxLines="1"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorAccent" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Last Name Text Field -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/sign_up_last_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/paddingIconLabel"
+                android:drawableStart="@drawable/ic_person_white_24dp"
+                android:hint="@string/last_name"
+                android:inputType="textWebEditText"
+                android:maxLines="1"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorAccent" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Username Text Field -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/sign_up_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/paddingIconLabel"
+                android:drawableStart="@drawable/ic_person_white_24dp"
+                android:hint="@string/username"
+                android:inputType="textWebEditText"
+                android:maxLines="1"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorAccent" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Password Text Field -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/sign_up_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/paddingIconLabel"
+                android:drawableStart="@drawable/ic_lock_white_24dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorAccent" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Password Repeated Text Field -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/sign_up_password_repeat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/paddingIconLabel"
+                android:drawableStart="@drawable/ic_lock_white_24dp"
+                android:hint="@string/repeated_password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorAccent" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Address Text Field -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/sign_up_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/paddingIconLabel"
+                android:drawableStart="@drawable/ic_person_pin_circle_white_24dp"
+                android:hint="@string/address"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorAccent" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/sign_up"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_marginTop="@dimen/buttonMarginOutside"
+            android:background="@color/colorPrimaryDark"
+            android:minWidth="@dimen/buttonMinWidth"
+            android:text="@string/sign_up"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/log_in_link"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_marginTop="@dimen/buttonMarginOutside"
+            android:background="@color/colorPrimaryDark"
+            android:minWidth="@dimen/buttonMinWidth"
+            android:text="@string/log_in"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
+</ScrollView>
