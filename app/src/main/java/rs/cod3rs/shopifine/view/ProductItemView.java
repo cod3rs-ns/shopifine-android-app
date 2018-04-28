@@ -2,6 +2,7 @@ package rs.cod3rs.shopifine.view;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -11,7 +12,8 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+import java.util.Locale;
+
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.domain.Product;
 
@@ -19,7 +21,7 @@ import rs.cod3rs.shopifine.domain.Product;
 public class ProductItemView extends LinearLayout {
 
     @ViewById
-    CircleImageView productImage;
+    ImageView productImage;
 
     @ViewById
     TextView productName;
@@ -35,19 +37,20 @@ public class ProductItemView extends LinearLayout {
     }
 
     @Click
-    public void addToShoppingCart(final ProductItemView p) {
-        Log.i(this.getClass().getSimpleName(), "Adding to shopping cart " + p.productName);
+    public void addToShoppingCart() {
+        Log.i(this.getClass().getSimpleName(), "Clicked to adding to shopping cart: " + this.productName + ".");
     }
 
     @Click
-    public void addToWishlist(final ProductItemView p) {
-        Log.i(this.getClass().getSimpleName(), "Adding to wishlist " + p.productName);
+    public void addToWishlist() {
+        Log.i(this.getClass().getSimpleName(), "Clicked to adding to wishlist: " + this.productName + ".");
     }
 
     public void bind(final Product product) {
         Picasso.get().load(product.imageUrl).into(productImage);
         productName.setText(product.name);
+        // TODO Get real product category
         productCategory.setText(product.categoryId.toString());
-        productPrice.setText(product.price.toString());
+        productPrice.setText(String.format(Locale.US, "%.2f €", product.price));
     }
 }

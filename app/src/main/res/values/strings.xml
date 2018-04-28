@@ -18,7 +18,7 @@
     <string name="address">Address</string>
 
     <string name="product_categories_title">Products from same category</string>
-    <string name="product_image">Product image</string>
+    <string name="product_image">Product Image</string>
 
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
@@ -68,5 +68,4 @@
     <string name="one_product_left">Only one product %1s left.</string>
     <string name="order_address_changed">Order with id %1d changed address to %2s.</string>
     <string name="product_price_changed">Product %1s changed its price to %2.2f.".</string>
-
 </resources>
