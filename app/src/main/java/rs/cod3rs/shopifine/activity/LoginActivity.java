@@ -76,7 +76,7 @@ public class LoginActivity extends Activity {
         try {
             final UserAuthResponse res = users.auth(new UserAuthRequest(username, password));
             prefs.token().put(res.getToken());
-            ProductsActivity_.intent(this).start();
+            MainActivity_.intent(this).start();
             finish();
         } catch (final NestedRuntimeException e) {
             hideProgressBar();

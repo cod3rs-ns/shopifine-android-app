@@ -31,4 +31,7 @@
     <string name="extra_points">Extra points</string>
 
     <string name="checkout">Proceed to Checkout</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
