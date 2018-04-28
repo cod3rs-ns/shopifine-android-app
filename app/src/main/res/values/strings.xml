@@ -4,6 +4,12 @@
     <string name="navigation_drawer_open">A</string>
     <string name="navigation_drawer_close">B</string>
 
+    <string name="navigation_drawer_home">Home</string>
+    <string name="navigation_drawer_shopping_cart">Shopping Cart</string>
+    <string name="navigation_drawer_wishlist">My Wishlist</string>
+    <string name="navigation_drawer_orders">My Orders</string>
+    <string name="navigation_drawer_profile">Profile</string>
+
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="first_name">First name</string>
@@ -15,9 +21,10 @@
 
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
+    <string name="log_out">Logout</string>
 
     <string name="add_to_shopping_cart">Add to Shopping Cart</string>
-    <string name="add_to_wishlist">add_to_wishlist</string>
+    <string name="add_to_wishlist">Add to Wishlist</string>
 
     <string name="lets_shopping">Let\'s shopping!</string>
     <string name="category">Category</string>

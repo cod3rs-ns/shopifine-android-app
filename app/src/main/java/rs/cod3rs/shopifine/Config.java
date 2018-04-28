@@ -2,7 +2,7 @@ package rs.cod3rs.shopifine;
 
 public final class Config {
 
-    public static final String SERVICE_URL = "http://192.168.0.10:9000";
+    public static final String SERVICE_URL = "http://192.168.0.11:9000";
 
     private Config() {
         super();

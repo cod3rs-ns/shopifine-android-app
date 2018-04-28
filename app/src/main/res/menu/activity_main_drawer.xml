@@ -6,32 +6,32 @@
         <item
             android:id="@+id/home"
             android:icon="@drawable/ic_home_black_24dp"
-            android:title="Home" />
+            android:title="@string/navigation_drawer_home" />
 
         <item
             android:id="@+id/shoppingCart"
             android:icon="@drawable/ic_shopping_cart_black_24dp"
-            android:title="Shopping Cart" />
+            android:title="@string/navigation_drawer_shopping_cart" />
 
         <item
             android:id="@+id/wishlist"
             android:icon="@drawable/ic_favorite_black_24dp"
-            android:title="My Wishlist" />
+            android:title="@string/navigation_drawer_wishlist" />
 
         <item
             android:id="@+id/orders"
             android:icon="@drawable/ic_library_books_black_24dp"
-            android:title="My Orders" />
+            android:title="@string/navigation_drawer_orders" />
 
         <item
             android:id="@+id/profile"
             android:icon="@drawable/ic_person_black_24dp"
-            android:title="Profile" />
+            android:title="@string/navigation_drawer_profile" />
 
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
-            android:title="Logout" />
+            android:title="@string/log_out" />
     </group>
 
 </menu>

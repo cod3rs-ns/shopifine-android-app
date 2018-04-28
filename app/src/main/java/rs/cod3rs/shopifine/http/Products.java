@@ -10,7 +10,8 @@ import rs.cod3rs.shopifine.hateoas.ProductCollectionResponse;
 @Rest(
         rootUrl = Config.SERVICE_URL,
         converters = MappingJackson2HttpMessageConverter.class,
-        interceptors = AuthInterceptor.class
+        interceptors = AuthInterceptor.class,
+        responseErrorHandler = HttpErrorHandler.class
 )
 public interface Products {
 
