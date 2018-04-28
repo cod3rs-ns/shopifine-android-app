@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rs.cod3rs.shopifine.domain.Product;
-import rs.cod3rs.shopifine.view.ProductItemView;
-import rs.cod3rs.shopifine.view.ProductItemView_;
+import rs.cod3rs.shopifine.view.ShoppingCartItemView;
+import rs.cod3rs.shopifine.view.ShoppingCartItemView_;
 
 @EBean
-public class ProductsAdapter extends BaseAdapter {
+public class ShoppingCartAdapter extends BaseAdapter {
 
     public List<Product> products = new ArrayList<>();
 
@@ -40,15 +40,15 @@ public class ProductsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ProductItemView productItemView;
+        ShoppingCartItemView shoppingCartItemView;
         if (view == null) {
-            productItemView = ProductItemView_.build(context);
+            shoppingCartItemView = ShoppingCartItemView_.build(context);
         } else {
-            productItemView = (ProductItemView) view;
+            shoppingCartItemView = (ShoppingCartItemView) view;
         }
 
-        productItemView.bind((Product) getItem(i));
+        shoppingCartItemView.bind((Product) getItem(i));
 
-        return productItemView;
+        return shoppingCartItemView;
     }
 }

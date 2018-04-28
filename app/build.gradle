@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     defaultConfig {
         applicationId "rs.cod3rs.shopifine"
-        minSdkVersion 25
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
         versionName "1.0.0"
@@ -55,6 +55,7 @@ dependencies {
     implementation 'org.springframework.android:spring-android-rest-template:2.0.0.M1'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.8'
 
-    // Other dependencies
-    compile 'de.hdodenhof:circleimageview:2.1.0'
+    // Util
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

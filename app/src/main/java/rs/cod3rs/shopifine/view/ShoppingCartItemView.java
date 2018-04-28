@@ -13,8 +13,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.domain.Product;
 
-@EViewGroup(R.layout.item_product)
-public class ProductItemView extends LinearLayout {
+@EViewGroup(R.layout.item_shopping_cart_product)
+public class ShoppingCartItemView extends LinearLayout {
 
     @ViewById
     CircleImageView productImage;
@@ -28,7 +28,7 @@ public class ProductItemView extends LinearLayout {
     @ViewById
     TextView productPrice;
 
-    public ProductItemView(final Context context) {
+    public ShoppingCartItemView(final Context context) {
         super(context);
     }
 

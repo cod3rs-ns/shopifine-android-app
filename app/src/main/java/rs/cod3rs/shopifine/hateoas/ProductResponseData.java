@@ -1,17 +1,18 @@
 package rs.cod3rs.shopifine.hateoas;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import rs.cod3rs.shopifine.domain.Product;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductResponseData {
 
-    private final String type;
-    private final Long id;
-    private final ProductResponseAttributes attributes;
+    private String type;
+    private Long id;
+    private ProductResponseAttributes attributes;
 
-    public ProductResponseData(final String type, final Long id, final ProductResponseAttributes attributes) {
-        this.type = type;
-        this.id = id;
-        this.attributes = attributes;
+    public ProductResponseData() {
+        super();
     }
 
     public Product toDomain() {
@@ -22,11 +23,23 @@ public class ProductResponseData {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public ProductResponseAttributes getAttributes() {
         return attributes;
+    }
+
+    public void setAttributes(final ProductResponseAttributes attributes) {
+        this.attributes = attributes;
     }
 }

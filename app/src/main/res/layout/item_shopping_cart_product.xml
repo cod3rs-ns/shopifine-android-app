@@ -7,7 +7,7 @@
     android:paddingEnd="@dimen/paddingListItemSide"
     android:paddingTop="@dimen/paddingListItem"
     android:paddingBottom="@dimen/paddingListItem">
-    
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/productImage"
         android:layout_width="@dimen/listItemImageSize"
@@ -54,19 +54,24 @@
         android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/addToShoppingCart"
+            android:id="@+id/quantityPlusOne"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_add_shopping_cart_black_24dp"
+            android:src="@drawable/ic_arrow_drop_up_black_24dp"
             android:contentDescription="@string/add_to_shopping_cart" />
 
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"/>
+
         <ImageButton
-            android:id="@+id/addToWishlist"
+            android:id="@+id/quantityMinusOne"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_favorite_border_black_24dp"
+            android:src="@drawable/ic_arrow_drop_down_black_24dp"
             android:paddingTop="@dimen/buttonPaddingTop"
             android:contentDescription="@string/add_to_wishlist" />
 
