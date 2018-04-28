@@ -17,8 +17,8 @@ import java.util.List;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.adapter.ShoppingCartAdapter;
 import rs.cod3rs.shopifine.domain.Product;
-import rs.cod3rs.shopifine.hateoas.ProductCollectionResponse;
-import rs.cod3rs.shopifine.hateoas.ProductResponseData;
+import rs.cod3rs.shopifine.hateoas.products.ProductCollectionResponse;
+import rs.cod3rs.shopifine.hateoas.products.ProductResponseData;
 import rs.cod3rs.shopifine.http.Products;
 
 @EFragment(R.layout.fragment_shopping_cart)

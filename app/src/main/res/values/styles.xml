@@ -7,6 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <dimen name="navHeight">192dp</dimen>
     
     <dimen name="paddingSide">16dp</dimen>
     <dimen name="paddingIconLabel">16dp</dimen>
@@ -31,10 +33,12 @@
     <dimen name="fontHeadlineSize">24sp</dimen>
     <dimen name="fontTitleSize">20sp</dimen>
     <dimen name="fontSubheadingSize">16sp</dimen>
+    <dimen name="fontStandardSize">14sp</dimen>
 
     <dimen name="headerImageHeight">150dp</dimen>
     <dimen name="profileImageSize">200dp</dimen>
     <dimen name="iconImageSize">128dp</dimen>
+    <dimen name="navProfileImageSize">96dp</dimen>
 
     <dimen name="profileShoppingBtnSize">175dp</dimen>
     <dimen name="profileSectionSpace">20dp</dimen>

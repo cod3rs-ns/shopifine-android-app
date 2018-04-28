@@ -9,18 +9,77 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.sharedpreferences.Pref;
+import org.androidannotations.rest.spring.annotations.RestService;
+import org.springframework.core.NestedRuntimeException;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
+import rs.cod3rs.shopifine.domain.User;
 import rs.cod3rs.shopifine.fragment.ProductsFragment_;
 import rs.cod3rs.shopifine.fragment.ProfileFragment_;
 import rs.cod3rs.shopifine.fragment.ShoppingCartFragment_;
+import rs.cod3rs.shopifine.hateoas.users.UserResponse;
+import rs.cod3rs.shopifine.hateoas.users.UserResponseAttributes;
+import rs.cod3rs.shopifine.http.ErrorHandler;
+import rs.cod3rs.shopifine.http.Users;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    @Pref
+    Prefs_ prefs;
+
+    @RestService
+    Users users;
+
+    @Bean
+    ErrorHandler errorHandler;
+
+    @AfterInject
+    void setErrorHandler() {
+        users.setRestErrorHandler(errorHandler);
+    }
+
+    @AfterInject
+    void a() {
+//        final Object o = Jwts.parser().parse(prefs.token().get()).getBody();
+//        Log.i(this.getClass().getSimpleName(), o.toString());
+        // FIXME Get user ID from the token
+        final Long userId = 1L;
+
+        getLoggedUser(userId);
+    }
+
+    @Background
+    void getLoggedUser(final Long userId) {
+        try {
+            final UserResponse res = users.getUser(userId);
+            final UserResponseAttributes attrs = res.getData().getAttributes();
+            final User u = new User(attrs.getUsername(), attrs.getFirstName(), attrs.getLastName(), attrs.getAddress());
+            prefs.edit()
+                    .loggedUserImageUrl().put(u.getImage())
+                    .loggedUserFullName().put(u.getFullName())
+                    .loggedUserAddress().put(u.address)
+                    .apply();
+            setHeader();
+        } catch (final NestedRuntimeException e) {
+//            hideProgressBar();
+//            showWrongLoginMessage(e.getMessage());
+        }
+    }
 
     @ViewById
     DrawerLayout drawerLayout;
@@ -54,6 +113,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    void setHeader() {
+        final LinearLayout header = (LinearLayout) navigationView.getHeaderView(0);
+
+        final CircleImageView profileImage = (CircleImageView) header.findViewById(R.id.navProfileImage);
+        final TextView name = (TextView) header.findViewById(R.id.navUserName);
+        final TextView address = (TextView) header.findViewById(R.id.navUserAddress);
+
+        // FIXME Use real user info
+//        Picasso.get().load(prefs.loggedUserImageUrl().get()).into(profileImage);
+//        name.setText(prefs.loggedUserFullName().get());
+//        address.setText(prefs.loggedUserAddress().get());
+        Picasso.get().load("https://avatars.io/instagram/dmarjanovic94").into(profileImage);
+        name.setText("Dragutin Marjanovic");
+        address.setText("Danila Kisa 17, Novi Sad");
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -82,11 +157,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 // TODO Provide Orders fragment
             case R.id.profile:
                 return ProfileFragment_.builder().build();
-//            case R.id.logout:
-//                // TODO Logout
-//                LoginActivity_.intent(this).start();
-//                finish();
-//                break;
+            case R.id.logout:
+                // TODO Logout
+                return ProductsFragment_.builder().build();
             default:
                 throw new IllegalArgumentException("No fragment with id " + fragmentId);
         }

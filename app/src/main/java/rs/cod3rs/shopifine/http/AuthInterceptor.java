@@ -1,5 +1,7 @@
 package rs.cod3rs.shopifine.http;
 
+import android.util.Log;
+
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.springframework.http.HttpHeaders;
@@ -21,6 +23,8 @@ public class AuthInterceptor implements ClientHttpRequestInterceptor {
     @Override
     public ClientHttpResponse intercept(final HttpRequest request, final byte[] body, final ClientHttpRequestExecution execution) throws IOException {
         final String token = prefs.token().get();
+
+        Log.i(this.getClass().getSimpleName(), token);
 
         if (token != null) {
             final HttpHeaders headers = request.getHeaders();

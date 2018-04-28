@@ -7,4 +7,10 @@ public interface Prefs {
 
     String token();
 
+    String loggedUserImageUrl();
+
+    String loggedUserFullName();
+
+    String loggedUserAddress();
+
 }

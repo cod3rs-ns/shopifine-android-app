@@ -1,4 +1,4 @@
-package rs.cod3rs.shopifine.hateoas;
+package rs.cod3rs.shopifine.hateoas.users;
 
 public class UserAuthResponse {
 

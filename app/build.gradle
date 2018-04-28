@@ -59,4 +59,5 @@ dependencies {
     // Util
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'io.jsonwebtoken:jjwt:0.9.0'
 }

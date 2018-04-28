@@ -21,8 +21,8 @@ import org.springframework.core.NestedRuntimeException;
 
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
-import rs.cod3rs.shopifine.hateoas.UserAuthRequest;
-import rs.cod3rs.shopifine.hateoas.UserAuthResponse;
+import rs.cod3rs.shopifine.hateoas.users.UserAuthRequest;
+import rs.cod3rs.shopifine.hateoas.users.UserAuthResponse;
 import rs.cod3rs.shopifine.http.ErrorHandler;
 import rs.cod3rs.shopifine.http.Users;
 
