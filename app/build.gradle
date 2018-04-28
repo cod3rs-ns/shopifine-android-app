@@ -45,11 +45,11 @@ dependencies {
 
     // Android Annotations
     annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
-    compile "org.androidannotations:androidannotations-api:$AAVersion"
+    implementation "org.androidannotations:androidannotations-api:$AAVersion"
     annotationProcessor "org.androidannotations:rest-spring-api:$AAVersion"
-    compile "org.androidannotations:rest-spring-api:$AAVersion"
+    implementation "org.androidannotations:rest-spring-api:$AAVersion"
     annotationProcessor "org.androidannotations:rest-spring:$AAVersion"
-    compile "org.androidannotations:rest-spring:$AAVersion"
+    implementation "org.androidannotations:rest-spring:$AAVersion"
 
     // Dependencies for JSON Mapping
     implementation 'org.springframework.android:spring-android-rest-template:2.0.0.M1'

@@ -1,17 +1,23 @@
 package rs.cod3rs.shopifine.activity;
 
 import android.app.Activity;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.TextChange;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.rest.spring.annotations.RestService;
+import org.springframework.core.NestedRuntimeException;
 
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
@@ -35,6 +41,15 @@ public class LoginActivity extends Activity {
     @ViewById
     EditText password;
 
+    @ViewById
+    ProgressBar loginProgressBar;
+
+    @ViewById
+    TextView errorMessage;
+
+    @ViewById
+    Button logIn;
+
     @Bean
     ErrorHandler errorHandler;
 
@@ -43,29 +58,54 @@ public class LoginActivity extends Activity {
         users.setRestErrorHandler(errorHandler);
     }
 
-    @Click(R.id.log_in)
+    @Click
     void logIn() {
+        showProgressBar();
+        hideErrorMessage();
         auth(username.getText().toString(), password.getText().toString());
     }
 
-    @Click(R.id.sign_up_link)
-    void signUp() {
+    @Click
+    void signUpLink() {
         RegisterActivity_.intent(this).start();
         finish();
     }
 
     @Background
     void auth(final String username, final String password) {
-        final UserAuthResponse res = users.auth(new UserAuthRequest(username, password));
-
-        if (res != null) {
+        try {
+            final UserAuthResponse res = users.auth(new UserAuthRequest(username, password));
             prefs.token().put(res.getToken());
             ProductsActivity_.intent(this).start();
             finish();
-        } else {
-            // TODO Handle Error
-            Log.d(LoginActivity.class.getSimpleName(), "Wrong credentials.");
+        } catch (final NestedRuntimeException e) {
+            hideProgressBar();
+            showWrongLoginMessage(e.getMessage());
         }
+    }
+
+    @TextChange({R.id.username, R.id.password})
+    void hideErrorMessage() {
+        errorMessage.setVisibility(View.GONE);
+    }
+
+    @UiThread
+    void showProgressBar() {
+        loginProgressBar.setVisibility(View.VISIBLE);
+        logIn.setVisibility(View.INVISIBLE);
+    }
+
+    @UiThread
+    void hideProgressBar() {
+        loginProgressBar.setVisibility(View.INVISIBLE);
+        logIn.setVisibility(View.VISIBLE);
+    }
+
+    @UiThread
+    void showWrongLoginMessage(final String message) {
+        password.setText("");
+        errorMessage.setText(message);
+        errorMessage.setVisibility(View.VISIBLE);
     }
 
 }

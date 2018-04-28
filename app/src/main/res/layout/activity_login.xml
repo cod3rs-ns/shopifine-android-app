@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:paddingStart="@dimen/paddingSide"
-    android:paddingEnd="@dimen/paddingSide"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/paddingSide"
+    android:paddingStart="@dimen/paddingSide">
 
     <android.support.v7.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/iconImageSize"
+        android:layout_height="@dimen/iconImageSize"
         android:src="@drawable/ic_shopifine_bag" />
 
     <android.support.design.widget.TextInputLayout
@@ -22,10 +22,10 @@
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:drawablePadding="@dimen/paddingIconLabel"
             android:drawableStart="@drawable/ic_person_white_24dp"
             android:hint="@string/username"
+            android:maxLines="1"
             android:textColor="@color/colorWhite"
             android:textColorHint="@color/colorAccent" />
 
@@ -40,33 +40,59 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:drawablePadding="@dimen/paddingIconLabel"
             android:drawableStart="@drawable/ic_lock_white_24dp"
             android:hint="@string/password"
             android:inputType="textPassword"
+            android:maxLines="1"
             android:textColor="@color/colorWhite"
             android:textColorHint="@color/colorAccent" />
 
     </android.support.design.widget.TextInputLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/defaultBlockHeight"
+        android:layout_marginTop="@dimen/defaultMarginTop"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/errorMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/fontTitleSize"
+            android:visibility="gone"/>
+
+        <ProgressBar
+            android:id="@+id/loginProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:indeterminate="true"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
     <Button
-        android:id="@+id/log_in"
-        android:minWidth="@dimen/buttonMinWidth"
+        android:id="@+id/logIn"
         android:layout_width="match_parent"
         android:layout_height="@dimen/buttonHeight"
         android:layout_marginTop="@dimen/buttonMarginOutside"
         android:background="@color/colorPrimaryDark"
+        android:minWidth="@dimen/buttonMinWidth"
         android:text="@string/log_in"
         android:textColor="@color/colorWhite" />
 
     <Button
-        android:id="@+id/sign_up_link"
-        android:minWidth="@dimen/buttonMinWidth"
+        android:id="@+id/signUpLink"
         android:layout_width="match_parent"
         android:layout_height="@dimen/buttonHeight"
         android:layout_marginTop="@dimen/buttonMarginOutside"
         android:background="@color/colorPrimaryDark"
+        android:minWidth="@dimen/buttonMinWidth"
         android:text="@string/sign_up"
         android:textColor="@color/colorWhite" />
 
