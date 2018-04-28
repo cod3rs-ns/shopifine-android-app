@@ -4,31 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/navHeight"
     android:background="@drawable/drawer_background"
-    android:padding="@dimen/paddingSide"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:gravity="bottom"
     android:orientation="vertical"
-    android:gravity="bottom">
+    android:padding="@dimen/paddingSide"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/navProfileImage"
         android:layout_width="@dimen/navProfileImageSize"
         android:layout_height="@dimen/navProfileImageSize"
+        android:scaleType="centerCrop"
         app:civ_border_color="@color/colorWhite"
-        app:civ_border_width="@dimen/navImageBorder"
-        android:scaleType="centerCrop"/>
+        app:civ_border_width="@dimen/navImageBorder" />
 
     <TextView
         android:id="@+id/navUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/defaultMarginTop"
-        android:textSize="@dimen/fontStandardSize"
-        android:fontFamily="sans-serif-medium"/>
+        android:fontFamily="sans-serif-medium"
+        android:textSize="@dimen/fontStandardSize" />
 
     <TextView
         android:id="@+id/navUserAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/fontStandardSize"/>
+        android:textSize="@dimen/fontStandardSize" />
 
 </LinearLayout>

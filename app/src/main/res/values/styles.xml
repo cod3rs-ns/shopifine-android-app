@@ -11,7 +11,7 @@
 
     <dimen name="navHeight">192dp</dimen>
     <dimen name="navImageBorder">2dp</dimen>
-    
+
     <dimen name="paddingSide">16dp</dimen>
     <dimen name="paddingIconLabel">16dp</dimen>
     <dimen name="paddingListItemSide">16dp</dimen>
