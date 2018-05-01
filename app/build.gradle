@@ -27,6 +27,12 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+
+    signingConfigs {
+        debug {
+            storeFile file("debug.keystore")
+        }
+    }
 }
 
 def SupportVersion = '25.4.0'
@@ -60,5 +66,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.auth0.android:jwtdecode:1.1.1'
+
+    // Google login
+    implementation 'com.google.android.gms:play-services-auth:11.8.0'
 
 }
