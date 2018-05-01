@@ -7,7 +7,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 
 import rs.cod3rs.shopifine.Config;
 import rs.cod3rs.shopifine.hateoas.product_categories.ProductCategoryResponse;
-import rs.cod3rs.shopifine.hateoas.products.ProductCollectionResponse;
 
 @Rest(
         rootUrl = Config.SERVICE_URL,

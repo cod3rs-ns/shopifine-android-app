@@ -16,7 +16,6 @@
         android:id="@+id/productImage"
         android:layout_width="@dimen/listItemImageSize"
         android:layout_height="@dimen/listItemImageSize"
-        android:layout_marginTop="@dimen/marginImageSize"
         android:contentDescription="@string/product_image" />
 
     <LinearLayout

@@ -32,7 +32,7 @@
     <dimen name="productCoverHeight">210dp</dimen>
 
     <dimen name="listItemHeight">148dp</dimen>
-    <dimen name="listItemImageSize">92dp</dimen>
+    <dimen name="listItemImageSize">132dp</dimen>
     <dimen name="marginImageSize">20dp</dimen>
 
     <dimen name="fontDisplaySize">34sp</dimen>
