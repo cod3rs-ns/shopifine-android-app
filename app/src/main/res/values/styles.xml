@@ -10,6 +10,7 @@
     </style>
 
     <dimen name="navHeight">192dp</dimen>
+    <dimen name="navImageBorder">2dp</dimen>
     
     <dimen name="paddingSide">16dp</dimen>
     <dimen name="paddingIconLabel">16dp</dimen>
@@ -39,7 +40,7 @@
     <dimen name="headerImageHeight">150dp</dimen>
     <dimen name="profileImageSize">200dp</dimen>
     <dimen name="iconImageSize">128dp</dimen>
-    <dimen name="navProfileImageSize">96dp</dimen>
+    <dimen name="navProfileImageSize">80dp</dimen>
 
     <dimen name="profileShoppingBtnSize">175dp</dimen>
     <dimen name="profileSectionSpace">20dp</dimen>
