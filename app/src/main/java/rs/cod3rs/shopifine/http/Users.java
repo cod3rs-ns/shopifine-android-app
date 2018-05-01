@@ -25,6 +25,6 @@ public interface Users extends RestClientErrorHandling {
     UserAuthResponse auth(@Body final UserAuthRequest req);
 
     @Get("api/users/{id}")
-    UserResponse getUser(@Path final Long id);
+    UserResponse getUser(@Path final Integer id);
 
 }

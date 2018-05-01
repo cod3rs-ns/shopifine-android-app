@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.auth0.android.jwt.JWT;
 import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterInject;
@@ -60,17 +61,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @AfterInject
-    void a() {
-//        final Object o = Jwts.parser().parse(prefs.token().get()).getBody();
-//        Log.i(this.getClass().getSimpleName(), o.toString());
-        // FIXME Get user ID from the token
-        final Long userId = 1L;
-
+    void extractUserIdFromToken() {
+        final JWT jwt = new JWT(credentials.token().get());
+        final Integer userId = jwt.getClaim("id").asInt();
         getLoggedUser(userId);
     }
 
     @Background
-    void getLoggedUser(final Long userId) {
+    void getLoggedUser(final Integer userId) {
         try {
             final UserResponse res = users.getUser(userId);
             final UserResponseAttributes attrs = res.getData().getAttributes();
