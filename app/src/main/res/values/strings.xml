@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Shopifine</string>
 
-    <string name="navigation_drawer_open">A</string>
-    <string name="navigation_drawer_close">B</string>
+    <string name="navigation_drawer_open">Open Drawer</string>
+    <string name="navigation_drawer_close">Close Drawer</string>
 
     <string name="navigation_drawer_home">Home</string>
     <string name="navigation_drawer_shopping_cart">Shopping Cart</string>
@@ -31,7 +31,4 @@
     <string name="extra_points">Extra points</string>
 
     <string name="checkout">Proceed to Checkout</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.rest.spring.annotations.RestService;
@@ -69,15 +71,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             final UserResponse res = users.getUser(userId);
             final UserResponseAttributes attrs = res.getData().getAttributes();
             final User u = new User(attrs.getUsername(), attrs.getFirstName(), attrs.getLastName(), attrs.getAddress());
+
             prefs.edit()
                     .loggedUserImageUrl().put(u.getImage())
                     .loggedUserFullName().put(u.getFullName())
                     .loggedUserAddress().put(u.address)
                     .apply();
+
             setHeader();
         } catch (final NestedRuntimeException e) {
-//            hideProgressBar();
-//            showWrongLoginMessage(e.getMessage());
+            Log.e(this.getClass().getSimpleName(), e.getMessage());
         }
     }
 
@@ -104,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @AfterViews
     void setDrawer() {
-        // FIXME Better implementation
         final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.setDrawerListener(toggle);
@@ -113,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    @UiThread
     void setHeader() {
         final LinearLayout header = (LinearLayout) navigationView.getHeaderView(0);
 
@@ -120,19 +123,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final TextView name = (TextView) header.findViewById(R.id.navUserName);
         final TextView address = (TextView) header.findViewById(R.id.navUserAddress);
 
-        // FIXME Use real user info
-//        Picasso.get().load(prefs.loggedUserImageUrl().get()).into(profileImage);
-//        name.setText(prefs.loggedUserFullName().get());
-//        address.setText(prefs.loggedUserAddress().get());
-        Picasso.get().load("https://avatars.io/instagram/dmarjanovic94").into(profileImage);
-        name.setText("Dragutin Marjanovic");
-        address.setText("Danila Kisa 17, Novi Sad");
+        Picasso.get().load(prefs.loggedUserImageUrl().get()).into(profileImage);
+        name.setText(prefs.loggedUserFullName().get());
+        address.setText(prefs.loggedUserAddress().get());
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        // FIXME Better implementation and comment this code
         final int fragmentId = item.getItemId();
 
         navigationView.setCheckedItem(fragmentId);

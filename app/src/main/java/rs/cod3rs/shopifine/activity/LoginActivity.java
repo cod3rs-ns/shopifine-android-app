@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
@@ -19,7 +20,7 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.rest.spring.annotations.RestService;
 import org.springframework.core.NestedRuntimeException;
 
-import rs.cod3rs.shopifine.Prefs_;
+import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.hateoas.users.UserAuthRequest;
 import rs.cod3rs.shopifine.hateoas.users.UserAuthResponse;
@@ -30,7 +31,7 @@ import rs.cod3rs.shopifine.http.Users;
 public class LoginActivity extends Activity {
 
     @Pref
-    Prefs_ prefs;
+    Credentials_ credentials;
 
     @RestService
     Users users;
@@ -75,7 +76,7 @@ public class LoginActivity extends Activity {
     void auth(final String username, final String password) {
         try {
             final UserAuthResponse res = users.auth(new UserAuthRequest(username, password));
-            prefs.token().put(res.getToken());
+            credentials.token().put(res.getToken());
             MainActivity_.intent(this).start();
             finish();
         } catch (final NestedRuntimeException e) {
@@ -106,6 +107,12 @@ public class LoginActivity extends Activity {
         password.setText("");
         errorMessage.setText(message);
         errorMessage.setVisibility(View.VISIBLE);
+    }
+
+    @AfterViews
+    void setDefaults() {
+        username.setText("dmarjanovic");
+        password.setText("sergioramos");
     }
 
 }
