@@ -27,6 +27,7 @@ import org.androidannotations.rest.spring.annotations.RestService;
 import org.springframework.core.NestedRuntimeException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.domain.User;
@@ -43,6 +44,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Pref
     Prefs_ prefs;
+
+    @Pref
+    Credentials_ credentials;
 
     @RestService
     Users users;
@@ -132,12 +136,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         final int fragmentId = item.getItemId();
 
-        navigationView.setCheckedItem(fragmentId);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame, getFragmentById(fragmentId))
-                .commit();
+        if (R.id.logout == fragmentId) {
+            credentials.edit().token().remove();
+            LoginActivity_.intent(this).start();
+            finish();
+        } else {
+            navigationView.setCheckedItem(fragmentId);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frame, getFragmentById(fragmentId))
+                    .commit();
 
-        drawerLayout.closeDrawer(GravityCompat.START);
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
 
         return false;
     }
@@ -154,9 +164,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 // TODO Provide Orders fragment
             case R.id.profile:
                 return ProfileFragment_.builder().build();
-            case R.id.logout:
-                // TODO Logout
-                return ProductsFragment_.builder().build();
             default:
                 throw new IllegalArgumentException("No fragment with id " + fragmentId);
         }
