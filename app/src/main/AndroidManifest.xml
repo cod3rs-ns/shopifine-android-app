@@ -17,11 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ProductsActivity_" />
+        <activity android:name=".activity.MainActivity_" />
         <activity android:name=".activity.RegisterActivity_" />
-        <activity android:name=".activity.ProfileActivity_" />
         <activity android:name=".activity.ProductActivity_" />
-        <activity android:name=".activity.ShoppingCartActivity_"></activity>
     </application>
 
 </manifest>

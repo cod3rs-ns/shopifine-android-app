@@ -1,4 +1,4 @@
-package rs.cod3rs.shopifine.hateoas;
+package rs.cod3rs.shopifine.hateoas.products;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

@@ -1,11 +1,13 @@
 package rs.cod3rs.shopifine.view;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
@@ -30,6 +32,16 @@ public class ProductItemView extends LinearLayout {
 
     public ProductItemView(final Context context) {
         super(context);
+    }
+
+    @Click
+    public void addToShoppingCart(final ProductItemView p) {
+        Log.i(this.getClass().getSimpleName(), "Adding to shopping cart " + p.productName);
+    }
+
+    @Click
+    public void addToWishlist(final ProductItemView p) {
+        Log.i(this.getClass().getSimpleName(), "Adding to wishlist " + p.productName);
     }
 
     public void bind(final Product product) {

@@ -1,6 +1,8 @@
-package rs.cod3rs.shopifine.hateoas;
+package rs.cod3rs.shopifine.hateoas.products;
 
 import java.util.List;
+
+import rs.cod3rs.shopifine.hateoas.CollectionLinks;
 
 public class ProductCollectionResponse {
 
