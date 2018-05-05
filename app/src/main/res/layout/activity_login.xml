@@ -94,6 +94,14 @@
         android:background="@color/colorPrimaryDark"
         android:minWidth="@dimen/buttonMinWidth"
         android:text="@string/sign_up"
-        android:textColor="@color/colorWhite" />
+        android:textColor="@color/colorWhite"
+        android:layout_marginBottom="@dimen/smallBlockHeight"/>
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/googleSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/buttonHeight"
+        android:layout_marginTop="@dimen/buttonMarginOutside"
+        android:minWidth="@dimen/buttonMinWidth" />
 
 </LinearLayout>

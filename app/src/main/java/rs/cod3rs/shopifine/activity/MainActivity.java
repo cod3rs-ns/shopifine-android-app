@@ -14,6 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.auth0.android.jwt.JWT;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterInject;
@@ -54,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Bean
     ErrorHandler errorHandler;
+
+    private GoogleSignInClient googleSignInClient;
 
     @AfterInject
     void setErrorHandler() {
@@ -117,6 +122,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    @AfterViews
+    void setGoogleClient() {
+        final GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build();
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
+    }
+
     @UiThread
     void setHeader() {
         final LinearLayout header = (LinearLayout) navigationView.getHeaderView(0);
@@ -131,13 +142,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
         final int fragmentId = item.getItemId();
 
         if (R.id.logout == fragmentId) {
             credentials.edit().token().remove();
-            LoginActivity_.intent(this).start();
-            finish();
+            googleSignInClient.signOut()
+                    .addOnCompleteListener(this, task -> {
+                        LoginActivity_.intent(MainActivity.this).start();
+                        finish();
+                    });
         } else {
             navigationView.setCheckedItem(fragmentId);
             getSupportFragmentManager().beginTransaction()

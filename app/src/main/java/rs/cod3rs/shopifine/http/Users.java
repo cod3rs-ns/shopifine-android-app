@@ -9,6 +9,7 @@ import org.androidannotations.rest.spring.api.RestClientErrorHandling;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 import rs.cod3rs.shopifine.Config;
+import rs.cod3rs.shopifine.hateoas.users.GoogleAuthRequest;
 import rs.cod3rs.shopifine.hateoas.users.UserAuthRequest;
 import rs.cod3rs.shopifine.hateoas.users.UserAuthResponse;
 import rs.cod3rs.shopifine.hateoas.users.UserResponse;
@@ -23,6 +24,9 @@ public interface Users extends RestClientErrorHandling {
 
     @Post("api/users/auth")
     UserAuthResponse auth(@Body final UserAuthRequest req);
+
+    @Post("api/auth/google")
+    UserAuthResponse googleAuth(@Body final GoogleAuthRequest req);
 
     @Get("api/users/{id}")
     UserResponse getUser(@Path final Integer id);
