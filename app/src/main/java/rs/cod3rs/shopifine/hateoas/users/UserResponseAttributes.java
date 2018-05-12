@@ -9,6 +9,7 @@ public class UserResponseAttributes {
     private String firstName;
     private String lastName;
     private String address;
+    private Long points;
 
     public UserResponseAttributes() {
         super();
@@ -44,5 +45,13 @@ public class UserResponseAttributes {
 
     public void setAddress(final String address) {
         this.address = address;
+    }
+
+    public Long getPoints() {
+        return points;
+    }
+
+    public void setPoints(Long points) {
+        this.points = points;
     }
 }
