@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rs.cod3rs.shopifine.R;
+import rs.cod3rs.shopifine.activity.ProductActivity_;
 import rs.cod3rs.shopifine.adapter.ProductsAdapter;
 import rs.cod3rs.shopifine.domain.Product;
 import rs.cod3rs.shopifine.hateoas.products.ProductCollectionResponse;
@@ -47,6 +48,7 @@ public class ProductsFragment extends Fragment {
     @ItemClick
     void productsItemClicked(final Product product) {
         Log.i(ProductsFragment.class.getSimpleName(), String.format("Clicked on product %s", product.name));
+        ProductActivity_.intent(this).product(product).start();
     }
 
     @Background
