@@ -43,8 +43,7 @@
     <dimen name="iconImageSize">128dp</dimen>
     <dimen name="navProfileImageSize">80dp</dimen>
 
-    <dimen name="profileShoppingBtnSize">175dp</dimen>
-    <dimen name="profileSectionSpace">20dp</dimen>
+    <dimen name="profileSectionSpace">10dp</dimen>
     <dimen name="profileImageBorderWidth">3dp</dimen>
     <dimen name="profileInfoMargin">70dp</dimen>
     <dimen name="discountCircleSize">55dp</dimen>

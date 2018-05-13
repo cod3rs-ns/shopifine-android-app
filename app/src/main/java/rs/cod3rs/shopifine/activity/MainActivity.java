@@ -3,11 +3,13 @@ package rs.cod3rs.shopifine.activity;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -29,6 +31,9 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.rest.spring.annotations.RestService;
 import org.springframework.core.NestedRuntimeException;
+
+import java.util.Arrays;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import rs.cod3rs.shopifine.Credentials_;
@@ -59,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ErrorHandler errorHandler;
 
     private GoogleSignInClient googleSignInClient;
+
+    private final List<Integer> fragmentOrders = Arrays.asList(R.id.home, R.id.shoppingCart, R.id.wishlist, R.id.orders, R.id.orders);
 
     @AfterInject
     void setErrorHandler() {
@@ -128,6 +135,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         googleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
+    @AfterViews
+    void setNavbarSelection() {
+        getSupportFragmentManager().addOnBackStackChangedListener(() -> {
+            final FragmentManager fm = getSupportFragmentManager();
+            final String name = fm.getBackStackEntryAt(fm.getBackStackEntryCount() - 1).getName();
+
+            if (!TextUtils.isEmpty(name)) {
+                navigationView.setCheckedItem(getFragmentIdByPosition(Integer.parseInt(name)));
+            }
+        });
+    }
+
     @UiThread
     void setHeader() {
         final LinearLayout header = (LinearLayout) navigationView.getHeaderView(0);
@@ -164,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
-    private Fragment getFragmentById(final int fragmentId) {
+    public static Fragment getFragmentById(final int fragmentId) {
         switch (fragmentId) {
             case R.id.home:
                 return ProductsFragment_.builder().build();
@@ -179,5 +198,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             default:
                 throw new IllegalArgumentException("No fragment with id " + fragmentId);
         }
+    }
+
+    private int getFragmentIdByPosition(final int position) {
+        return fragmentOrders.get(position);
     }
 }

@@ -7,6 +7,7 @@ public class UserResponseData {
 
     private String type;
     private UserResponseAttributes attributes;
+    private UserResponseRelationships relationships;
 
     public UserResponseData() {
         super();
@@ -26,5 +27,13 @@ public class UserResponseData {
 
     public void setAttributes(final UserResponseAttributes attributes) {
         this.attributes = attributes;
+    }
+
+    public UserResponseRelationships getRelationships() {
+        return relationships;
+    }
+
+    public void setRelationships(UserResponseRelationships relationships) {
+        this.relationships = relationships;
     }
 }

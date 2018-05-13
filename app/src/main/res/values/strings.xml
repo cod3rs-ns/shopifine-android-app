@@ -31,4 +31,8 @@
     <string name="extra_points">Extra points</string>
 
     <string name="checkout">Proceed to Checkout</string>
+    <string name="home">Home</string>
+    <string name="orders">Orders</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="shopping_cart">Shopping cart</string>
 </resources>
