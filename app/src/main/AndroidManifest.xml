@@ -21,6 +21,10 @@
         <activity android:name=".activity.RegisterActivity_" />
         <activity android:name=".activity.ProductActivity_" />
         <activity android:name=".activity.OrderActivity_" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC3VqtRheS_qHzsN3V4qOsIYrbDhxHjTz0" />
     </application>
 
 </manifest>
