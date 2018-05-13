@@ -15,11 +15,10 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/productCover"
+                android:id="@+id/singleProductCover"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/productCoverHeight"
-                android:orientation="horizontal"
-                android:src="@drawable/sunglasses" />
+                android:orientation="horizontal" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -52,12 +51,12 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/singleProductName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingEnd="@dimen/productInfoPaddingSide"
                     android:paddingStart="@dimen/productInfoPaddingSide"
                     android:paddingTop="@dimen/productInfoPaddingTop"
-                    android:text="Ray ban aviator blue"
                     android:textSize="@dimen/fontHeadlineSize" />
 
                 <RelativeLayout
@@ -67,13 +66,12 @@
                     android:layout_alignParentBottom="true">
 
                     <TextView
-                        android:id="@+id/productCategory"
+                        android:id="@+id/singleProductCategoryName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="@dimen/productInfoPaddingSide"
                         android:paddingEnd="@dimen/productInfoPaddingSide"
                         android:paddingStart="@dimen/productInfoPaddingSide"
-                        android:text="sunglasses"
                         android:textSize="@dimen/fontSubheadingSize" />
                 </RelativeLayout>
             </RelativeLayout>
@@ -84,6 +82,7 @@
                 android:layout_weight=".3">
 
                 <TextView
+                    android:id="@+id/singleProductPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -232,7 +231,7 @@
         android:layout_margin="8dp"
         android:src="@drawable/ic_shopping_cart_white_24dp"
         app:backgroundTint="@color/colorPrimary"
-        app:layout_anchor="@id/productCover"
+        app:layout_anchor="@id/singleProductCover"
         app:layout_anchorGravity="bottom|right|end" />
 
     <android.support.design.widget.FloatingActionButton
