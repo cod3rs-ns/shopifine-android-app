@@ -72,5 +72,4 @@ dependencies {
     // Google
     implementation 'com.google.android.gms:play-services-auth:11.8.0'
     implementation 'com.google.android.gms:play-services-places:11.8.0'
-    implementation 'com.codemybrainsout.placesearchdialog:placesearch:1.0.1'
 }

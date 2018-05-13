@@ -126,8 +126,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/smallBlockHeight"
-            android:paddingBottom="@dimen/smallBlockHeight">
+            android:paddingBottom="@dimen/smallBlockHeight"
+            android:paddingTop="@dimen/smallBlockHeight">
 
             <fragment
                 android:id="@+id/addressFragment"
@@ -147,11 +147,35 @@
 
         </android.support.design.widget.TextInputLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/defaultBlockHeight"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/signUpErrorMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/fontSubheadingSize"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/signUpProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:indeterminate="true"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/signUpBtn"
             android:layout_width="match_parent"
             android:layout_height="@dimen/buttonHeight"
-            android:layout_marginTop="@dimen/smallBlockHeight"
             android:background="@color/colorPrimaryDark"
             android:minWidth="@dimen/buttonMinWidth"
             android:text="@string/sign_up"
