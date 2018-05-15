@@ -35,4 +35,6 @@
     <string name="orders">Orders</string>
     <string name="wishlist">Wishlist</string>
     <string name="shopping_cart">Shopping cart</string>
+
+    <string name="mock">Mock</string>
 </resources>

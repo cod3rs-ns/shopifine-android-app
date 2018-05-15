@@ -11,7 +11,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 import rs.cod3rs.shopifine.R;
-import rs.cod3rs.shopifine.adapter.OrdersAdapter;
+import rs.cod3rs.shopifine.adapter.OrdersTabAdapter;
 
 @EFragment(R.layout.fragment_orders_tab_parent)
 public class OrdersFragmentTabParent extends Fragment {
@@ -32,7 +32,7 @@ public class OrdersFragmentTabParent extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Cancelled"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final OrdersAdapter adapter = new OrdersAdapter
+        final OrdersTabAdapter adapter = new OrdersTabAdapter
                 (getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
