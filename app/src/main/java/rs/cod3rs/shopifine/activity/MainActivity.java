@@ -40,6 +40,8 @@ import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.domain.User;
+import rs.cod3rs.shopifine.fragment.OrdersFragmentTabParent;
+import rs.cod3rs.shopifine.fragment.OrdersFragmentTabParent_;
 import rs.cod3rs.shopifine.fragment.ProductsFragment_;
 import rs.cod3rs.shopifine.fragment.ProfileFragment_;
 import rs.cod3rs.shopifine.fragment.ShoppingCartFragment_;
@@ -192,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.wishlist:
                 // TODO Provide Wishlist fragment
             case R.id.orders:
-                // TODO Provide Orders fragment
+                return OrdersFragmentTabParent_.builder().build();
             case R.id.profile:
                 return ProfileFragment_.builder().build();
             default:
