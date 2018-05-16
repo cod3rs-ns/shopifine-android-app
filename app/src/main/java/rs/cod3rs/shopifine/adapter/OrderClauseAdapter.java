@@ -11,44 +11,44 @@ import org.androidannotations.annotations.RootContext;
 import java.util.ArrayList;
 import java.util.List;
 
-import rs.cod3rs.shopifine.domain.Order;
-import rs.cod3rs.shopifine.view.OrderItemView;
-import rs.cod3rs.shopifine.view.OrderItemView_;
+import rs.cod3rs.shopifine.domain.OrderItem;
+import rs.cod3rs.shopifine.view.OrderClauseView;
+import rs.cod3rs.shopifine.view.OrderClauseView_;
 
 @EBean
-public class OrdersListAdapter extends BaseAdapter {
+public class OrderClauseAdapter extends BaseAdapter {
 
-    public List<Order> orders = new ArrayList<>();
+    public List<OrderItem> items = new ArrayList<>();
 
     @RootContext
     Context context;
 
     @Override
     public int getCount() {
-        return orders.size();
+        return items.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return orders.get(i);
+        return items.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return orders.get(i).id;
+        return items.get(i).id;
     }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        OrderItemView orderItemView;
+        OrderClauseView orderClauseView;
         if (view == null) {
-            orderItemView = OrderItemView_.build(context);
+            orderClauseView = OrderClauseView_.build(context);
         } else {
-            orderItemView = (OrderItemView) view;
+            orderClauseView = (OrderClauseView) view;
         }
 
-        orderItemView.bind((Order) getItem(i));
+        orderClauseView.bind((OrderItem) getItem(i));
 
-        return orderItemView;
+        return orderClauseView;
     }
 }

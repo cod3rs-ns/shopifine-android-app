@@ -1,5 +1,6 @@
 package rs.cod3rs.shopifine.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -21,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 import rs.cod3rs.shopifine.R;
+import rs.cod3rs.shopifine.activity.OrderActivity_;
 import rs.cod3rs.shopifine.adapter.OrdersListAdapter;
 import rs.cod3rs.shopifine.domain.Order;
 
@@ -28,7 +30,7 @@ import rs.cod3rs.shopifine.domain.Order;
 public class OrdersFragmentTab extends Fragment {
 
     @ViewById(R.id.ordersList)
-    ListView ordersView;
+    ListView ordersList;
 
     @Bean
     OrdersListAdapter adapter;
@@ -40,7 +42,7 @@ public class OrdersFragmentTab extends Fragment {
 
     @AfterViews
     void bindAdapter() {
-        ordersView.setAdapter(adapter);
+        ordersList.setAdapter(adapter);
     }
 
     @AfterViews
@@ -49,9 +51,12 @@ public class OrdersFragmentTab extends Fragment {
     }
 
     @ItemClick
-    void productsItemClicked(final Order order) {
-        Log.i(ProductsFragment.class.getSimpleName(), String.format("Clicked on order %s", order.id));
+    void ordersListItemClicked(int position) {
+        Log.i(OrdersFragmentTab.class.getSimpleName(), String.format("Clicked on order %s", position));
+        Intent intent = new Intent(getActivity(), OrderActivity_.class);
+        startActivity(intent);
     }
+
 
     @Background
     void getOrders() {
@@ -66,7 +71,7 @@ public class OrdersFragmentTab extends Fragment {
     @UiThread
     void updateList(final List<Order> orders) {
         adapter.orders = orders;
-        ordersView.setAdapter(adapter);
+        ordersList.setAdapter(adapter);
     }
 
 }
