@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/paddingSide"
+    android:orientation="vertical"
+    tools:context=".activity.OrderActivity">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="@dimen/paddingSide">
+
+            <TextView
+                android:id="@+id/orderIdTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:capitalize="characters"
+                android:paddingLeft="@dimen/paddingSide"
+                android:paddingRight="@dimen/paddingSide"
+                android:text="Order ID"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="?attr/actionModeSplitBackground"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/orderStatusTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/paddingSide"
+                android:paddingRight="@dimen/paddingSide"
+                android:text="Status"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="?attr/actionModeSplitBackground"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/orderCreatedTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/paddingSide"
+                android:paddingLeft="@dimen/paddingSide"
+                android:paddingRight="@dimen/paddingSide"
+                android:text="Created"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="?attr/actionModeSplitBackground"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/orderId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/paddingSide"
+                android:paddingRight="@dimen/paddingSide"
+                android:text="#1100"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/orderStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/paddingSide"
+                android:paddingRight="@dimen/paddingSide"
+                android:text="ORDERED"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/orderCreated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/paddingSide"
+                android:paddingLeft="@dimen/paddingSide"
+                android:paddingRight="@dimen/paddingSide"
+                android:text="17-4-2018"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textStyle="italic" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="@dimen/paddingSide">
+
+            <TextView
+                android:id="@+id/orderPointsGainedTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/paddingSide"
+                android:paddingRight="@dimen/paddingSide"
+                android:text="Points Gained"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="?attr/actionModeSplitBackground"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/OrderPointsSpentTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/paddingSide"
+                android:paddingRight="@dimen/paddingSide"
+                android:text="Points Spent"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="?attr/actionModeSplitBackground"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/orderPointsGained"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="27"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/orderPointsSpent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textStyle="italic" />
+        </TableRow>
+    </TableLayout>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider"
+        android:visibility="visible" />
+
+    <ListView
+        android:id="@+id/orderItems"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:baselineAligned="false"
+        android:footerDividersEnabled="true"
+        android:headerDividersEnabled="true"
+        tools:layout_editor_absoluteX="12dp"
+        tools:layout_editor_absoluteY="131dp"></ListView>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/discountAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Discount: "
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="?attr/actionModeSplitBackground"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/discountValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/totalAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Total"
+            android:textColor="?attr/actionModeSplitBackground"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/totalValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>
