@@ -15,4 +15,13 @@ public class Order {
         this.createdAt = createdAt;
         this.totalItems = totalItems;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", createdAt=" + createdAt +
+                ", totalItems=" + totalItems +
+                '}';
+    }
 }

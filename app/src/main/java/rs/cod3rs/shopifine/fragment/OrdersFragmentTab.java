@@ -1,19 +1,17 @@
 package rs.cod3rs.shopifine.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
@@ -29,8 +27,8 @@ import rs.cod3rs.shopifine.domain.Order;
 @EFragment(R.layout.fragment_orders_tab)
 public class OrdersFragmentTab extends Fragment {
 
-    @ViewById(R.id.ordersList)
-    ListView ordersList;
+    @ViewById(R.id.ordersRecyclerList)
+    RecyclerView ordersList;
 
     @Bean
     OrdersListAdapter adapter;
@@ -43,20 +41,16 @@ public class OrdersFragmentTab extends Fragment {
     @AfterViews
     void bindAdapter() {
         ordersList.setAdapter(adapter);
+        ordersList.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter.setOnItemClickListener((position, view, data) -> {
+            OrderActivity_.intent(getContext()).start().withAnimation(0, 0);
+        });
     }
 
     @AfterViews
     void getData() {
         getOrders();
     }
-
-    @ItemClick
-    void ordersListItemClicked(int position) {
-        Log.i(OrdersFragmentTab.class.getSimpleName(), String.format("Clicked on order %s", position));
-        Intent intent = new Intent(getActivity(), OrderActivity_.class);
-        startActivity(intent);
-    }
-
 
     @Background
     void getOrders() {
@@ -70,7 +64,7 @@ public class OrdersFragmentTab extends Fragment {
 
     @UiThread
     void updateList(final List<Order> orders) {
-        adapter.orders = orders;
+        adapter.addAll(orders);
         ordersList.setAdapter(adapter);
     }
 

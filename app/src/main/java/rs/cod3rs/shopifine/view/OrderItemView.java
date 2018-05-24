@@ -9,9 +9,10 @@ import org.androidannotations.annotations.ViewById;
 
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.domain.Order;
+import rs.cod3rs.shopifine.generics.ViewWrapper;
 
 @EViewGroup(R.layout.item_order)
-public class OrderItemView extends LinearLayout {
+public class OrderItemView extends LinearLayout implements ViewWrapper.Binder<Order> {
 
     @ViewById(R.id.singleOrderId)
     TextView orderId;

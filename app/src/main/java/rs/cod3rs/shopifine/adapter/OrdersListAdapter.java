@@ -1,54 +1,25 @@
 package rs.cod3rs.shopifine.adapter;
 
 import android.content.Context;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import rs.cod3rs.shopifine.domain.Order;
+import rs.cod3rs.shopifine.generics.RecyclerViewAdapterBase;
 import rs.cod3rs.shopifine.view.OrderItemView;
 import rs.cod3rs.shopifine.view.OrderItemView_;
 
 @EBean
-public class OrdersListAdapter extends BaseAdapter {
-
-    public List<Order> orders = new ArrayList<>();
+public class OrdersListAdapter extends RecyclerViewAdapterBase<Order, OrderItemView> {
 
     @RootContext
     Context context;
 
     @Override
-    public int getCount() {
-        return orders.size();
+    protected OrderItemView onCreateItemView(ViewGroup parent, int viewType) {
+        return OrderItemView_.build(context);
     }
 
-    @Override
-    public Object getItem(int i) {
-        return orders.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return orders.get(i).id;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        OrderItemView orderItemView;
-        if (view == null) {
-            orderItemView = OrderItemView_.build(context);
-        } else {
-            orderItemView = (OrderItemView) view;
-        }
-
-        orderItemView.bind((Order) getItem(i));
-
-        return orderItemView;
-    }
 }
