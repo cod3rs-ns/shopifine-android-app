@@ -1,15 +1,15 @@
 package rs.cod3rs.shopifine.activity;
 
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.ListView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
@@ -18,10 +18,8 @@ import java.util.List;
 import java.util.Locale;
 
 import rs.cod3rs.shopifine.R;
-import rs.cod3rs.shopifine.adapter.OrderClauseAdapter;
-import rs.cod3rs.shopifine.domain.OrderItem;
-import rs.cod3rs.shopifine.domain.Product;
-import rs.cod3rs.shopifine.fragment.ProductsFragment;
+import rs.cod3rs.shopifine.adapter.OrderClausesAdapter;
+import rs.cod3rs.shopifine.domain.OrderClause;
 
 @EActivity(R.layout.activity_order)
 public class OrderActivity extends AppCompatActivity {
@@ -47,15 +45,17 @@ public class OrderActivity extends AppCompatActivity {
     @ViewById
     TextView totalValue;
 
-    @ViewById(R.id.orderItems)
-    ListView orderItemsView;
+    @ViewById(R.id.orderClausesRecyclerView)
+    RecyclerView orderItemsView;
 
     @Bean
-    OrderClauseAdapter adapter;
+    OrderClausesAdapter adapter;
 
     @AfterViews
     void bindAdapter() {
         orderItemsView.setAdapter(adapter);
+        orderItemsView.setLayoutManager(new LinearLayoutManager(this));
+        adapter.setOnItemClickListener((position, view, data) -> Toast.makeText(this, String.format("Clicked on: %s", data.id.toString()), Toast.LENGTH_SHORT).show());
     }
 
     @AfterViews
@@ -76,19 +76,19 @@ public class OrderActivity extends AppCompatActivity {
 
     @Background
     void getItems() {
-        final List<OrderItem> p = new ArrayList<>();
-        p.add(new OrderItem(1, 1, 1, 12.00, 244.0, 10.1, 124.00));
-        p.add(new OrderItem(2, 2, 1, 12.00, 244.0, 10.1, 124.00));
-        p.add(new OrderItem(3, 3, 1, 12.00, 244.0, 10.1, 124.00));
-        p.add(new OrderItem(4, 4, 1, 12.00, 244.0, 10.1, 124.00));
-        p.add(new OrderItem(5, 5, 1, 12.00, 244.0, 10.1, 124.00));
-        p.add(new OrderItem(6, 6, 1, 12.00, 244.0, 10.1, 124.00));
+        final List<OrderClause> p = new ArrayList<>();
+        p.add(new OrderClause(1, 1, 1, 12.00, 244.0, 10.1, 124.00));
+        p.add(new OrderClause(2, 2, 1, 12.00, 244.0, 10.1, 124.00));
+        p.add(new OrderClause(3, 3, 1, 12.00, 244.0, 10.1, 124.00));
+        p.add(new OrderClause(4, 4, 1, 12.00, 244.0, 10.1, 124.00));
+        p.add(new OrderClause(5, 5, 1, 12.00, 244.0, 10.1, 124.00));
+        p.add(new OrderClause(6, 6, 1, 12.00, 244.0, 10.1, 124.00));
         updateList(p);
     }
 
     @UiThread
-    void updateList(final List<OrderItem> updated) {
-        adapter.items = updated;
+    void updateList(final List<OrderClause> updated) {
+        adapter.addAll(updated);
         orderItemsView.setAdapter(adapter);
     }
 

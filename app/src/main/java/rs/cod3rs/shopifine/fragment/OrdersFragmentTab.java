@@ -42,9 +42,7 @@ public class OrdersFragmentTab extends Fragment {
     void bindAdapter() {
         ordersList.setAdapter(adapter);
         ordersList.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter.setOnItemClickListener((position, view, data) -> {
-            OrderActivity_.intent(getContext()).start().withAnimation(0, 0);
-        });
+        adapter.setOnItemClickListener((position, view, data) -> OrderActivity_.intent(getContext()).start().withAnimation(0, 0));
     }
 
     @AfterViews

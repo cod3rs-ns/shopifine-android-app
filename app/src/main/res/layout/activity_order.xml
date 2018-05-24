@@ -4,28 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/paddingSide"
+    android:layout_margin="8dp"
     android:orientation="vertical"
     tools:context=".activity.OrderActivity">
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="fill_horizontal">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="@dimen/paddingSide">
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/orderIdTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:capitalize="characters"
-                android:paddingLeft="@dimen/paddingSide"
-                android:paddingRight="@dimen/paddingSide"
-                android:text="Order ID"
+                android:text="@string/order_id"
                 android:textAlignment="center"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:textColor="?attr/actionModeSplitBackground"
@@ -35,9 +33,7 @@
                 android:id="@+id/orderStatusTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/paddingSide"
-                android:paddingRight="@dimen/paddingSide"
-                android:text="Status"
+                android:text="@string/order_status"
                 android:textAlignment="center"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:textColor="?attr/actionModeSplitBackground"
@@ -50,7 +46,7 @@
                 android:layout_marginEnd="@dimen/paddingSide"
                 android:paddingLeft="@dimen/paddingSide"
                 android:paddingRight="@dimen/paddingSide"
-                android:text="Created"
+                android:text="@string/order_status"
                 android:textAlignment="center"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:textColor="?attr/actionModeSplitBackground"
@@ -61,29 +57,24 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/orderId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/paddingSide"
-                android:paddingRight="@dimen/paddingSide"
-                android:text="#1100"
+                android:text="@string/mock"
                 android:textAlignment="center"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                android:textStyle="italic" />
+                android:textColor="@color/colorGray" />
 
             <TextView
                 android:id="@+id/orderStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/paddingSide"
-                android:paddingRight="@dimen/paddingSide"
-                android:text="ORDERED"
+                android:text="@string/mock"
                 android:textAlignment="center"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="@color/colorGray"
                 android:textStyle="italic" />
 
             <TextView
@@ -93,9 +84,9 @@
                 android:layout_marginEnd="@dimen/paddingSide"
                 android:paddingLeft="@dimen/paddingSide"
                 android:paddingRight="@dimen/paddingSide"
-                android:text="17-4-2018"
+                android:text="@string/mock_date"
                 android:textAlignment="center"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="@color/colorGray"
                 android:textStyle="italic" />
         </TableRow>
 
@@ -111,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/paddingSide"
                 android:paddingRight="@dimen/paddingSide"
-                android:text="Points Gained"
+                android:text="@string/order_points_gained"
                 android:textAlignment="center"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:textColor="?attr/actionModeSplitBackground"
@@ -123,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/paddingSide"
                 android:paddingRight="@dimen/paddingSide"
-                android:text="Points Spent"
+                android:text="@string/order_points_spent"
                 android:textAlignment="center"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:textColor="?attr/actionModeSplitBackground"
@@ -139,18 +130,18 @@
                 android:id="@+id/orderPointsGained"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="27"
+                android:text="@string/mock_number"
                 android:textAlignment="center"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="@color/colorGray"
                 android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/orderPointsSpent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="15"
+                android:text="@string/mock_number"
                 android:textAlignment="center"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="@color/colorGray"
                 android:textStyle="italic" />
         </TableRow>
     </TableLayout>
@@ -159,40 +150,42 @@
         android:id="@+id/divider3"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="?android:attr/listDivider"
+        android:background="@color/colorPrimaryDark"
         android:visibility="visible" />
 
-    <ListView
-        android:id="@+id/orderItems"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/orderClausesRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:baselineAligned="false"
-        android:footerDividersEnabled="true"
-        android:headerDividersEnabled="true"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="131dp"></ListView>
+        android:layout_height="430dp"
+        android:background="@color/colorWhite"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:visibility="visible"
+        tools:listitem="@layout/item_order_clause" />
 
     <View
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="?android:attr/listDivider"
+        android:background="@color/colorPrimaryDark"
         android:visibility="visible" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <TextView
             android:id="@+id/discountAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Discount: "
+            android:text="@string/order_discount"
             android:textAlignment="textStart"
             android:textAllCaps="false"
-            android:textColor="?attr/actionModeSplitBackground"
+            android:textColor="@color/colorWhite"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -201,7 +194,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:text="@string/mock_number"
             android:textAlignment="textEnd"
+            android:textColor="@color/colorWhite"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -209,15 +204,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <TextView
             android:id="@+id/totalAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Total"
-            android:textColor="?attr/actionModeSplitBackground"
+            android:text="@string/order_total"
+            android:textColor="@color/colorWhite"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -226,7 +223,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:text="@string/mock_number"
             android:textAlignment="textEnd"
+            android:textColor="@color/colorWhite"
             android:textSize="18sp"
             android:textStyle="bold" />
 
