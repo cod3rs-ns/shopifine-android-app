@@ -10,7 +10,14 @@ public class OrderClause {
     public Double discount;
     public Double discountAmount;
 
-    public OrderClause(final Integer id, final Integer ordinal, final Integer quantity, final Double price, final Double amount, final Double discount, final Double discountAmount) {
+    public OrderClause(
+            final Integer id,
+            final Integer ordinal,
+            final Integer quantity,
+            final Double price,
+            final Double amount,
+            final Double discount,
+            final Double discountAmount) {
         this.id = id;
         this.ordinal = ordinal;
         this.price = price;
@@ -22,14 +29,21 @@ public class OrderClause {
 
     @Override
     public String toString() {
-        return "OrderItem{" +
-                "id=" + id +
-                ", ordinal=" + ordinal +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                ", amount=" + amount +
-                ", discount=" + discount +
-                ", discountAmount=" + discountAmount +
-                '}';
+        return "OrderItem{"
+                + "id="
+                + id
+                + ", ordinal="
+                + ordinal
+                + ", quantity="
+                + quantity
+                + ", price="
+                + price
+                + ", amount="
+                + amount
+                + ", discount="
+                + discount
+                + ", discountAmount="
+                + discountAmount
+                + '}';
     }
 }

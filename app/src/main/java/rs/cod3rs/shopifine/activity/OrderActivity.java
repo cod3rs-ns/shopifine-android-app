@@ -24,38 +24,36 @@ import rs.cod3rs.shopifine.domain.OrderClause;
 @EActivity(R.layout.activity_order)
 public class OrderActivity extends AppCompatActivity {
 
-    @ViewById
-    TextView orderId;
+    @ViewById TextView orderId;
 
-    @ViewById
-    TextView orderStatus;
+    @ViewById TextView orderStatus;
 
-    @ViewById
-    TextView orderCreated;
+    @ViewById TextView orderCreated;
 
-    @ViewById
-    TextView orderPointsGained;
+    @ViewById TextView orderPointsGained;
 
-    @ViewById
-    TextView orderPointsSpent;
+    @ViewById TextView orderPointsSpent;
 
-    @ViewById
-    TextView discountValue;
+    @ViewById TextView discountValue;
 
-    @ViewById
-    TextView totalValue;
+    @ViewById TextView totalValue;
 
     @ViewById(R.id.orderClausesRecyclerView)
     RecyclerView orderItemsView;
 
-    @Bean
-    OrderClausesAdapter adapter;
+    @Bean OrderClausesAdapter adapter;
 
     @AfterViews
     void bindAdapter() {
         orderItemsView.setAdapter(adapter);
         orderItemsView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setOnItemClickListener((position, view, data) -> Toast.makeText(this, String.format("Clicked on: %s", data.id.toString()), Toast.LENGTH_SHORT).show());
+        adapter.setOnItemClickListener(
+                (position, view, data) ->
+                        Toast.makeText(
+                                        this,
+                                        String.format("Clicked on: %s", data.id.toString()),
+                                        Toast.LENGTH_SHORT)
+                                .show());
     }
 
     @AfterViews
@@ -91,5 +89,4 @@ public class OrderActivity extends AppCompatActivity {
         adapter.addAll(updated);
         orderItemsView.setAdapter(adapter);
     }
-
 }

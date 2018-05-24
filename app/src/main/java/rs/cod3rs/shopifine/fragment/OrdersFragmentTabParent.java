@@ -1,6 +1,5 @@
 package rs.cod3rs.shopifine.fragment;
 
-
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -32,26 +31,23 @@ public class OrdersFragmentTabParent extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText(R.string.third_order_tab));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final OrdersTabAdapter adapter = new OrdersTabAdapter
-                (getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
+        final OrdersTabAdapter adapter =
+                new OrdersTabAdapter(
+                        getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
+        tabLayout.addOnTabSelectedListener(
+                new TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        viewPager.setCurrentItem(tab.getPosition());
+                    }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+                    @Override
+                    public void onTabUnselected(TabLayout.Tab tab) {}
 
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
+                    @Override
+                    public void onTabReselected(TabLayout.Tab tab) {}
+                });
     }
-
 }

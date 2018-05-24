@@ -4,37 +4,50 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.auth0.android.jwt.JWT;
+
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.sharedpreferences.Pref;
+import org.androidannotations.rest.spring.annotations.RestService;
+import org.springframework.core.NestedRuntimeException;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.activity.OrderActivity_;
 import rs.cod3rs.shopifine.adapter.OrdersListAdapter;
 import rs.cod3rs.shopifine.domain.Order;
+import rs.cod3rs.shopifine.hateoas.bills.BillResponseData;
+import rs.cod3rs.shopifine.http.Orders;
 
 @EFragment(R.layout.fragment_orders_tab)
 public class OrdersFragmentTab extends Fragment {
 
+    @RestService Orders orders;
+    @Pref Credentials_ credentials;
+
     @ViewById(R.id.ordersRecyclerList)
     RecyclerView ordersList;
 
-    @Bean
-    OrdersListAdapter adapter;
+    @Bean OrdersListAdapter adapter;
+    private Integer user;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(
+            LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_orders_tab, container, false);
     }
 
@@ -42,7 +55,15 @@ public class OrdersFragmentTab extends Fragment {
     void bindAdapter() {
         ordersList.setAdapter(adapter);
         ordersList.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter.setOnItemClickListener((position, view, data) -> OrderActivity_.intent(getContext()).start().withAnimation(0, 0));
+        adapter.setOnItemClickListener(
+                (position, view, data) ->
+                        OrderActivity_.intent(getContext()).start().withAnimation(0, 0));
+    }
+
+    @AfterInject
+    void extractUserIdFromToken() {
+        final JWT jwt = new JWT(credentials.token().get());
+        user = jwt.getClaim("id").asInt();
     }
 
     @AfterViews
@@ -52,12 +73,14 @@ public class OrdersFragmentTab extends Fragment {
 
     @Background
     void getOrders() {
-        final List<Order> orders = new ArrayList<>();
-        orders.add(new Order(1123, new Date(), 12));
-        orders.add(new Order(21233, new Date(), 1232));
-        orders.add(new Order(3123, new Date(), 142));
-        orders.add(new Order(43234, new Date(), 1));
-        updateList(orders);
+        try {
+            final List<BillResponseData> data = orders.getBills(user).getData();
+            final List<Order> orders =
+                    data.stream().map(BillResponseData::toDomain).collect(Collectors.toList());
+            updateList(orders);
+        } catch (final NestedRuntimeException e) {
+            Log.e(this.getClass().getSimpleName(), e.getMessage());
+        }
     }
 
     @UiThread
@@ -65,5 +88,4 @@ public class OrdersFragmentTab extends Fragment {
         adapter.addAll(orders);
         ordersList.setAdapter(adapter);
     }
-
 }

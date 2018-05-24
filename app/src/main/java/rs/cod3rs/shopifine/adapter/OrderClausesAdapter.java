@@ -14,12 +14,10 @@ import rs.cod3rs.shopifine.view.OrderClauseView_;
 @EBean
 public class OrderClausesAdapter extends RecyclerViewAdapterBase<OrderClause, OrderClauseView> {
 
-    @RootContext
-    Context context;
+    @RootContext Context context;
 
     @Override
     protected OrderClauseView onCreateItemView(ViewGroup parent, int viewType) {
         return OrderClauseView_.build(context);
     }
-
 }

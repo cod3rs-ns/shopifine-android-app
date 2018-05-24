@@ -20,11 +20,9 @@ public class OrderClauseView extends LinearLayout implements ViewWrapper.Binder<
     @ViewById(R.id.productName)
     TextView name;
 
-    @ViewById
-    TextView amountDetails;
+    @ViewById TextView amountDetails;
 
-    @ViewById
-    TextView discountDetails;
+    @ViewById TextView discountDetails;
 
     public OrderClauseView(final Context context) {
         super(context);
@@ -33,7 +31,11 @@ public class OrderClauseView extends LinearLayout implements ViewWrapper.Binder<
     public void bind(final OrderClause item) {
         name.setText(item.ordinal.toString() + ". Product Name");
         amountDetails.setText(String.format(Locale.US, "%d x %s", item.quantity, item.price));
-        discountDetails.setText(String.format(Locale.US, "%s%% in total of %s", item.discount, new DecimalFormat("#.##").format(item.discountAmount)));
-        System.out.println("Fucking bind.");
+        discountDetails.setText(
+                String.format(
+                        Locale.US,
+                        "%s%% in total of %s",
+                        item.discount,
+                        new DecimalFormat("#.##").format(item.discountAmount)));
     }
 }

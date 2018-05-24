@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class RecyclerViewAdapterBase<D, V extends View & ViewWrapper.Binder<D>> extends RecyclerView.Adapter<ViewWrapper<D, V>> {
+public abstract class RecyclerViewAdapterBase<D, V extends View & ViewWrapper.Binder<D>>
+        extends RecyclerView.Adapter<ViewWrapper<D, V>> {
 
     private List<D> items = new ArrayList<>();
 
@@ -31,10 +32,13 @@ public abstract class RecyclerViewAdapterBase<D, V extends View & ViewWrapper.Bi
         final V view = viewHolder.getView();
         final D data = items.get(position);
         view.bind(data);
-        view.setOnClickListener(v -> {
-            Log.i(this.getClass().getSimpleName(), String.format("Clicked on item %s, with data: %s", position, data));
-            onItemClick(position, view, data);
-        });
+        view.setOnClickListener(
+                v -> {
+                    Log.i(
+                            this.getClass().getSimpleName(),
+                            String.format("Clicked on item %s, with data: %s", position, data));
+                    onItemClick(position, view, data);
+                });
     }
 
     public void onItemClick(int position, V view, D data) {
