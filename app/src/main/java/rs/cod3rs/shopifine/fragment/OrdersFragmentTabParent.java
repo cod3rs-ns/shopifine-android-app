@@ -27,9 +27,9 @@ public class OrdersFragmentTabParent extends Fragment {
 
     @AfterViews
     public void after() {
-        tabLayout.addTab(tabLayout.newTab().setText("Successful"));
-        tabLayout.addTab(tabLayout.newTab().setText("Ordered"));
-        tabLayout.addTab(tabLayout.newTab().setText("Cancelled"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.first_order_tab));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.second_order_tab));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.third_order_tab));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final OrdersTabAdapter adapter = new OrdersTabAdapter

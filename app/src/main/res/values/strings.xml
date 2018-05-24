@@ -37,4 +37,9 @@
     <string name="shopping_cart">Shopping cart</string>
 
     <string name="mock">Mock</string>
+
+    <string name="first_order_tab">Successful</string>
+    <string name="second_order_tab">Ordered</string>
+    <string name="third_order_tab">Cancelled</string>
+
 </resources>

@@ -3,20 +3,14 @@ package rs.cod3rs.shopifine.domain;
 public class OrderItem {
 
     public Integer id;
-
     public Integer ordinal;
-
     public Integer quantity;
-
     public Double price;
-
     public Double amount;
-
     public Double discount;
-
     public Double discountAmount;
 
-    public OrderItem(Integer id, Integer ordinal, Integer quantity, Double price, Double amount, Double discount, Double discountAmount) {
+    public OrderItem(final Integer id, final Integer ordinal, final Integer quantity, final Double price, final Double amount, final Double discount, final Double discountAmount) {
         this.id = id;
         this.ordinal = ordinal;
         this.price = price;
@@ -24,5 +18,18 @@ public class OrderItem {
         this.amount = amount;
         this.discount = discount;
         this.discountAmount = discountAmount;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "id=" + id +
+                ", ordinal=" + ordinal +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", amount=" + amount +
+                ", discount=" + discount +
+                ", discountAmount=" + discountAmount +
+                '}';
     }
 }

@@ -92,5 +92,4 @@ public class OrderActivity extends AppCompatActivity {
         orderItemsView.setAdapter(adapter);
     }
 
-
 }
