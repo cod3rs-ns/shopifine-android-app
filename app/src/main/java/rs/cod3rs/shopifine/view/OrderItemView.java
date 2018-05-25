@@ -21,7 +21,7 @@ public class OrderItemView extends LinearLayout implements ViewWrapper.Binder<Or
     @ViewById(R.id.singleOrderDate)
     TextView orderDate;
 
-    @ViewById(R.id.singleOrderItemsCount)
+    @ViewById(R.id.singleOrderTotal)
     TextView orderItemsCount;
 
     public OrderItemView(final Context context) {
@@ -37,6 +37,6 @@ public class OrderItemView extends LinearLayout implements ViewWrapper.Binder<Or
                         DateUtils.MINUTE_IN_MILLIS,
                         DateUtils.WEEK_IN_MILLIS,
                         0));
-        orderItemsCount.setText(String.format("%s", order.totalItems));
+        orderItemsCount.setText(String.format("$%s", order.amount));
     }
 }

@@ -1,18 +1,18 @@
 package rs.cod3rs.shopifine.view;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+        import android.content.Context;
+        import android.widget.LinearLayout;
+        import android.widget.TextView;
 
-import org.androidannotations.annotations.EViewGroup;
-import org.androidannotations.annotations.ViewById;
+        import org.androidannotations.annotations.EViewGroup;
+        import org.androidannotations.annotations.ViewById;
 
-import java.text.DecimalFormat;
-import java.util.Locale;
+        import java.text.DecimalFormat;
+        import java.util.Locale;
 
-import rs.cod3rs.shopifine.R;
-import rs.cod3rs.shopifine.domain.OrderClause;
-import rs.cod3rs.shopifine.generics.ViewWrapper;
+        import rs.cod3rs.shopifine.R;
+        import rs.cod3rs.shopifine.domain.OrderClause;
+        import rs.cod3rs.shopifine.generics.ViewWrapper;
 
 @EViewGroup(R.layout.item_order_clause)
 public class OrderClauseView extends LinearLayout implements ViewWrapper.Binder<OrderClause> {

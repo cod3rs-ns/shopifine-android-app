@@ -17,6 +17,6 @@ import rs.cod3rs.shopifine.hateoas.bills.BillCollectionResponse;
 )
 public interface Orders extends RestClientErrorHandling {
 
-    @Get("api/users/{userId}/bills")
-    BillCollectionResponse getBills(@Path final Integer userId);
+    @Get("api/users/{userId}/bills?filter[status]={orderStatus}")
+    BillCollectionResponse getBills(@Path final Integer userId, @Path final String orderStatus);
 }

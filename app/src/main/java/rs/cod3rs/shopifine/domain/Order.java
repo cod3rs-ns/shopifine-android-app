@@ -9,7 +9,7 @@ public class Order {
 
     public Long id;
     public LocalDateTime createdAt;
-    public String state;
+    public OrderState state;
     public Integer totalItems;
     public Double amount;
     public Double discount;
@@ -28,7 +28,7 @@ public class Order {
         this.id = id;
         this.createdAt =
                 LocalDateTime.parse(createdAt, DateTimeFormat.forPattern(Util.DATE_PATTERN));
-        this.state = state;
+        this.state = OrderState.valueOf(state);
         this.totalItems = totalItems;
         this.amount = amount;
         this.discount = discount;

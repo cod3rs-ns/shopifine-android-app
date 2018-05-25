@@ -16,6 +16,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
@@ -30,13 +31,18 @@ import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.activity.OrderActivity_;
 import rs.cod3rs.shopifine.adapter.OrdersListAdapter;
 import rs.cod3rs.shopifine.domain.Order;
+import rs.cod3rs.shopifine.domain.OrderState;
 import rs.cod3rs.shopifine.hateoas.bills.BillResponseData;
 import rs.cod3rs.shopifine.http.Orders;
 
 @EFragment(R.layout.fragment_orders_tab)
 public class OrdersFragmentTab extends Fragment {
 
+    @FragmentArg("orderFragmentType")
+    OrderState orderFragmentType;
+
     @RestService Orders orders;
+
     @Pref Credentials_ credentials;
 
     @ViewById(R.id.ordersRecyclerList)
@@ -74,7 +80,7 @@ public class OrdersFragmentTab extends Fragment {
     @Background
     void getOrders() {
         try {
-            final List<BillResponseData> data = orders.getBills(user).getData();
+            final List<BillResponseData> data = orders.getBills(user, orderFragmentType.name()).getData();
             final List<Order> orders =
                     data.stream().map(BillResponseData::toDomain).collect(Collectors.toList());
             updateList(orders);

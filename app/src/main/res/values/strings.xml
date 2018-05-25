@@ -40,8 +40,8 @@
     <string name="mock_date">28–07–1994</string>
     <string name="mock_number">19</string>
 
-    <string name="first_order_tab">Successful</string>
-    <string name="second_order_tab">Ordered</string>
+    <string name="second_order_tab">Successful</string>
+    <string name="first_order_tab">Ordered</string>
     <string name="third_order_tab">Cancelled</string>
 
     <string name="order_id">Order ID</string>
