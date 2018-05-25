@@ -28,5 +28,4 @@ public class ProductCategoryResponseAttributes {
     public void setMaxDiscount(final Double maxDiscount) {
         this.maxDiscount = maxDiscount;
     }
-
 }

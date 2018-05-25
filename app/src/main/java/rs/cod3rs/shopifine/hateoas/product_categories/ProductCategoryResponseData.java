@@ -42,5 +42,4 @@ public class ProductCategoryResponseData {
     public void setAttributes(final ProductCategoryResponseAttributes attributes) {
         this.attributes = attributes;
     }
-
 }

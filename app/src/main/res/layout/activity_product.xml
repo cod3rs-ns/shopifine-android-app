@@ -1,246 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical"
+    tools:context=".activity.ProductActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
         android:orientation="vertical">
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/singleProductCover"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/productCoverHeight"
-                android:orientation="horizontal" />
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.55">
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.7">
+
+                    <ImageView
+                        android:id="@+id/singleProductCover"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/product_image"
+                        android:maxHeight="@dimen/productImageHeight"
+                        android:orientation="horizontal" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3"
+                    android:background="@color/colorPrimaryLight"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/anchor"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight=".65"
+                        android:orientation="vertical"
+                        android:paddingEnd="@dimen/productInfoPaddingSide"
+                        android:paddingStart="@dimen/productInfoPaddingSide"
+                        tools:ignore="NestedWeights">
+
+                        <com.lb.auto_fit_textview.AutoResizeTextView
+                            android:id="@+id/singleProductName"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:maxLines="2"
+                            android:minLines="2"
+                            android:paddingTop="@dimen/productPricePadding"
+                            android:textSize="@dimen/fontHeadlineSize" />
+
+                        <TextView
+                            android:id="@+id/singleProductCategoryName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/productPricePadding"
+                            android:layout_marginTop="@dimen/productPricePadding"
+                            android:textSize="@dimen/fontSubheadingSize" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".35">
+
+                        <com.lb.auto_fit_textview.AutoResizeTextView
+                            android:id="@+id/singleProductPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerInParent="true"
+                            android:paddingBottom="@dimen/productPricePadding"
+                            android:paddingEnd="@dimen/productPricePadding"
+                            android:textSize="@dimen/fontHeadlineSize"
+                            android:textStyle="bold"
+                            tools:ignore="RtlSymmetry" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/shoppingButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/discountCircleMargin"
-                android:background="@drawable/circle">
+                android:layout_margin="@dimen/buttonPaddingTop"
+                android:src="@drawable/ic_shopping_cart_white_24dp"
+                app:backgroundTint="@color/colorPrimary"
+                app:layout_anchor="@id/singleProductCover"
+                app:layout_anchorGravity="bottom|right|end" />
 
-                <TextView
-                    android:layout_width="@dimen/discountCircleSize"
-                    android:layout_height="@dimen/discountCircleSize"
-                    android:gravity="center"
-                    android:text="-50%"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/fontTitleSize"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </RelativeLayout>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/whishListButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/productButtonsSpace"
+                android:src="@drawable/ic_favorite_border_white_24dp"
+                app:backgroundTint="@color/colorPrimary"
+                app:layout_anchor="@id/shoppingButton"
+                app:layout_anchorGravity="center_vertical|left" />
+        </android.support.design.widget.CoordinatorLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/productInfoHeight"
-            android:background="@color/colorPrimaryLight"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:id="@+id/anchor"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".70"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/singleProductName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingEnd="@dimen/productInfoPaddingSide"
-                    android:paddingStart="@dimen/productInfoPaddingSide"
-                    android:paddingTop="@dimen/productInfoPaddingTop"
-                    android:textSize="@dimen/fontHeadlineSize" />
-
-                <RelativeLayout
-                    android:id="@+id/InnerRelativeLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true">
-
-                    <TextView
-                        android:id="@+id/singleProductCategoryName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/productInfoPaddingSide"
-                        android:paddingEnd="@dimen/productInfoPaddingSide"
-                        android:paddingStart="@dimen/productInfoPaddingSide"
-                        android:textSize="@dimen/fontSubheadingSize" />
-                </RelativeLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".3">
-
-                <TextView
-                    android:id="@+id/singleProductPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerInParent="true"
-                    android:paddingBottom="@dimen/productPricePadding"
-                    android:text="356$"
-                    android:textSize="@dimen/fontDisplaySize" />
-
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.45"
             android:background="@color/colorAccent"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/paddingListItemSide"
-                android:fontFamily="sans-serif-medium"
+                android:paddingStart="@dimen/productInfoPaddingSide"
                 android:text="@string/product_categories_title"
                 android:textSize="@dimen/fontSubheadingSize"
-                android:textStyle="bold" />
+                tools:ignore="RtlSymmetry" />
 
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollView1"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/sameCategoryProducts"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/paddingListItem">
-
-                        <ImageView
-                            android:layout_width="@dimen/listItemHeight"
-                            android:layout_height="@dimen/listItemHeight"
-                            android:src="@drawable/ic_launcher_background" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif-medium"
-                                android:paddingStart="@dimen/paddingListItem"
-                                android:text="Ray Ban"
-                                android:textSize="@dimen/fontTitleSize" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingStart="@dimen/paddingListItem"
-                                android:text="818.99 €"
-                                android:textSize="@dimen/fontHeadlineSize"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/paddingListItem">
-
-                        <ImageView
-                            android:layout_width="@dimen/listItemHeight"
-                            android:layout_height="@dimen/listItemHeight"
-                            android:src="@drawable/ic_launcher_background" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif-medium"
-                                android:paddingStart="@dimen/paddingListItem"
-                                android:text="Ray Ban"
-                                android:textSize="@dimen/fontTitleSize" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingStart="@dimen/paddingListItem"
-                                android:text="818.99 €"
-                                android:textSize="@dimen/fontHeadlineSize"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/paddingListItem">
-
-                        <ImageView
-                            android:layout_width="@dimen/listItemHeight"
-                            android:layout_height="@dimen/listItemHeight"
-                            android:src="@drawable/ic_launcher_background" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif-medium"
-                                android:paddingStart="@dimen/paddingListItem"
-                                android:text="Ray Ban"
-                                android:textSize="@dimen/fontTitleSize" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingStart="@dimen/paddingListItem"
-                                android:text="818.99 €"
-                                android:textSize="@dimen/fontHeadlineSize"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                </LinearLayout>
-            </HorizontalScrollView>
+                android:layout_height="match_parent"
+                android:scrollbars="vertical" />
         </LinearLayout>
     </LinearLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/shoppingButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:src="@drawable/ic_shopping_cart_white_24dp"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_anchor="@id/singleProductCover"
-        app:layout_anchorGravity="bottom|right|end" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/whishListButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/productButtonsSpace"
-        android:src="@drawable/ic_favorite_border_white_24dp"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_anchor="@id/shoppingButton"
-        app:layout_anchorGravity="center_vertical|left" />
-</android.support.design.widget.CoordinatorLayout>
+</ScrollView>

@@ -10,21 +10,22 @@ public class ProductResponseData {
     private String type;
     private Long id;
     private ProductResponseAttributes attributes;
+    private ProductResponseRelationships relationships;
 
     public ProductResponseData() {
         super();
     }
 
     public Product toDomain() {
-        return new Product(
-                id, attributes.getName(), attributes.getImageUrl(), 1L, attributes.getPrice());
+        final Long categoryId = relationships.getCategory().getData().getId();
+        return new Product(id, attributes.getName(), attributes.getImageUrl(), categoryId, attributes.getPrice());
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(final String type) {
         this.type = type;
     }
 
@@ -32,7 +33,7 @@ public class ProductResponseData {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -42,5 +43,13 @@ public class ProductResponseData {
 
     public void setAttributes(final ProductResponseAttributes attributes) {
         this.attributes = attributes;
+    }
+
+    public ProductResponseRelationships getRelationships() {
+        return relationships;
+    }
+
+    public void setRelationships(final ProductResponseRelationships relationships) {
+        this.relationships = relationships;
     }
 }

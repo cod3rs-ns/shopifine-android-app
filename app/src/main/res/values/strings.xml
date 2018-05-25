@@ -18,6 +18,7 @@
     <string name="address">Address</string>
 
     <string name="product_categories_title">Products from same category</string>
+    <string name="product_image">Product image</string>
 
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
@@ -51,7 +52,6 @@
     <string name="order_points_spent">Points Spent</string>
     <string name="order_discount">Discount:</string>
     <string name="order_total">Total:</string>
-
 
     <!-- Error messages -->
     <string name="fn_missing_err">You must enter first name.</string>

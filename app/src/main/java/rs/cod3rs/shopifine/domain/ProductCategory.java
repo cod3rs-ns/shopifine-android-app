@@ -1,8 +1,6 @@
 package rs.cod3rs.shopifine.domain;
 
-import java.io.Serializable;
-
-public class ProductCategory implements Serializable {
+public class ProductCategory {
 
     public Long id;
 
@@ -15,7 +13,7 @@ public class ProductCategory implements Serializable {
     public ProductCategory() {
     }
 
-    public ProductCategory(Long id, String name, Double maxDiscount, Boolean isConsumerGoods) {
+    public ProductCategory(final Long id, final String name, final Double maxDiscount, final Boolean isConsumerGoods) {
         this.id = id;
         this.name = name;
         this.maxDiscount = maxDiscount;

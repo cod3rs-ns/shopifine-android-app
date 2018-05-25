@@ -22,4 +22,8 @@ public interface Products {
 
     @Get("api/products/{productId}")
     ProductResponse retrieveOne(@Path Long productId);
+
+    @Get("api/products?filter[category]={categoryId}")
+    ProductCollectionResponse retrieveFromCategory(@Path final Long categoryId);
+
 }
