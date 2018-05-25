@@ -63,7 +63,7 @@ public class OrdersFragmentTab extends Fragment {
         ordersList.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.setOnItemClickListener(
                 (position, view, data) ->
-                        OrderActivity_.intent(getContext()).start().withAnimation(0, 0));
+                        OrderActivity_.intent(getContext()).order(data).start().withAnimation(0, 0));
     }
 
     @AfterInject

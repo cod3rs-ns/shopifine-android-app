@@ -8,6 +8,8 @@ import android.widget.TextView;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.Locale;
+
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.domain.Order;
 import rs.cod3rs.shopifine.generics.ViewWrapper;
@@ -37,6 +39,6 @@ public class OrderItemView extends LinearLayout implements ViewWrapper.Binder<Or
                         DateUtils.MINUTE_IN_MILLIS,
                         DateUtils.WEEK_IN_MILLIS,
                         0));
-        orderItemsCount.setText(String.format("$%s", order.amount));
+        orderItemsCount.setText((String.format(Locale.getDefault(), "$ %.2f%n", order.amount)));
     }
 }

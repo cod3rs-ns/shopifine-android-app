@@ -26,24 +26,4 @@ public class OrderClause {
         this.discount = discount;
         this.discountAmount = discountAmount;
     }
-
-    @Override
-    public String toString() {
-        return "OrderItem{"
-                + "id="
-                + id
-                + ", ordinal="
-                + ordinal
-                + ", quantity="
-                + quantity
-                + ", price="
-                + price
-                + ", amount="
-                + amount
-                + ", discount="
-                + discount
-                + ", discountAmount="
-                + discountAmount
-                + '}';
-    }
 }

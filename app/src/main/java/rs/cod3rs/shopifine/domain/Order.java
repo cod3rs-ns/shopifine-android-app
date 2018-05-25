@@ -3,9 +3,11 @@ package rs.cod3rs.shopifine.domain;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 
+import java.io.Serializable;
+
 import rs.cod3rs.shopifine.Util;
 
-public class Order {
+public class Order implements Serializable {
 
     public Long id;
     public LocalDateTime createdAt;
@@ -34,28 +36,5 @@ public class Order {
         this.discount = discount;
         this.pointsGained = pointsGained;
         this.pointsSpent = pointsSpent;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{"
-                + "id="
-                + id
-                + ", createdAt="
-                + createdAt
-                + ", state='"
-                + state
-                + '\''
-                + ", totalItems="
-                + totalItems
-                + ", amount="
-                + amount
-                + ", discount="
-                + discount
-                + ", pointsGained="
-                + pointsGained
-                + ", pointsSpent="
-                + pointsSpent
-                + '}';
     }
 }

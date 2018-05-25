@@ -3,6 +3,7 @@ package rs.cod3rs.shopifine.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -10,6 +11,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
@@ -19,10 +21,13 @@ import java.util.Locale;
 
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.adapter.OrderClausesAdapter;
+import rs.cod3rs.shopifine.domain.Order;
 import rs.cod3rs.shopifine.domain.OrderClause;
 
 @EActivity(R.layout.activity_order)
 public class OrderActivity extends AppCompatActivity {
+
+    @Extra Order order;
 
     @ViewById TextView orderId;
 
@@ -63,13 +68,19 @@ public class OrderActivity extends AppCompatActivity {
 
     @AfterViews
     void showValues() {
-        orderId.setText(String.format(Locale.US, "#%s", "10123A2"));
-        orderStatus.setText("Status");
-        orderCreated.setText("20-07-2018");
-        orderPointsGained.setText("20");
-        orderPointsSpent.setText("15");
-        totalValue.setText("14%");
-        discountValue.setText("14584.23");
+        orderId.setText(String.format(Locale.US, "#%s", order.id));
+        orderStatus.setText(order.state.name());
+        orderCreated.setText(
+                DateUtils.getRelativeDateTimeString(
+                        this,
+                        order.createdAt.toDate().getTime(),
+                        DateUtils.MINUTE_IN_MILLIS,
+                        DateUtils.WEEK_IN_MILLIS,
+                        0));
+        orderPointsGained.setText(String.valueOf(order.pointsGained));
+        orderPointsSpent.setText(String.valueOf(order.pointsSpent));
+        totalValue.setText(String.format(Locale.getDefault(), "$ %.2f%n", order.amount));
+        discountValue.setText(String.format("%s %%", order.discount));
     }
 
     @Background
