@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <TextView
@@ -29,7 +30,7 @@
         android:textAlignment="textEnd" />
 
     <TextView
-        android:id="@+id/productPrice3"
+        android:id="@+id/orderClauseTotal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -47,5 +48,23 @@
         android:layout_weight="1"
         android:background="@color/colorGray"
         android:visibility="visible" />
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:id="@+id/expandable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        app:el_duration="300"
+        app:el_expanded="false">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Content"
+            android:textColor="#fff" />
+
+    </net.cachapa.expandablelayout.ExpandableLayout>
 
 </LinearLayout>

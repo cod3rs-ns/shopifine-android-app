@@ -7,6 +7,7 @@ import org.androidannotations.rest.spring.api.RestClientErrorHandling;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 import rs.cod3rs.shopifine.Config;
+import rs.cod3rs.shopifine.hateoas.bill_clauses.BillClauseCollectionResponse;
 import rs.cod3rs.shopifine.hateoas.bills.BillCollectionResponse;
 
 @Rest(
@@ -19,4 +20,8 @@ public interface Orders extends RestClientErrorHandling {
 
     @Get("api/users/{userId}/bills?filter[status]={orderStatus}")
     BillCollectionResponse getBills(@Path final Integer userId, @Path final String orderStatus);
+
+    @Get("api/users/{userId}/bills/{billId}/bill-items")
+    BillClauseCollectionResponse getBillClauses(
+            @Path final Integer userId, @Path final Long billId);
 }

@@ -20,7 +20,7 @@ public class BillResponseAttributes {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(final String createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -28,7 +28,7 @@ public class BillResponseAttributes {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(final String state) {
         this.state = state;
     }
 
@@ -36,7 +36,7 @@ public class BillResponseAttributes {
         return totalItems;
     }
 
-    public void setTotalItems(Integer totalItems) {
+    public void setTotalItems(final Integer totalItems) {
         this.totalItems = totalItems;
     }
 
@@ -44,7 +44,7 @@ public class BillResponseAttributes {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(final Double amount) {
         this.amount = amount;
     }
 
@@ -52,7 +52,7 @@ public class BillResponseAttributes {
         return discount;
     }
 
-    public void setDiscount(Double discount) {
+    public void setDiscount(final Double discount) {
         this.discount = discount;
     }
 
@@ -60,7 +60,7 @@ public class BillResponseAttributes {
         return pointsGained;
     }
 
-    public void setPointsGained(Integer pointsGained) {
+    public void setPointsGained(final Integer pointsGained) {
         this.pointsGained = pointsGained;
     }
 
@@ -68,7 +68,7 @@ public class BillResponseAttributes {
         return pointsSpent;
     }
 
-    public void setPointsSpent(Integer pointsSpent) {
+    public void setPointsSpent(final Integer pointsSpent) {
         this.pointsSpent = pointsSpent;
     }
 }

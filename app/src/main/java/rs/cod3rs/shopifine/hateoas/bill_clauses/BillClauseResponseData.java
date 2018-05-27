@@ -1,30 +1,29 @@
-package rs.cod3rs.shopifine.hateoas.bills;
+package rs.cod3rs.shopifine.hateoas.bill_clauses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import rs.cod3rs.shopifine.domain.Order;
+import rs.cod3rs.shopifine.domain.OrderClause;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BillResponseData {
+public class BillClauseResponseData {
 
     private String type;
     private Long id;
-    private BillResponseAttributes attributes;
+    private BillClauseResponseAttributes attributes;
 
-    public BillResponseData() {
+    public BillClauseResponseData() {
         super();
     }
 
-    public Order toDomain() {
-        return new Order(
+    public OrderClause toDomain() {
+        return new OrderClause(
                 id,
-                attributes.getCreatedAt(),
-                attributes.getState(),
-                attributes.getTotalItems(),
+                attributes.getOrdinal(),
+                attributes.getQuantity(),
+                attributes.getPrice(),
                 attributes.getAmount(),
                 attributes.getDiscount(),
-                attributes.getPointsGained(),
-                attributes.getPointsSpent());
+                attributes.getDiscountAmount());
     }
 
     public String getType() {
@@ -43,11 +42,11 @@ public class BillResponseData {
         this.id = id;
     }
 
-    public BillResponseAttributes getAttributes() {
+    public BillClauseResponseAttributes getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(final BillResponseAttributes attributes) {
+    public void setAttributes(final BillClauseResponseAttributes attributes) {
         this.attributes = attributes;
     }
 }

@@ -7,6 +7,9 @@ import android.text.format.DateUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.auth0.android.jwt.JWT;
+
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
@@ -14,18 +17,27 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.sharedpreferences.Pref;
+import org.androidannotations.rest.spring.annotations.RestService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
+import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.adapter.OrderClausesAdapter;
 import rs.cod3rs.shopifine.domain.Order;
 import rs.cod3rs.shopifine.domain.OrderClause;
+import rs.cod3rs.shopifine.hateoas.bill_clauses.BillClauseResponseData;
+import rs.cod3rs.shopifine.http.Orders;
 
 @EActivity(R.layout.activity_order)
 public class OrderActivity extends AppCompatActivity {
+
+    @RestService Orders orders;
+
+    @Pref Credentials_ credentials;
 
     @Extra Order order;
 
@@ -48,17 +60,21 @@ public class OrderActivity extends AppCompatActivity {
 
     @Bean OrderClausesAdapter adapter;
 
+    private Integer user;
+
     @AfterViews
     void bindAdapter() {
         orderItemsView.setAdapter(adapter);
         orderItemsView.setLayoutManager(new LinearLayoutManager(this));
         adapter.setOnItemClickListener(
-                (position, view, data) ->
-                        Toast.makeText(
-                                        this,
-                                        String.format("Clicked on: %s", data.id.toString()),
-                                        Toast.LENGTH_SHORT)
-                                .show());
+                (position, view, data) -> {
+                    view.expandableLayout.setExpanded(!view.expandableLayout.isExpanded());
+                    Toast.makeText(
+                                    this,
+                                    String.format("Clicked on: %s", data.id.toString()),
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                });
     }
 
     @AfterViews
@@ -85,14 +101,19 @@ public class OrderActivity extends AppCompatActivity {
 
     @Background
     void getItems() {
-        final List<OrderClause> p = new ArrayList<>();
-        p.add(new OrderClause(1, 1, 1, 12.00, 244.0, 10.1, 124.00));
-        p.add(new OrderClause(2, 2, 1, 12.00, 244.0, 10.1, 124.00));
-        p.add(new OrderClause(3, 3, 1, 12.00, 244.0, 10.1, 124.00));
-        p.add(new OrderClause(4, 4, 1, 12.00, 244.0, 10.1, 124.00));
-        p.add(new OrderClause(5, 5, 1, 12.00, 244.0, 10.1, 124.00));
-        p.add(new OrderClause(6, 6, 1, 12.00, 244.0, 10.1, 124.00));
-        updateList(p);
+        final List<OrderClause> orderClauses =
+                orders.getBillClauses(user, order.id)
+                        .getData()
+                        .stream()
+                        .map(BillClauseResponseData::toDomain)
+                        .collect(Collectors.toList());
+        updateList(orderClauses);
+    }
+
+    @AfterInject
+    void extractUserIdFromToken() {
+        final JWT jwt = new JWT(credentials.token().get());
+        user = jwt.getClaim("id").asInt();
     }
 
     @UiThread

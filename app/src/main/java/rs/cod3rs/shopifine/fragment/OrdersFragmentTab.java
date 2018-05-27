@@ -49,6 +49,7 @@ public class OrdersFragmentTab extends Fragment {
     RecyclerView ordersList;
 
     @Bean OrdersListAdapter adapter;
+
     private Integer user;
 
     @Override

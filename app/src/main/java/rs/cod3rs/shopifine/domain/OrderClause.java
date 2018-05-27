@@ -2,7 +2,7 @@ package rs.cod3rs.shopifine.domain;
 
 public class OrderClause {
 
-    public Integer id;
+    public Long id;
     public Integer ordinal;
     public Integer quantity;
     public Double price;
@@ -11,7 +11,7 @@ public class OrderClause {
     public Double discountAmount;
 
     public OrderClause(
-            final Integer id,
+            final Long id,
             final Integer ordinal,
             final Integer quantity,
             final Double price,
