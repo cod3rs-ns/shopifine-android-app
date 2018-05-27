@@ -5,17 +5,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RelationshipLinks {
 
-    private String realted;
+    private String related;
 
     public RelationshipLinks() {
         super();
     }
 
-    public String getRealted() {
-        return realted;
+    public String getRelated() {
+        return related;
     }
 
-    public void setRealted(String realted) {
-        this.realted = realted;
+    public void setRelated(String related) {
+        this.related = related;
     }
 }

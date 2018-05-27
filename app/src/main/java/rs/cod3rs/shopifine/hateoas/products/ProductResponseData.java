@@ -16,7 +16,8 @@ public class ProductResponseData {
     }
 
     public Product toDomain() {
-        return new Product(id, attributes.getName(), attributes.getImageUrl(), 1L, attributes.getPrice());
+        return new Product(
+                id, attributes.getName(), attributes.getImageUrl(), 1L, attributes.getPrice());
     }
 
     public String getType() {

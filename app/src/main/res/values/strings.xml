@@ -35,4 +35,22 @@
     <string name="orders">Orders</string>
     <string name="wishlist">Wishlist</string>
     <string name="shopping_cart">Shopping cart</string>
+
+    <string name="mock">Mock</string>
+    <string name="mock_date">28–07–1994</string>
+    <string name="mock_number">19</string>
+
+    <string name="second_order_tab">Successful</string>
+    <string name="first_order_tab">Ordered</string>
+    <string name="third_order_tab">Cancelled</string>
+
+    <string name="order_id">Order ID</string>
+    <string name="order_status">Status</string>
+    <string name="order_created">Created</string>
+    <string name="order_points_gained">Points Gained</string>
+    <string name="order_points_spent">Points Spent</string>
+    <string name="order_discount">Discount:</string>
+    <string name="order_total">Total:</string>
+
+
 </resources>
