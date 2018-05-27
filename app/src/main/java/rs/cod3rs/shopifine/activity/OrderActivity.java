@@ -31,11 +31,14 @@ import rs.cod3rs.shopifine.domain.Order;
 import rs.cod3rs.shopifine.domain.OrderClause;
 import rs.cod3rs.shopifine.hateoas.bill_clauses.BillClauseResponseData;
 import rs.cod3rs.shopifine.http.Orders;
+import rs.cod3rs.shopifine.http.Products;
 
 @EActivity(R.layout.activity_order)
 public class OrderActivity extends AppCompatActivity {
 
     @RestService Orders orders;
+
+    @RestService Products products;
 
     @Pref Credentials_ credentials;
 
@@ -106,6 +109,14 @@ public class OrderActivity extends AppCompatActivity {
                         .getData()
                         .stream()
                         .map(BillClauseResponseData::toDomain)
+                        .peek(
+                                a -> {
+                                    System.out.println(a.linkedProductId);
+                                    a.product =
+                                            products.retrieveOne(a.linkedProductId)
+                                                    .getData()
+                                                    .toDomain();
+                                })
                         .collect(Collectors.toList());
         updateList(orderClauses);
     }

@@ -34,7 +34,7 @@ public class OrderClauseView extends LinearLayout implements ViewWrapper.Binder<
     }
 
     public void bind(final OrderClause item) {
-        productName.setText(String.format("%s. Product Name", item.ordinal.toString()));
+        productName.setText(String.format("%s. %s", item.ordinal.toString(), item.product.name));
         amountDetails.setText(String.format(Locale.US, "%d x %s", item.quantity, item.price));
         discountDetails.setText(
                 String.format(

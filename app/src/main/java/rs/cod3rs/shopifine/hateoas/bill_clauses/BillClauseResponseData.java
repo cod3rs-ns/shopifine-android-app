@@ -10,6 +10,7 @@ public class BillClauseResponseData {
     private String type;
     private Long id;
     private BillClauseResponseAttributes attributes;
+    private BillClauseResponseRelationships relationships;
 
     public BillClauseResponseData() {
         super();
@@ -23,7 +24,16 @@ public class BillClauseResponseData {
                 attributes.getPrice(),
                 attributes.getAmount(),
                 attributes.getDiscount(),
-                attributes.getDiscountAmount());
+                attributes.getDiscountAmount(),
+                relationships.getProduct().getData().getId());
+    }
+
+    public BillClauseResponseRelationships getRelationships() {
+        return relationships;
+    }
+
+    public void setRelationships(final BillClauseResponseRelationships relationships) {
+        this.relationships = relationships;
     }
 
     public String getType() {

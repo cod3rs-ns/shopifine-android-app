@@ -9,6 +9,8 @@ public class OrderClause {
     public Double amount;
     public Double discount;
     public Double discountAmount;
+    public Long linkedProductId;
+    public Product product;
 
     public OrderClause(
             final Long id,
@@ -17,7 +19,8 @@ public class OrderClause {
             final Double price,
             final Double amount,
             final Double discount,
-            final Double discountAmount) {
+            final Double discountAmount,
+            final Long linkedProductId) {
         this.id = id;
         this.ordinal = ordinal;
         this.price = price;
@@ -25,5 +28,6 @@ public class OrderClause {
         this.amount = amount;
         this.discount = discount;
         this.discountAmount = discountAmount;
+        this.linkedProductId = linkedProductId;
     }
 }
