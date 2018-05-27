@@ -1,18 +1,18 @@
-package rs.cod3rs.shopifine.hateoas.bill_clauses;
+package rs.cod3rs.shopifine.hateoas.bill_items;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import rs.cod3rs.shopifine.domain.OrderClause;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BillClauseResponseData {
+public class BillItemResponseData {
 
     private String type;
     private Long id;
-    private BillClauseResponseAttributes attributes;
-    private BillClauseResponseRelationships relationships;
+    private BillItemResponseAttributes attributes;
+    private BillItemResponseRelationships relationships;
 
-    public BillClauseResponseData() {
+    public BillItemResponseData() {
         super();
     }
 
@@ -28,11 +28,11 @@ public class BillClauseResponseData {
                 relationships.getProduct().getData().getId());
     }
 
-    public BillClauseResponseRelationships getRelationships() {
+    public BillItemResponseRelationships getRelationships() {
         return relationships;
     }
 
-    public void setRelationships(final BillClauseResponseRelationships relationships) {
+    public void setRelationships(final BillItemResponseRelationships relationships) {
         this.relationships = relationships;
     }
 
@@ -52,11 +52,11 @@ public class BillClauseResponseData {
         this.id = id;
     }
 
-    public BillClauseResponseAttributes getAttributes() {
+    public BillItemResponseAttributes getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(final BillClauseResponseAttributes attributes) {
+    public void setAttributes(final BillItemResponseAttributes attributes) {
         this.attributes = attributes;
     }
 }

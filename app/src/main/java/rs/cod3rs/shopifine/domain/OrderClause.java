@@ -1,5 +1,8 @@
 package rs.cod3rs.shopifine.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OrderClause {
 
     public Long id;
@@ -11,6 +14,7 @@ public class OrderClause {
     public Double discountAmount;
     public Long linkedProductId;
     public Product product;
+    public List<Discount> discounts = new ArrayList<>();
 
     public OrderClause(
             final Long id,

@@ -1,13 +1,17 @@
 package rs.cod3rs.shopifine.activity;
 
+import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.auth0.android.jwt.JWT;
+
+import net.cachapa.expandablelayout.ExpandableLayout;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
@@ -19,6 +23,7 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.rest.spring.annotations.RestService;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Locale;
@@ -29,7 +34,8 @@ import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.adapter.OrderClausesAdapter;
 import rs.cod3rs.shopifine.domain.Order;
 import rs.cod3rs.shopifine.domain.OrderClause;
-import rs.cod3rs.shopifine.hateoas.bill_clauses.BillClauseResponseData;
+import rs.cod3rs.shopifine.hateoas.discounts.DiscountResponseData;
+import rs.cod3rs.shopifine.hateoas.bill_items.BillItemResponseData;
 import rs.cod3rs.shopifine.http.Orders;
 import rs.cod3rs.shopifine.http.Products;
 
@@ -58,26 +64,32 @@ public class OrderActivity extends AppCompatActivity {
 
     @ViewById TextView totalValue;
 
-    @ViewById(R.id.orderClausesRecyclerView)
-    RecyclerView orderItemsView;
+    @ViewById RecyclerView orderClausesRecyclerView;
+
+    @ViewById ExpandableLayout orderDiscountsExpander;
+
+    @ViewById LinearLayout orderDiscountsHolder;
+
+    @ViewById LinearLayout orderSummary;
 
     @Bean OrderClausesAdapter adapter;
 
     private Integer user;
 
     @AfterViews
+    void setListener() {
+        orderSummary.setOnClickListener(
+                view -> orderDiscountsExpander.setExpanded(!orderDiscountsExpander.isExpanded()));
+    }
+
+    @AfterViews
     void bindAdapter() {
-        orderItemsView.setAdapter(adapter);
-        orderItemsView.setLayoutManager(new LinearLayoutManager(this));
+        orderClausesRecyclerView.setAdapter(adapter);
+        orderClausesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter.setOnItemClickListener(
-                (position, view, data) -> {
-                    view.expandableLayout.setExpanded(!view.expandableLayout.isExpanded());
-                    Toast.makeText(
-                                    this,
-                                    String.format("Clicked on: %s", data.id.toString()),
-                                    Toast.LENGTH_SHORT)
-                            .show();
-                });
+                (position, view, data) ->
+                        view.billItemDiscountsExpander.setExpanded(
+                                !view.billItemDiscountsExpander.isExpanded()));
     }
 
     @AfterViews
@@ -98,25 +110,46 @@ public class OrderActivity extends AppCompatActivity {
                         0));
         orderPointsGained.setText(String.valueOf(order.pointsGained));
         orderPointsSpent.setText(String.valueOf(order.pointsSpent));
-        totalValue.setText(String.format(Locale.getDefault(), "$ %.2f%n", order.amount));
-        discountValue.setText(String.format("%s %%", order.discount));
+        totalValue.setText(String.format(Locale.getDefault(), "$%.2f%n", order.amount));
+        discountValue.setText(String.format("%s%%", order.discount));
+        order.discounts.forEach(
+                i -> {
+                    TextView textView = new TextView(this);
+                    textView.setText(
+                            String.format(
+                                    "\u2022 %s discount of %s%% %s",
+                                    StringUtils.capitalize(i.type.toLowerCase()),
+                                    String.valueOf(i.discount),
+                                    i.name.toLowerCase()));
+                    textView.setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
+                    textView.setTypeface(null, Typeface.ITALIC);
+
+                    orderDiscountsHolder.addView(textView);
+                });
     }
 
     @Background
     void getItems() {
         final List<OrderClause> orderClauses =
-                orders.getBillClauses(user, order.id)
+                orders.getBillItems(user, order.id)
                         .getData()
                         .stream()
-                        .map(BillClauseResponseData::toDomain)
+                        .map(BillItemResponseData::toDomain)
                         .peek(
-                                a -> {
-                                    System.out.println(a.linkedProductId);
-                                    a.product =
-                                            products.retrieveOne(a.linkedProductId)
-                                                    .getData()
-                                                    .toDomain();
-                                })
+                                clause ->
+                                        clause.product =
+                                                products.retrieveOne(clause.linkedProductId)
+                                                        .getData()
+                                                        .toDomain())
+                        .peek(
+                                clause ->
+                                        clause.discounts =
+                                                orders.getBillItemDiscounts(
+                                                                user, order.id, clause.id)
+                                                        .getData()
+                                                        .stream()
+                                                        .map(DiscountResponseData::toDomain)
+                                                        .collect(Collectors.toList()))
                         .collect(Collectors.toList());
         updateList(orderClauses);
     }
@@ -130,6 +163,6 @@ public class OrderActivity extends AppCompatActivity {
     @UiThread
     void updateList(final List<OrderClause> updated) {
         adapter.addAll(updated);
-        orderItemsView.setAdapter(adapter);
+        orderClausesRecyclerView.setAdapter(adapter);
     }
 }

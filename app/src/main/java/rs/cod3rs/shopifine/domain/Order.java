@@ -4,6 +4,8 @@ import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import rs.cod3rs.shopifine.Util;
 
@@ -17,6 +19,7 @@ public class Order implements Serializable {
     public Double discount;
     public Integer pointsGained;
     public Integer pointsSpent;
+    public List<Discount> discounts = new ArrayList<>();
 
     public Order(
             final Long id,

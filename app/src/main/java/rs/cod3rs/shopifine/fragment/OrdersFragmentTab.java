@@ -32,6 +32,7 @@ import rs.cod3rs.shopifine.activity.OrderActivity_;
 import rs.cod3rs.shopifine.adapter.OrdersListAdapter;
 import rs.cod3rs.shopifine.domain.Order;
 import rs.cod3rs.shopifine.domain.OrderState;
+import rs.cod3rs.shopifine.hateoas.discounts.DiscountResponseData;
 import rs.cod3rs.shopifine.hateoas.bills.BillResponseData;
 import rs.cod3rs.shopifine.http.Orders;
 
@@ -64,7 +65,10 @@ public class OrdersFragmentTab extends Fragment {
         ordersList.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.setOnItemClickListener(
                 (position, view, data) ->
-                        OrderActivity_.intent(getContext()).order(data).start().withAnimation(0, 0));
+                        OrderActivity_.intent(getContext())
+                                .order(data)
+                                .start()
+                                .withAnimation(0, 0));
     }
 
     @AfterInject
@@ -81,10 +85,21 @@ public class OrdersFragmentTab extends Fragment {
     @Background
     void getOrders() {
         try {
-            final List<BillResponseData> data = orders.getBills(user, orderFragmentType.name()).getData();
-            final List<Order> orders =
-                    data.stream().map(BillResponseData::toDomain).collect(Collectors.toList());
-            updateList(orders);
+            final List<Order> ordersList =
+                    orders.getBills(user, orderFragmentType.name())
+                            .getData()
+                            .stream()
+                            .map(BillResponseData::toDomain)
+                            .peek(
+                                    order ->
+                                            order.discounts =
+                                                    orders.getBillDiscounts(user, order.id)
+                                                            .getData()
+                                                            .stream()
+                                                            .map(DiscountResponseData::toDomain)
+                                                            .collect(Collectors.toList()))
+                            .collect(Collectors.toList());
+            updateList(ordersList);
         } catch (final NestedRuntimeException e) {
             Log.e(this.getClass().getSimpleName(), e.getMessage());
         }

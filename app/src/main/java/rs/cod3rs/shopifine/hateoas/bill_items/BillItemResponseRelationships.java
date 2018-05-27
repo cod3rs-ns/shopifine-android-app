@@ -1,15 +1,15 @@
-package rs.cod3rs.shopifine.hateoas.bill_clauses;
+package rs.cod3rs.shopifine.hateoas.bill_items;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import rs.cod3rs.shopifine.hateoas.ResponseRelationship;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BillClauseResponseRelationships {
+public class BillItemResponseRelationships {
 
     private ResponseRelationship product;
 
-    public BillClauseResponseRelationships() {
+    public BillItemResponseRelationships() {
         super();
     }
 

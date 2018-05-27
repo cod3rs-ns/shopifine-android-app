@@ -1,9 +1,9 @@
-package rs.cod3rs.shopifine.hateoas.bill_clauses;
+package rs.cod3rs.shopifine.hateoas.bill_items;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BillClauseResponseAttributes {
+public class BillItemResponseAttributes {
 
     private Integer ordinal;
     private Double price;
@@ -12,7 +12,7 @@ public class BillClauseResponseAttributes {
     private Double discount;
     private Double discountAmount;
 
-    public BillClauseResponseAttributes() {
+    public BillItemResponseAttributes() {
         super();
     }
 

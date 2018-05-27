@@ -1,4 +1,4 @@
-package rs.cod3rs.shopifine.hateoas.bill_clauses;
+package rs.cod3rs.shopifine.hateoas.bill_items;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -7,21 +7,21 @@ import java.util.List;
 import rs.cod3rs.shopifine.hateoas.CollectionLinks;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BillClauseCollectionResponse {
+public class BillItemCollectionResponse {
 
-    private List<BillClauseResponseData> data;
+    private List<BillItemResponseData> data;
 
     private CollectionLinks links;
 
-    public BillClauseCollectionResponse() {
+    public BillItemCollectionResponse() {
         super();
     }
 
-    public List<BillClauseResponseData> getData() {
+    public List<BillItemResponseData> getData() {
         return data;
     }
 
-    public void setData(final List<BillClauseResponseData> data) {
+    public void setData(final List<BillItemResponseData> data) {
         this.data = data;
     }
 
