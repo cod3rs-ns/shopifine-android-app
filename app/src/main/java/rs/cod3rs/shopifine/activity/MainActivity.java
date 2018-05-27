@@ -49,6 +49,7 @@ import rs.cod3rs.shopifine.hateoas.users.UserResponse;
 import rs.cod3rs.shopifine.hateoas.users.UserResponseAttributes;
 import rs.cod3rs.shopifine.http.ErrorHandler;
 import rs.cod3rs.shopifine.http.Users;
+import rs.cod3rs.shopifine.http.WebSocketClient;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -69,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private final List<Integer> fragmentOrders = Arrays.asList(R.id.home, R.id.shoppingCart, R.id.wishlist, R.id.orders, R.id.orders);
 
+    private WebSocketClient webSocketClient;
+
     @AfterInject
     void setErrorHandler() {
         users.setRestErrorHandler(errorHandler);
@@ -79,6 +82,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final JWT jwt = new JWT(credentials.token().get());
         final Integer userId = jwt.getClaim("id").asInt();
         getLoggedUser(userId);
+    }
+
+    @AfterInject
+    void openWebSockets() {
+        final String token = credentials.token().get();
+
+        webSocketClient = new WebSocketClient(token, this);
     }
 
     @Background
@@ -173,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         LoginActivity_.intent(MainActivity.this).start();
                         finish();
                     });
+            webSocketClient.close();
         } else {
             navigationView.setCheckedItem(fragmentId);
             getSupportFragmentManager().beginTransaction()
