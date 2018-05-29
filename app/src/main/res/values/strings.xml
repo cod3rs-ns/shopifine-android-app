@@ -61,4 +61,12 @@
     <string name="pass_match_err">Passwords do not match.</string>
     <string name="address_missing_err">You must specify address.</string>
 
+
+    <!-- Notification messages -->
+    <string name="order_state_changed">Order changed status to %1$s.</string>
+    <string name="action_discount_created">%1s discount of %2.0f%% is here.</string>
+    <string name="one_product_left">Only one product %1s left.</string>
+    <string name="order_address_changed">Order with id %1d changed address to %2s.</string>
+    <string name="product_price_changed">Product %1s changed its price to %2.2f.".</string>
+
 </resources>

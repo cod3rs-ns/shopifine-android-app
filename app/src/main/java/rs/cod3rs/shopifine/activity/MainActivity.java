@@ -40,7 +40,6 @@ import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.domain.User;
-import rs.cod3rs.shopifine.fragment.OrdersFragmentTabParent;
 import rs.cod3rs.shopifine.fragment.OrdersFragmentTabParent_;
 import rs.cod3rs.shopifine.fragment.ProductsFragment_;
 import rs.cod3rs.shopifine.fragment.ProfileFragment_;
@@ -49,6 +48,7 @@ import rs.cod3rs.shopifine.hateoas.users.UserResponse;
 import rs.cod3rs.shopifine.hateoas.users.UserResponseAttributes;
 import rs.cod3rs.shopifine.http.ErrorHandler;
 import rs.cod3rs.shopifine.http.Users;
+import rs.cod3rs.shopifine.http.WebSocketClient;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Bean
     ErrorHandler errorHandler;
 
+    @Bean
+    WebSocketClient webSocketClient;
+
     private GoogleSignInClient googleSignInClient;
 
     private final List<Integer> fragmentOrders = Arrays.asList(R.id.home, R.id.shoppingCart, R.id.wishlist, R.id.orders, R.id.orders);
@@ -79,6 +82,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final JWT jwt = new JWT(credentials.token().get());
         final Integer userId = jwt.getClaim("id").asInt();
         getLoggedUser(userId);
+    }
+
+    @AfterInject
+    void openWebSockets() {
+        webSocketClient.start();
     }
 
     @Background
@@ -173,6 +181,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         LoginActivity_.intent(MainActivity.this).start();
                         finish();
                     });
+            webSocketClient.close();
         } else {
             navigationView.setCheckedItem(fragmentId);
             getSupportFragmentManager().beginTransaction()
