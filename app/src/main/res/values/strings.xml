@@ -53,4 +53,12 @@
     <string name="order_total">Total:</string>
 
 
+    <!-- Error messages -->
+    <string name="fn_missing_err">You must enter first name.</string>
+    <string name="ln_missing_err">You must enter last name.</string>
+    <string name="username_missing_err">You must enter username.</string>
+    <string name="pass_min_err">Password must contain more than 6 characters.</string>
+    <string name="pass_match_err">Passwords do not match.</string>
+    <string name="address_missing_err">You must specify address.</string>
+
 </resources>

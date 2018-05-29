@@ -12,6 +12,11 @@ public class RelationshipData {
         super();
     }
 
+    public RelationshipData(final String type, final Long id) {
+        this.type = type;
+        this.id = id;
+    }
+
     public String getType() {
         return type;
     }
