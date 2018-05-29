@@ -40,7 +40,6 @@ import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.domain.User;
-import rs.cod3rs.shopifine.fragment.OrdersFragmentTabParent;
 import rs.cod3rs.shopifine.fragment.OrdersFragmentTabParent_;
 import rs.cod3rs.shopifine.fragment.ProductsFragment_;
 import rs.cod3rs.shopifine.fragment.ProfileFragment_;
@@ -66,11 +65,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Bean
     ErrorHandler errorHandler;
 
+    @Bean
+    WebSocketClient webSocketClient;
+
     private GoogleSignInClient googleSignInClient;
 
     private final List<Integer> fragmentOrders = Arrays.asList(R.id.home, R.id.shoppingCart, R.id.wishlist, R.id.orders, R.id.orders);
-
-    private WebSocketClient webSocketClient;
 
     @AfterInject
     void setErrorHandler() {
@@ -86,9 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @AfterInject
     void openWebSockets() {
-        final String token = credentials.token().get();
-
-        webSocketClient = new WebSocketClient(token, this);
+        webSocketClient.start();
     }
 
     @Background

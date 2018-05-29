@@ -11,6 +11,8 @@ import android.util.Log;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.androidannotations.annotations.EBean;
+
 import java.io.IOException;
 
 import rs.cod3rs.shopifine.R;
@@ -21,40 +23,49 @@ import rs.cod3rs.shopifine.notification.messages.OrderAddressChanged;
 import rs.cod3rs.shopifine.notification.messages.OrderStateChanged;
 import rs.cod3rs.shopifine.notification.messages.ProductPriceChanged;
 
+@EBean
 public class NotificationBuilder {
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private static final String TYPE_FIELD = "type";
+    private static final String NOTIFICATION_NAME = "Shopifine";
 
-    public Notification buildNotification(final String message, final Context context) {
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final Context context;
+
+    public NotificationBuilder(final Context context) {
+        this.context = context;
+    }
+
+    public Notification buildNotification(final String message) {
         try {
             final JsonNode notification = objectMapper.readValue(message, JsonNode.class);
-            final NotificationType type = NotificationType.fromString(notification.get("type").asText());
+            final NotificationType type = NotificationType.fromString(notification.get(TYPE_FIELD).asText());
 
-            return parseNotificationContent(message, type, context);
+            return parseNotificationContent(message, type);
         } catch (final IOException e) {
             Log.e(NotificationBuilder.class.getSimpleName(), e.getMessage());
         }
         return null;
     }
 
-    private Notification parseNotificationContent(final String message, final NotificationType notificationType, final Context context) {
+    private Notification parseNotificationContent(final String message, final NotificationType notificationType) {
         try {
             switch (notificationType) {
                 case ORDER_STATUS_CHANGED:
                     final OrderStateChanged stateChanged = objectMapper.readValue(message, OrderStateChanged.class);
-                    return buildOrderStateChangedNotification(stateChanged, context);
+                    return buildOrderStateChangedNotification(stateChanged);
                 case ACTION_DISCOUNT_CREATED:
                     final ActionDiscountCreated actionDiscountCreated = objectMapper.readValue(message, ActionDiscountCreated.class);
-                    return buildActionDiscountCreated(actionDiscountCreated, context);
+                    return buildActionDiscountCreated(actionDiscountCreated);
                 case ONE_PRODUCT_LEFT:
                     final OneProductLeft oneProductLeft = objectMapper.readValue(message, OneProductLeft.class);
-                    return buildOneProductLeft(oneProductLeft, context);
+                    return buildOneProductLeft(oneProductLeft);
                 case ORDER_ADDRESS_CHANGED:
                     final OrderAddressChanged orderAddressChanged = objectMapper.readValue(message, OrderAddressChanged.class);
-                    return buildOrderAddressChanged(orderAddressChanged, context);
+                    return buildOrderAddressChanged(orderAddressChanged);
                 case PRODUCT_PRICE_CHANGED:
                     final ProductPriceChanged productPriceChanged = objectMapper.readValue(message, ProductPriceChanged.class);
-                    return buildProductPriceChanged(productPriceChanged, context);
+                    return buildProductPriceChanged(productPriceChanged);
                 default:
                     return null;
             }
@@ -63,54 +74,54 @@ public class NotificationBuilder {
         }
     }
 
-    private Notification buildOrderStateChangedNotification(final OrderStateChanged stateChanged, final Context context) {
+    private Notification buildOrderStateChangedNotification(final OrderStateChanged stateChanged) {
         // TODO: change to appropriate intent
         final Intent intent = MainActivity_.intent(context).get();
-        final String message = String.format("Order changed status to %s.", stateChanged.getState());
+        final String message = context.getResources().getString(R.string.order_state_changed, stateChanged.getState());
 
-        return buildBasicNotificationView(context, intent, message);
+        return buildBasicNotificationView(intent, message);
     }
 
-    private Notification buildActionDiscountCreated(final ActionDiscountCreated actionDiscountCreated, final Context context) {
+    private Notification buildActionDiscountCreated(final ActionDiscountCreated actionDiscountCreated) {
         // TODO: change to appropriate intent
         final Intent intent = MainActivity_.intent(context).get();
-        final String message = String.format("%s discount of %.0f%% is here.", actionDiscountCreated.getName(), actionDiscountCreated.getDiscount());
+        final String message = context.getResources().getString(R.string.action_discount_created, actionDiscountCreated.getName(), actionDiscountCreated.getDiscount());
 
-        return buildBasicNotificationView(context, intent, message);
+        return buildBasicNotificationView(intent, message);
     }
 
-    private Notification buildOneProductLeft(final OneProductLeft oneProductLeft, final Context context) {
+    private Notification buildOneProductLeft(final OneProductLeft oneProductLeft) {
         // TODO: change to appropriate intent
         final Intent intent = MainActivity_.intent(context).get();
-        final String message = String.format("Only one product %s left.", oneProductLeft.getName());
+        final String message = context.getResources().getString(R.string.one_product_left, oneProductLeft.getName());
 
-        return buildBasicNotificationView(context, intent, message);
+        return buildBasicNotificationView(intent, message);
     }
 
-    private Notification buildOrderAddressChanged(final OrderAddressChanged orderAddressChanged, final Context context) {
+    private Notification buildOrderAddressChanged(final OrderAddressChanged orderAddressChanged) {
         // TODO: change to appropriate intent
         final Intent intent = MainActivity_.intent(context).get();
-        final String message = String.format("Order with id %s changed address to %s.", orderAddressChanged.getOrderId(), orderAddressChanged.getAddress());
+        final String message = context.getResources().getString(R.string.order_address_changed, orderAddressChanged.getOrderId(), orderAddressChanged.getAddress());
 
-        return buildBasicNotificationView(context, intent, message);
+        return buildBasicNotificationView(intent, message);
     }
 
-    private Notification buildProductPriceChanged(final ProductPriceChanged productPriceChanged, final Context context) {
+    private Notification buildProductPriceChanged(final ProductPriceChanged productPriceChanged) {
         // TODO: change to appropriate intent
         final Intent intent = MainActivity_.intent(context).get();
-        final String message = String.format("Product %s changed it price to %s.", productPriceChanged.getName(), productPriceChanged.getPrice());
+        final String message = context.getResources().getString(R.string.product_price_changed, productPriceChanged.getName(), productPriceChanged.getPrice());
 
-        return buildBasicNotificationView(context, intent, message);
+        return buildBasicNotificationView(intent, message);
     }
 
-    private Notification buildBasicNotificationView(final Context context, final Intent intent, final String message) {
+    private Notification buildBasicNotificationView(final Intent intent, final String message) {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         final PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
         return new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.ic_shopifine_bag)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                .setContentTitle("Shopifine")
+                .setContentTitle(NOTIFICATION_NAME)
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true)
                 .setContentIntent(pendingIntent).build();
