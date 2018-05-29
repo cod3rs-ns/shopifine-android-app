@@ -50,13 +50,12 @@
     <dimen name="discountCircleSize">55dp</dimen>
     <dimen name="discountCircleMargin">10dp</dimen>
 
+    <dimen name="productImageHeight">230dp</dimen>
     <dimen name="productInfoHeight">100dp</dimen>
     <dimen name="productInfoMargin">16dp</dimen>
-
     <dimen name="productInfoPaddingSide">12dp</dimen>
-    <dimen name="productInfoPaddingTop">16dp</dimen>
+    <dimen name="productInfoPaddingTop">13dp</dimen>
     <dimen name="productPricePadding">7dp</dimen>
-
     <dimen name="productButtonsSpace">70dp</dimen>
 
     <dimen name="googleAddressClearMargin">13dip</dimen>

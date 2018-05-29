@@ -6,6 +6,7 @@
     android:paddingStart="@dimen/paddingListItemSide"
     android:paddingEnd="@dimen/paddingListItemSide"
     android:paddingTop="@dimen/paddingListItem"
+    android:descendantFocusability="blocksDescendants"
     android:paddingBottom="@dimen/paddingListItem">
     
     <de.hdodenhof.circleimageview.CircleImageView
