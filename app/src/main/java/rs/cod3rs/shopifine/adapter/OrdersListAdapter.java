@@ -18,7 +18,7 @@ public class OrdersListAdapter extends RecyclerViewAdapterBase<Order, OrderItemV
     Context context;
 
     @Override
-    protected OrderItemView onCreateItemView(ViewGroup parent, int viewType) {
+    protected OrderItemView onCreateItemView(final ViewGroup parent, final int viewType) {
         return OrderItemView_.build(context);
     }
 

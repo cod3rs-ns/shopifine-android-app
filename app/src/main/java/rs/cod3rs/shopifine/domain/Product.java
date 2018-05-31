@@ -13,7 +13,10 @@ public class Product implements Serializable {
 
     public Double price;
 
+    public ProductCategory category;
+
     public Product() {
+        super();
     }
 
     public Product(final Long id, final String name, final String imageUrl, final Long categoryId, final Double price) {

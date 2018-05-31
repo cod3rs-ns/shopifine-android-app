@@ -40,7 +40,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ShoppingCartItemView shoppingCartItemView;
+        final ShoppingCartItemView shoppingCartItemView;
         if (view == null) {
             shoppingCartItemView = ShoppingCartItemView_.build(context);
         } else {

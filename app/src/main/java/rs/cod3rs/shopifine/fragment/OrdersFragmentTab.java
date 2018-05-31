@@ -49,7 +49,8 @@ public class OrdersFragmentTab extends Fragment {
     @ViewById(R.id.ordersRecyclerList)
     RecyclerView ordersList;
 
-    @Bean OrdersListAdapter adapter;
+    @Bean
+    OrdersListAdapter adapter;
 
     private Integer user;
 

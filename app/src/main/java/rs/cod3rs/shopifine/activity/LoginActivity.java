@@ -191,7 +191,7 @@ public class LoginActivity extends Activity {
 
     @AfterViews
     void setDefaults() {
-        username.setText("dmarjanovic");
+        username.setText("dmarjanovic94");
         password.setText("sergioramos");
     }
 

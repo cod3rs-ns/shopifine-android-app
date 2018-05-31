@@ -39,7 +39,7 @@ public class ShoppingCartFragment extends Fragment {
 
     @Background
     void getProducts() {
-        final ProductCollectionResponse res = products.retrieveAll();
+        final ProductCollectionResponse res = products.retrieveAll(0, 10);
         final List<Product> p = new ArrayList<>();
 
         for (final ProductResponseData data : res.getData()) {

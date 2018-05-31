@@ -17,11 +17,11 @@ import rs.cod3rs.shopifine.hateoas.products.ProductResponse;
 )
 public interface Products {
 
-    @Get("api/products")
-    ProductCollectionResponse retrieveAll();
+    @Get("api/products?page[offset]={offset}&page[limit]={limit}")
+    ProductCollectionResponse retrieveAll(@Path final Integer offset, @Path final Integer limit);
 
     @Get("api/products/{productId}")
-    ProductResponse retrieveOne(@Path Long productId);
+    ProductResponse retrieveOne(@Path final Long productId);
 
     @Get("api/products?filter[category]={categoryId}")
     ProductCollectionResponse retrieveFromCategory(@Path final Long categoryId);
