@@ -1,12 +1,16 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/colorWhite</item>
     </style>
+
+    <dimen name="navHeight">192dp</dimen>
+    <dimen name="navImageBorder">2dp</dimen>
     
     <dimen name="paddingSide">16dp</dimen>
     <dimen name="paddingIconLabel">16dp</dimen>
@@ -19,6 +23,10 @@
     <dimen name="buttonPaddingTop">8dp</dimen>
     <dimen name="buttonMarginOutside">6dp</dimen>
 
+    <dimen name="defaultMarginTop">12dp</dimen>
+    <dimen name="defaultBlockHeight">64dp</dimen>
+    <dimen name="smallBlockHeight">20dp</dimen>
+
     <dimen name="productCoverHeight">210dp</dimen>
 
     <dimen name="listItemHeight">148dp</dimen>
@@ -28,23 +36,27 @@
     <dimen name="fontHeadlineSize">24sp</dimen>
     <dimen name="fontTitleSize">20sp</dimen>
     <dimen name="fontSubheadingSize">16sp</dimen>
+    <dimen name="fontStandardSize">14sp</dimen>
+    <dimen name="fontEditTextSize">6dp</dimen>
 
     <dimen name="headerImageHeight">150dp</dimen>
     <dimen name="profileImageSize">200dp</dimen>
+    <dimen name="iconImageSize">128dp</dimen>
+    <dimen name="navProfileImageSize">80dp</dimen>
 
-    <dimen name="profileShoppingBtnSize">175dp</dimen>
-    <dimen name="profileSectionSpace">20dp</dimen>
+    <dimen name="profileSectionSpace">10dp</dimen>
     <dimen name="profileImageBorderWidth">3dp</dimen>
     <dimen name="profileInfoMargin">70dp</dimen>
     <dimen name="discountCircleSize">55dp</dimen>
     <dimen name="discountCircleMargin">10dp</dimen>
 
+    <dimen name="productImageHeight">230dp</dimen>
     <dimen name="productInfoHeight">100dp</dimen>
     <dimen name="productInfoMargin">16dp</dimen>
-
     <dimen name="productInfoPaddingSide">12dp</dimen>
-    <dimen name="productInfoPaddingTop">16dp</dimen>
+    <dimen name="productInfoPaddingTop">13dp</dimen>
     <dimen name="productPricePadding">7dp</dimen>
-
     <dimen name="productButtonsSpace">70dp</dimen>
+
+    <dimen name="googleAddressClearMargin">13dip</dimen>
 </resources>

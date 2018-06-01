@@ -1,6 +1,8 @@
 package rs.cod3rs.shopifine.domain;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     public Long id;
 
     public String name;
@@ -10,6 +12,9 @@ public class Product {
     public Long categoryId;
 
     public Double price;
+
+    public Product() {
+    }
 
     public Product(final Long id, final String name, final String imageUrl, final Long categoryId, final Double price) {
         this.id = id;

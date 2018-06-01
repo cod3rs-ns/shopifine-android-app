@@ -1,26 +1,39 @@
 package rs.cod3rs.shopifine.hateoas;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CollectionLinks {
 
-    private final String prev;
-    private final String self;
-    private final String next;
+    private String prev;
+    private String self;
+    private String next;
 
-    public CollectionLinks(final String prev, final String self, final String next) {
-        this.prev = prev;
-        this.self = self;
-        this.next = next;
+    public CollectionLinks() {
+        super();
     }
 
     public String getPrev() {
         return prev;
     }
 
+    public void setPrev(final String prev) {
+        this.prev = prev;
+    }
+
     public String getSelf() {
         return self;
     }
 
+    public void setSelf(final String self) {
+        this.self = self;
+    }
+
     public String getNext() {
         return next;
+    }
+
+    public void setNext(final String next) {
+        this.next = next;
     }
 }

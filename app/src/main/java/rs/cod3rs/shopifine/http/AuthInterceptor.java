@@ -10,17 +10,17 @@ import org.springframework.http.client.ClientHttpResponse;
 
 import java.io.IOException;
 
-import rs.cod3rs.shopifine.Prefs_;
+import rs.cod3rs.shopifine.Credentials_;
 
-@EBean(scope = EBean.Scope.Singleton)
+@EBean
 public class AuthInterceptor implements ClientHttpRequestInterceptor {
 
     @Pref
-    Prefs_ prefs;
+    Credentials_ credentials;
 
     @Override
     public ClientHttpResponse intercept(final HttpRequest request, final byte[] body, final ClientHttpRequestExecution execution) throws IOException {
-        final String token = prefs.token().get();
+        final String token = credentials.token().get();
 
         if (token != null) {
             final HttpHeaders headers = request.getHeaders();

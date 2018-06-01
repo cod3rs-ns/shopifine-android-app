@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rs.cod3rs.shopifine.domain.Product;
@@ -17,7 +18,7 @@ import rs.cod3rs.shopifine.view.ProductItemView_;
 @EBean
 public class ProductsAdapter extends BaseAdapter {
 
-    public List<Product> products;
+    public List<Product> products = new ArrayList<>();
 
     @RootContext
     Context context;

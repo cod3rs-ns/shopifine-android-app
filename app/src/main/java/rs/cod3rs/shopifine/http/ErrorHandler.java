@@ -10,8 +10,9 @@ import org.springframework.core.NestedRuntimeException;
 public class ErrorHandler implements RestErrorHandler {
 
     @Override
-    public void onRestClientExceptionThrown(NestedRuntimeException e) {
+    public void onRestClientExceptionThrown(final NestedRuntimeException e) {
         Log.e(ErrorHandler.class.getSimpleName(), e.getMessage());
+        throw e;
     }
 
 }

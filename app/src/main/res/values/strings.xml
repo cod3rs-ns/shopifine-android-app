@@ -1,8 +1,14 @@
 <resources>
     <string name="app_name">Shopifine</string>
 
-    <string name="navigation_drawer_open">A</string>
-    <string name="navigation_drawer_close">B</string>
+    <string name="navigation_drawer_open">Open Drawer</string>
+    <string name="navigation_drawer_close">Close Drawer</string>
+
+    <string name="navigation_drawer_home">Home</string>
+    <string name="navigation_drawer_shopping_cart">Shopping Cart</string>
+    <string name="navigation_drawer_wishlist">My Wishlist</string>
+    <string name="navigation_drawer_orders">My Orders</string>
+    <string name="navigation_drawer_profile">Profile</string>
 
     <string name="username">Username</string>
     <string name="password">Password</string>
@@ -12,14 +18,55 @@
     <string name="address">Address</string>
 
     <string name="product_categories_title">Products from same category</string>
+    <string name="product_image">Product image</string>
 
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
+    <string name="log_out">Logout</string>
 
     <string name="add_to_shopping_cart">Add to Shopping Cart</string>
-    <string name="add_to_wishlist">add_to_wishlist</string>
+    <string name="add_to_wishlist">Add to Wishlist</string>
 
     <string name="lets_shopping">Let\'s shopping!</string>
     <string name="category">Category</string>
     <string name="extra_points">Extra points</string>
+
+    <string name="checkout">Proceed to Checkout</string>
+    <string name="home">Home</string>
+    <string name="orders">Orders</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="shopping_cart">Shopping cart</string>
+
+    <string name="mock">Mock</string>
+    <string name="mock_date">28–07–1994</string>
+    <string name="mock_number">19</string>
+
+    <string name="second_order_tab">Successful</string>
+    <string name="first_order_tab">Ordered</string>
+    <string name="third_order_tab">Cancelled</string>
+
+    <string name="order_id">Order ID</string>
+    <string name="order_status">Status</string>
+    <string name="order_created">Created</string>
+    <string name="order_points_gained">Points Gained</string>
+    <string name="order_points_spent">Points Spent</string>
+    <string name="order_discount">Discount:</string>
+    <string name="order_total">Total:</string>
+
+    <!-- Error messages -->
+    <string name="fn_missing_err">You must enter first name.</string>
+    <string name="ln_missing_err">You must enter last name.</string>
+    <string name="username_missing_err">You must enter username.</string>
+    <string name="pass_min_err">Password must contain more than 6 characters.</string>
+    <string name="pass_match_err">Passwords do not match.</string>
+    <string name="address_missing_err">You must specify address.</string>
+
+
+    <!-- Notification messages -->
+    <string name="order_state_changed">Order changed status to %1$s.</string>
+    <string name="action_discount_created">%1s discount of %2.0f%% is here.</string>
+    <string name="one_product_left">Only one product %1s left.</string>
+    <string name="order_address_changed">Order with id %1d changed address to %2s.</string>
+    <string name="product_price_changed">Product %1s changed its price to %2.2f.".</string>
+
 </resources>
