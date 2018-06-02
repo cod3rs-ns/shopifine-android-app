@@ -94,9 +94,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         try {
             final UserResponse res = users.getUser(userId);
             final UserResponseAttributes attrs = res.getData().getAttributes();
-            final User u = new User(attrs.getUsername(), attrs.getFirstName(), attrs.getLastName(), attrs.getAddress());
+            final User u = new User(userId, attrs.getUsername(), attrs.getFirstName(), attrs.getLastName(), attrs.getAddress());
 
             prefs.edit()
+                    .loggedUserId().put(userId)
                     .loggedUserImageUrl().put(u.getImage())
                     .loggedUserFullName().put(u.getFullName())
                     .loggedUserAddress().put(u.address)

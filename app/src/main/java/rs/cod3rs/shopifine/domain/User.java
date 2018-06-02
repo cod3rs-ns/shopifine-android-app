@@ -1,6 +1,8 @@
 package rs.cod3rs.shopifine.domain;
 
 public class User {
+    public Integer id;
+
     public String username;
 
     public String firstName;
@@ -9,7 +11,8 @@ public class User {
 
     public String address;
 
-    public User(final String username, final String firstName, final String lastName, final String address) {
+    public User(final Integer id, final String username, final String firstName, final String lastName, final String address) {
+        this.id = id;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;

@@ -25,6 +25,8 @@
     <string name="log_out">Logout</string>
 
     <string name="add_to_shopping_cart">Add to Shopping Cart</string>
+    <string name="already_in_shopping_cart">Item is already in shopping cart!</string>
+    <string name="added_to_shopping_cart">Added to shopping cart!</string>
     <string name="add_to_wishlist">Add to Wishlist</string>
 
     <string name="lets_shopping">Let\'s shopping!</string>

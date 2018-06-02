@@ -5,6 +5,8 @@ import org.androidannotations.annotations.sharedpreferences.SharedPref;
 @SharedPref
 public interface Prefs {
 
+    int loggedUserId();
+
     String loggedUserImageUrl();
 
     String loggedUserFullName();
