@@ -39,6 +39,8 @@
     <string name="orders">Orders</string>
     <string name="wishlist">Wishlist</string>
     <string name="shopping_cart">Shopping cart</string>
+    <string name="search_hint">Find product…</string>
+    <string name="search_filters">Filters</string>
 
     <string name="mock">Mock</string>
     <string name="mock_date">28–07–1994</string>

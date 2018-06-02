@@ -7,6 +7,12 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorSecondary">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="android:editTextColor">@color/colorWhite</item>
+    </style>
+
+    <style name="HeaderBar">
+        <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
     <dimen name="navHeight">192dp</dimen>
