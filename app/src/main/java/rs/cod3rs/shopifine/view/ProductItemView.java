@@ -61,7 +61,6 @@ public class ProductItemView extends LinearLayout implements ViewWrapper.Binder<
         } catch (final SQLException e) {
             e.printStackTrace();
         }
-        Log.i(this.getClass().getSimpleName(), "Clicked to adding to shopping cart: " + this.productName + ".");
     }
 
     @Click
@@ -69,6 +68,7 @@ public class ProductItemView extends LinearLayout implements ViewWrapper.Binder<
         Log.i(this.getClass().getSimpleName(), "Clicked to adding to wishlist: " + this.productName + ".");
     }
 
+    @Override
     public void bind(final Product product) {
         this.product = product;
 
@@ -80,8 +80,6 @@ public class ProductItemView extends LinearLayout implements ViewWrapper.Binder<
 
     private void addItemToShoppingCart(final ShoppingCartItem item) throws SQLException {
         final boolean itemExists = helper.getShoppingCartDAO().queryForEq("product_id", item.productId).size() > 0;
-
-        Log.i(this.getClass().getSimpleName(), "Is item exist " + itemExists);
 
         if (itemExists) {
             Toast.makeText(getContext(), R.string.already_in_shopping_cart, Toast.LENGTH_SHORT).show();

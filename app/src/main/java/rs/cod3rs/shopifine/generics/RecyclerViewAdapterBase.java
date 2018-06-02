@@ -1,7 +1,6 @@
 package rs.cod3rs.shopifine.generics;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -32,13 +31,7 @@ public abstract class RecyclerViewAdapterBase<D, V extends View & ViewWrapper.Bi
         final V view = viewHolder.getView();
         final D data = items.get(position);
         view.bind(data);
-        view.setOnClickListener(
-                v -> {
-                    Log.i(
-                            this.getClass().getSimpleName(),
-                            String.format("Clicked on item %s, with data: %s", position, data));
-                    onItemClick(position, view, data);
-                });
+        view.setOnClickListener(v -> onItemClick(position, view, data));
     }
 
     public void onItemClick(int position, V view, D data) {
@@ -64,6 +57,11 @@ public abstract class RecyclerViewAdapterBase<D, V extends View & ViewWrapper.Bi
 
     public void clear() {
         items.clear();
+        notifyDataSetChanged();
+    }
+
+    public void remove(D item) {
+        items.remove(item);
         notifyDataSetChanged();
     }
 

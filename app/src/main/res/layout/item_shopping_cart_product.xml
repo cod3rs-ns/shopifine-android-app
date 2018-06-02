@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/paddingListItem"
     android:paddingBottom="@dimen/paddingListItem">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/productImage"
         android:layout_width="@dimen/listItemImageSize"
         android:layout_height="@dimen/listItemImageSize"/>
@@ -61,10 +61,10 @@
             android:src="@drawable/ic_arrow_drop_up_black_24dp"
             android:contentDescription="@string/add_to_shopping_cart" />
 
-        <EditText
+        <TextView
+            android:id="@+id/itemQuantity"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"/>
+            android:layout_height="wrap_content" />
 
         <ImageButton
             android:id="@+id/quantityMinusOne"

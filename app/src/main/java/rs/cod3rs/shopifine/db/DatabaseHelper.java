@@ -35,7 +35,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     @Override
     public void onUpgrade(final SQLiteDatabase database, final ConnectionSource connectionSource, int oldVersion, int newVersion) {
-
     }
 
     public Dao<ShoppingCartItem, Integer> getShoppingCartDAO() throws SQLException {
