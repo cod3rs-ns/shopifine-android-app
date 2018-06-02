@@ -32,15 +32,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toStartOf="@id/cartTotalAmount"
-                    android:paddingEnd="@dimen/paddingSide"
-                    android:text="Total Amount:" />
+                    android:paddingEnd="@dimen/paddingSide" />
 
                 <TextView
                     android:id="@+id/cartTotalAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:text="$100" />
+                    android:layout_alignParentEnd="true" />
 
             </RelativeLayout>
 

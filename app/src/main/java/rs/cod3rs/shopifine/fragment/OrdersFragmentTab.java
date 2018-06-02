@@ -42,7 +42,8 @@ public class OrdersFragmentTab extends Fragment {
     @FragmentArg("orderFragmentType")
     OrderState orderFragmentType;
 
-    @RestService Orders orders;
+    @RestService
+    Orders orders;
 
     @Pref Credentials_ credentials;
 

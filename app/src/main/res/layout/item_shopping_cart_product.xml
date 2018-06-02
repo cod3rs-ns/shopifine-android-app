@@ -27,23 +27,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/fontTitleSize"
-            android:fontFamily="sans-serif-medium"
-            android:text="Ray Ban"/>
+            android:fontFamily="sans-serif-medium" />
 
         <TextView
             android:id="@+id/productCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/fontSubheadingSize"
-            android:text="Sunglasses"/>
+            android:textSize="@dimen/fontSubheadingSize"/>
 
         <TextView
             android:id="@+id/productPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="@dimen/fontHeadlineSize"
-            android:text="818.99 €"/>
+            android:textSize="@dimen/fontHeadlineSize"/>
 
     </LinearLayout>
 

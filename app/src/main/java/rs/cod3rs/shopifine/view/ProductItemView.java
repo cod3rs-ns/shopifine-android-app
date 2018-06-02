@@ -1,7 +1,7 @@
 package rs.cod3rs.shopifine.view;
 
 import android.content.Context;
-import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -11,6 +11,7 @@ import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EViewGroup;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
@@ -42,6 +43,9 @@ public class ProductItemView extends LinearLayout implements ViewWrapper.Binder<
     @ViewById
     TextView productPrice;
 
+    @ViewById
+    ImageButton addToWishlist;
+
     private Product product;
 
     private final DatabaseHelper helper;
@@ -65,7 +69,11 @@ public class ProductItemView extends LinearLayout implements ViewWrapper.Binder<
 
     @Click
     public void addToWishlist() {
-        Log.i(this.getClass().getSimpleName(), "Clicked to adding to wishlist: " + this.productName + ".");
+        if (product.isInWishlist) {
+            removeProductFromWishlist();
+        } else {
+            addProductToWishlist();
+        }
     }
 
     @Override
@@ -76,6 +84,10 @@ public class ProductItemView extends LinearLayout implements ViewWrapper.Binder<
         productName.setText(product.name);
         productPrice.setText(String.format(Locale.US, "%.2f €", product.price));
         productCategory.setText(product.category.name);
+
+        if (product.isInWishlist) {
+            addToWishlist.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
+        }
     }
 
     private void addItemToShoppingCart(final ShoppingCartItem item) throws SQLException {
@@ -87,5 +99,19 @@ public class ProductItemView extends LinearLayout implements ViewWrapper.Binder<
             helper.getShoppingCartDAO().create(item);
             Toast.makeText(getContext(), R.string.added_to_shopping_cart, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @UiThread
+    void removeProductFromWishlist() {
+        // TODO Call API to update wishlist for user
+        product.isInWishlist = false;
+        addToWishlist.setBackgroundResource(R.drawable.ic_favorite_border_black_24dp);
+    }
+
+    @UiThread
+    void addProductToWishlist() {
+        // TODO Call API to update wishlist for user
+        product.isInWishlist = true;
+        addToWishlist.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
     }
 }

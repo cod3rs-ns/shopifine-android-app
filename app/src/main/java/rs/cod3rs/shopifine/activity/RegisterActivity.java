@@ -42,8 +42,8 @@ import static rs.cod3rs.shopifine.hateoas.DataTypes.USER_TYPE;
 @EActivity(R.layout.activity_register)
 public class RegisterActivity extends AppCompatActivity {
 
-    private final String USER_CATEGORY = "CUSTOMER";
-    private final Long SILVER_CATEGORY_ID = 1L;
+    private static final String USER_CATEGORY = "CUSTOMER";
+    private static final Long SILVER_CATEGORY_ID = 1L;
 
     @RestService
     Users users;

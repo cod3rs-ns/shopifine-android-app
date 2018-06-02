@@ -15,6 +15,8 @@ public class Product implements Serializable {
 
     public ProductCategory category;
 
+    public boolean isInWishlist = false;
+
     public Product() {
         super();
     }

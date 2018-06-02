@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Locale;
 
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.activity.ProductActivity_;
@@ -41,7 +42,7 @@ public class RecommendedProductListAdapter extends RecyclerView.Adapter<Recommen
         Picasso.get().load(product.imageUrl).into(holder.image);
 
         holder.productName.setText(product.name);
-        holder.productPrice.setText(String.format("%.2f$", product.price));
+        holder.productPrice.setText(String.format(Locale.US, "%.2f$", product.price));
     }
 
     @Override

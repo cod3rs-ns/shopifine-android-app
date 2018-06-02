@@ -17,6 +17,7 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.rest.spring.annotations.RestService;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import rs.cod3rs.shopifine.R;
@@ -64,7 +65,7 @@ public class ProductActivity extends AppCompatActivity {
     public void updateProductInfo(final Product product) {
         Picasso.get().load(product.imageUrl).into(singleProductCover);
         singleProductName.setText(product.name);
-        singleProductPrice.setText(String.format("%.2f$", product.price.floatValue()));
+        singleProductPrice.setText(String.format(Locale.US, "%.2f$", product.price.floatValue()));
     }
 
     @Background
