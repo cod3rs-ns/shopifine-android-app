@@ -10,6 +10,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
@@ -38,7 +39,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     }
 
     public Dao<ShoppingCartItem, Integer> getShoppingCartDAO() throws SQLException {
-        if (shoppingCartDAO == null) {
+        if (Objects.isNull(shoppingCartDAO)) {
             shoppingCartDAO = getDao(ShoppingCartItem.class);
         }
 

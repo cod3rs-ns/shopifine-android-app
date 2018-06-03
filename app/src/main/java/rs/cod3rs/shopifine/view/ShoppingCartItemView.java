@@ -2,6 +2,8 @@ package rs.cod3rs.shopifine.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,9 +17,9 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import java.sql.SQLException;
-import java.util.Locale;
 
 import rs.cod3rs.shopifine.R;
+import rs.cod3rs.shopifine.Util;
 import rs.cod3rs.shopifine.adapter.ShoppingCartAdapter;
 import rs.cod3rs.shopifine.db.DatabaseHelper;
 import rs.cod3rs.shopifine.db.ShoppingCartItem;
@@ -31,9 +33,6 @@ public class ShoppingCartItemView extends LinearLayout implements ViewWrapper.Bi
 
     @ViewById
     TextView productName;
-
-    @ViewById
-    TextView productCategory;
 
     @ViewById
     TextView productPrice;
@@ -50,6 +49,16 @@ public class ShoppingCartItemView extends LinearLayout implements ViewWrapper.Bi
         this.helper = new DatabaseHelper(context);
     }
 
+    @Override
+    public void bind(final ShoppingCartItem item) {
+        this.item = item;
+
+        Picasso.get().load(item.product.imageUrl).into(productImage);
+        productName.setText(item.product.name);
+        productPrice.setText(Util.formatPrice(item.product.price));
+        itemQuantity.setText(String.valueOf(item.quantity));
+    }
+
     @Click
     public void quantityPlusOne() {
         item.quantity += 1;
@@ -62,34 +71,36 @@ public class ShoppingCartItemView extends LinearLayout implements ViewWrapper.Bi
         updateItem(item);
     }
 
-    @Override
-    public void bind(final ShoppingCartItem item) {
-        this.item = item;
-
-        Picasso.get().load(item.product.imageUrl).into(productImage);
-        productName.setText(item.product.name);
-        productCategory.setText(item.product.category.name);
-        productPrice.setText(String.format(Locale.US, "%.2f €", item.product.price));
-        itemQuantity.setText(String.valueOf(item.quantity));
-    }
-
     private void updateItem(final ShoppingCartItem item) {
         try {
-            if (0 == item.quantity) {
+            if (EMPTY == item.quantity) {
                 helper.getShoppingCartDAO().delete(item);
-                ((ShoppingCartAdapter)((RecyclerView) this.getParent()).getAdapter()).remove(item);
+
+                final RecyclerView parent = (RecyclerView) this.getParent();
+                final ShoppingCartAdapter adapter = (ShoppingCartAdapter) parent.getAdapter();
+                adapter.remove(item);
+
+                if (EMPTY == adapter.getItemCount()) {
+                    final FrameLayout layout = (FrameLayout) parent.getParent().getParent();
+                    layout.findViewById(R.id.shopping_cart_items_container).setVisibility(INVISIBLE);
+                    layout.findViewById(R.id.shopping_cart_no_items).setVisibility(VISIBLE);
+                }
+
                 Toast.makeText(getContext(), R.string.removed_from_shopping_cart, Toast.LENGTH_SHORT).show();
             } else {
                 helper.getShoppingCartDAO().update(item);
-                updateQuantity(item.quantity);
+                updateQuantityAndTotalAmount(item.quantity);
             }
         } catch (final SQLException e) {
-            e.printStackTrace();
+            Log.e(this.getClass().getSimpleName(), e.getMessage());
         }
     }
 
     @UiThread
-    void updateQuantity(final Integer quantity) {
+    void updateQuantityAndTotalAmount(final Integer quantity) {
+        // TODO Update Total amount
         itemQuantity.setText(String.valueOf(quantity));
     }
+
+    private static final int EMPTY = 0;
 }

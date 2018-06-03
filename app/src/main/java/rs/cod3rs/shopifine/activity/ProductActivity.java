@@ -1,27 +1,36 @@
 package rs.cod3rs.shopifine.activity;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.rest.spring.annotations.RestService;
 
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
+import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
+import rs.cod3rs.shopifine.Util;
 import rs.cod3rs.shopifine.adapter.RecommendedProductListAdapter;
+import rs.cod3rs.shopifine.db.DatabaseHelper;
+import rs.cod3rs.shopifine.db.ShoppingCartItem;
 import rs.cod3rs.shopifine.domain.Product;
 import rs.cod3rs.shopifine.domain.ProductCategory;
 import rs.cod3rs.shopifine.hateoas.product_categories.ProductCategoryResponse;
@@ -35,6 +44,9 @@ public class ProductActivity extends AppCompatActivity {
 
     @Extra
     Product product;
+
+    @Pref
+    Prefs_ prefs;
 
     @RestService
     ProductCategories productCategories;
@@ -54,8 +66,15 @@ public class ProductActivity extends AppCompatActivity {
     @ViewById
     TextView singleProductCategoryName;
 
+    @ViewById
+    FloatingActionButton wishListButton;
+
+    private DatabaseHelper helper;
+
     @AfterInject
     public void getProductInfo() {
+        this.helper = new DatabaseHelper(this);
+
         updateProductInfo(product);
         getProductCategory(product.categoryId);
         getProductsFromSameCategory(product.categoryId);
@@ -65,7 +84,7 @@ public class ProductActivity extends AppCompatActivity {
     public void updateProductInfo(final Product product) {
         Picasso.get().load(product.imageUrl).into(singleProductCover);
         singleProductName.setText(product.name);
-        singleProductPrice.setText(String.format(Locale.US, "%.2f$", product.price.floatValue()));
+        singleProductPrice.setText(Util.formatPrice(product.price));
     }
 
     @Background
@@ -100,5 +119,51 @@ public class ProductActivity extends AppCompatActivity {
 
         final RecommendedProductListAdapter adapter = new RecommendedProductListAdapter(this, listProducts);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Click
+    public void shoppingButton() {
+        final Integer userId = prefs.loggedUserId().get();
+        final ShoppingCartItem item = new ShoppingCartItem(userId, this.product);
+        try {
+            addItemToShoppingCart(item);
+        } catch (final SQLException e) {
+            Log.e(this.getClass().getSimpleName(), e.getMessage());
+        }
+
+    }
+
+    @Click
+    public void wishListButton() {
+        if (product.isInWishlist) {
+            removeProductFromWishlist();
+        } else {
+            addProductToWishlist();
+        }
+    }
+
+    private void addItemToShoppingCart(final ShoppingCartItem item) throws SQLException {
+        final boolean itemExists = helper.getShoppingCartDAO().queryForEq("product_id", item.productId).size() > 0;
+
+        if (itemExists) {
+            Toast.makeText(this, R.string.already_in_shopping_cart, Toast.LENGTH_SHORT).show();
+        } else {
+            helper.getShoppingCartDAO().create(item);
+            Toast.makeText(this, R.string.added_to_shopping_cart, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @UiThread
+    void removeProductFromWishlist() {
+        // TODO Call API to update wishlist for user
+        product.isInWishlist = false;
+        wishListButton.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+    }
+
+    @UiThread
+    void addProductToWishlist() {
+        // TODO Call API to update wishlist for user
+        product.isInWishlist = true;
+        wishListButton.setImageResource(R.drawable.ic_favorite_black_24dp);
     }
 }

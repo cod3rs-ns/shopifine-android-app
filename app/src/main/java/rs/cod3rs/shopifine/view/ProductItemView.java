@@ -1,6 +1,7 @@
 package rs.cod3rs.shopifine.view;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,10 +17,10 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import java.sql.SQLException;
-import java.util.Locale;
 
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
+import rs.cod3rs.shopifine.Util;
 import rs.cod3rs.shopifine.db.DatabaseHelper;
 import rs.cod3rs.shopifine.db.ShoppingCartItem;
 import rs.cod3rs.shopifine.domain.Product;
@@ -63,7 +64,7 @@ public class ProductItemView extends LinearLayout implements ViewWrapper.Binder<
         try {
             addItemToShoppingCart(item);
         } catch (final SQLException e) {
-            e.printStackTrace();
+            Log.e(this.getClass().getSimpleName(), e.getMessage());
         }
     }
 
@@ -82,7 +83,7 @@ public class ProductItemView extends LinearLayout implements ViewWrapper.Binder<
 
         Picasso.get().load(product.imageUrl).into(productImage);
         productName.setText(product.name);
-        productPrice.setText(String.format(Locale.US, "%.2f €", product.price));
+        productPrice.setText(Util.formatPrice(product.price));
         productCategory.setText(product.category.name);
 
         if (product.isInWishlist) {

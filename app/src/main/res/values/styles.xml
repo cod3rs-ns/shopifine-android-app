@@ -39,6 +39,7 @@
 
     <dimen name="listItemHeight">148dp</dimen>
     <dimen name="listItemImageSize">132dp</dimen>
+    <dimen name="listShoppingCartItemImageSize">64dp</dimen>
     <dimen name="marginImageSize">20dp</dimen>
 
     <dimen name="fontDisplaySize">34sp</dimen>
