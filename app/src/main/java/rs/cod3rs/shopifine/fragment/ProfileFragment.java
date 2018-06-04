@@ -147,6 +147,11 @@ public class ProfileFragment extends Fragment {
                 });
     }
 
+    @Click
+    void editProfileBtn() {
+        final EditProfileFragmentDialog dialog = EditProfileFragmentDialog_.builder().build();
+        dialog.show(getFragmentManager(), String.valueOf(R.layout.dialog_edit_profile));
+    }
 
     private void changeFragment(final int fragmentId, final int navBarPosition) {
         final Fragment fragment = MainActivity.getFragmentById(fragmentId);
