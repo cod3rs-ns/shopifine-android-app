@@ -11,18 +11,22 @@ public class UserRequestAttributes {
     private String lastName;
     private String role;
     private String address;
+    private Double longitude;
+    private Double latitude;
 
     public UserRequestAttributes() {
         super();
     }
 
-    public UserRequestAttributes(final String username, final String password, final String firstName, final String lastName, final String role, final String address) {
+    public UserRequestAttributes(final String username, final String password, final String firstName, final String lastName, final String role, final String address, final Double longitude, final Double latitude) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
         this.address = address;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
     public String getUsername() {
@@ -71,5 +75,21 @@ public class UserRequestAttributes {
 
     public void setAddress(final String address) {
         this.address = address;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 }
