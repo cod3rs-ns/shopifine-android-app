@@ -21,4 +21,10 @@ public class ShoppingCartAdapter extends RecyclerViewAdapterBase<ShoppingCartIte
     protected ShoppingCartItemView onCreateItemView(final ViewGroup parent, final int viewType) {
         return ShoppingCartItemView_.build(context);
     }
+
+    public Double amount() {
+        return getItems().stream()
+                .mapToDouble(i -> i.quantity * i.product.price)
+                .sum();
+    }
 }

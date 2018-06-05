@@ -32,7 +32,34 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="vertical"
+            android:background="@color/colorPrimary"
             android:padding="@dimen/paddingSide">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/pointsToSpend"
+                    android:paddingEnd="@dimen/paddingSide"
+                    android:paddingStart="@dimen/paddingSide"
+                    android:text="@string/order_points_to_spend"
+                    android:textSize="@dimen/fontHeadlineSize" />
+
+                <EditText
+                    android:id="@+id/pointsToSpend"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:maxWidth="@dimen/spentItemsTextBoxWidth"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="@dimen/fontHeadlineSize"
+                    android:layout_marginTop="-10dp"
+                    android:hint="@string/spent_points_hint"
+                    android:inputType="number" />
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -68,5 +95,33 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/orderProcessingContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/defaultMarginSide"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/order_processing"
+            android:textSize="@dimen/fontDisplaySize"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/defaultMarginTop"
+            android:indeterminate="true" />
+    </LinearLayout>
+
 
 </FrameLayout>

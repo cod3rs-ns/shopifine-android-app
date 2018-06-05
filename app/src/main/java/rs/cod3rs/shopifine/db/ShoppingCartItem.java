@@ -26,6 +26,8 @@ public class ShoppingCartItem {
     @DatabaseField(columnName = "quantity")
     public Integer quantity;
 
+    public Double discountAmount;
+
     public ShoppingCartItem() {
         super();
     }

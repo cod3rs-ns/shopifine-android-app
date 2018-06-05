@@ -65,6 +65,14 @@ public abstract class RecyclerViewAdapterBase<D, V extends View & ViewWrapper.Bi
         notifyDataSetChanged();
     }
 
+    public void update(D item) {
+        items.set(items.indexOf(item), item);
+    }
+
+    public List<D> getItems() {
+        return items;
+    }
+
     public interface OnItemClickListener<D, V> {
         void onItemClick(int position, V view, D data);
     }
