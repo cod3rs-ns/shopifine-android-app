@@ -11,8 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.auth0.android.jwt.JWT;
@@ -94,9 +96,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         try {
             final UserResponse res = users.getUser(userId);
             final UserResponseAttributes attrs = res.getData().getAttributes();
-            final User u = new User(attrs.getUsername(), attrs.getFirstName(), attrs.getLastName(), attrs.getAddress());
+            final User u = new User(userId, attrs.getUsername(), attrs.getFirstName(), attrs.getLastName(), attrs.getAddress());
 
             prefs.edit()
+                    .loggedUserId().put(userId)
                     .loggedUserImageUrl().put(u.getImage())
                     .loggedUserFullName().put(u.getFullName())
                     .loggedUserAddress().put(u.address)
@@ -120,6 +123,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @AfterViews
     void setToolbar() {
         setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        final SearchView search = (SearchView) findViewById(R.id.search);
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(final String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(final String newText) {
+                return false;
+            }
+        });
+
+        return true;
     }
 
     @AfterViews

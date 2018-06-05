@@ -1,56 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/listItemHeight"
-    android:paddingStart="@dimen/paddingListItemSide"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/paddingListItem"
     android:paddingEnd="@dimen/paddingListItemSide"
-    android:paddingTop="@dimen/paddingListItem"
-    android:paddingBottom="@dimen/paddingListItem">
+    android:paddingStart="@dimen/paddingListItemSide"
+    android:paddingTop="@dimen/paddingListItem">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/productImage"
-        android:layout_width="@dimen/listItemImageSize"
-        android:layout_height="@dimen/listItemImageSize"/>
+        android:layout_width="@dimen/listShoppingCartItemImageSize"
+        android:layout_height="@dimen/listShoppingCartItemImageSize" />
 
     <LinearLayout
         android:id="@+id/productContent"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:paddingStart="8sp"
-        android:paddingEnd="8sp"
         android:layout_toEndOf="@+id/productImage"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingEnd="8sp"
+        android:paddingStart="8sp">
 
         <TextView
             android:id="@+id/productName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/fontTitleSize"
             android:fontFamily="sans-serif-medium"
-            android:text="Ray Ban"/>
-
-        <TextView
-            android:id="@+id/productCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/fontSubheadingSize"
-            android:text="Sunglasses"/>
+            android:textSize="@dimen/fontStandardSize" />
 
         <TextView
             android:id="@+id/productPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="@dimen/fontHeadlineSize"
-            android:text="818.99 €"/>
+            android:textSize="@dimen/fontTitleSize"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:orientation="vertical">
 
         <ImageButton
@@ -58,22 +49,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_arrow_drop_up_black_24dp"
-            android:contentDescription="@string/add_to_shopping_cart" />
+            android:contentDescription="@string/plus_one"
+            android:src="@drawable/ic_arrow_drop_up_black_24dp" />
 
-        <EditText
+        <TextView
+            android:id="@+id/itemQuantity"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"/>
+            android:layout_height="wrap_content" />
 
         <ImageButton
             android:id="@+id/quantityMinusOne"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_arrow_drop_down_black_24dp"
-            android:paddingTop="@dimen/buttonPaddingTop"
-            android:contentDescription="@string/add_to_wishlist" />
+            android:contentDescription="@string/minus_one"
+            android:src="@drawable/ic_arrow_drop_down_black_24dp" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_below="@+id/productImage"
+        android:layout_marginTop="@dimen/defaultMarginTop"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
 </RelativeLayout>

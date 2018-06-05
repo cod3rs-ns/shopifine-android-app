@@ -42,14 +42,16 @@ public class OrdersFragmentTab extends Fragment {
     @FragmentArg("orderFragmentType")
     OrderState orderFragmentType;
 
-    @RestService Orders orders;
+    @RestService
+    Orders orders;
 
     @Pref Credentials_ credentials;
 
     @ViewById(R.id.ordersRecyclerList)
     RecyclerView ordersList;
 
-    @Bean OrdersListAdapter adapter;
+    @Bean
+    OrdersListAdapter adapter;
 
     private Integer user;
 

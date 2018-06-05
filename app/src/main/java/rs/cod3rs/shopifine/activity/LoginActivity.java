@@ -189,9 +189,10 @@ public class LoginActivity extends Activity {
         errorMessage.setVisibility(View.VISIBLE);
     }
 
+    // TODO Remove this at the end
     @AfterViews
     void setDefaults() {
-        username.setText("dmarjanovic");
+        username.setText("dmarjanovic94");
         password.setText("sergioramos");
     }
 
