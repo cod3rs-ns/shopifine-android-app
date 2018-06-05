@@ -225,7 +225,10 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if (valid) {
-            final UserRequestAttributes attrs = new UserRequestAttributes(username, password, firstName, lastName, USER_CATEGORY, selectedPlace.getAddress().toString());
+            final Double longitude = selectedPlace.getLatLng().longitude;
+            final Double latitude = selectedPlace.getLatLng().latitude;
+
+            final UserRequestAttributes attrs = new UserRequestAttributes(username, password, firstName, lastName, USER_CATEGORY, selectedPlace.getAddress().toString(), longitude, latitude);
             final UserRequestRelationships relationships = new UserRequestRelationships(new RequestRelationship(new RelationshipData(CATEGORIES_TYPE, SILVER_CATEGORY_ID)));
             final UserRequestData data = new UserRequestData(USER_TYPE, attrs, relationships);
             return new UserRequest(data);

@@ -11,6 +11,10 @@ public interface Prefs {
 
     String loggedUserFullName();
 
+    String loggedUserFirstName();
+
+    String loggedUserLastName();
+
     String loggedUserAddress();
 
 }

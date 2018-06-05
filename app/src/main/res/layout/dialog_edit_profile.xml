@@ -1,13 +1,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorPrimary"
-    android:padding="10dp" >
+    android:minWidth="450dp"
+    android:orientation="vertical">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:paddingStart="15dp"
+            android:text="@string/edit_profile_title"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/fontTitleSize" />
+
+        <ProgressBar
+            android:id="@+id/editProfileProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:indeterminate="true"
+            android:visibility="invisible" />
+    </LinearLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp">
 
         <EditText
             android:id="@+id/editProfileFirstName"
@@ -24,7 +52,9 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp">
 
         <EditText
             android:id="@+id/editProfileLastName"
@@ -42,6 +72,8 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:paddingBottom="@dimen/smallBlockHeight"
         android:paddingTop="@dimen/smallBlockHeight">
 
@@ -63,4 +95,35 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/saveEditBtn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_margin="10dp"
+            android:layout_weight="0.4"
+            android:background="@color/colorPrimaryDark"
+            android:minWidth="@dimen/buttonMinWidth"
+            android:text="@string/save"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_margin="10dp"
+            android:layout_weight="0.4"
+            android:background="@color/colorPrimaryDark"
+            android:minWidth="@dimen/buttonMinWidth"
+            android:text="@string/cancel"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
 </LinearLayout>

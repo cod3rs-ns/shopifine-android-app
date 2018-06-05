@@ -4,12 +4,14 @@ import org.androidannotations.rest.spring.annotations.Body;
 import org.androidannotations.rest.spring.annotations.Get;
 import org.androidannotations.rest.spring.annotations.Path;
 import org.androidannotations.rest.spring.annotations.Post;
+import org.androidannotations.rest.spring.annotations.Put;
 import org.androidannotations.rest.spring.annotations.Rest;
 import org.androidannotations.rest.spring.api.RestClientErrorHandling;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 import rs.cod3rs.shopifine.Config;
 import rs.cod3rs.shopifine.hateoas.users.GoogleAuthRequest;
+import rs.cod3rs.shopifine.hateoas.users.UpdateUserRequest;
 import rs.cod3rs.shopifine.hateoas.users.UserAuthRequest;
 import rs.cod3rs.shopifine.hateoas.users.UserAuthResponse;
 import rs.cod3rs.shopifine.hateoas.users.UserRequest;
@@ -34,4 +36,7 @@ public interface Users extends RestClientErrorHandling {
 
     @Post("api/users")
     UserResponse register(@Body final UserRequest req);
+
+    @Put("api/users")
+    UserResponse updateCustomer(@Body final UpdateUserRequest req);
 }

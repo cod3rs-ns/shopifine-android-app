@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            
+
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -73,7 +73,8 @@
                             android:drawablePadding="@dimen/buttonMarginOutside"
                             android:drawableStart="@drawable/ic_person_pin_circle_white_24dp"
                             android:textColor="@color/colorWhite"
-                            android:textSize="@dimen/fontSubheadingSize" />
+                            android:textSize="@dimen/fontSubheadingSize"
+                            android:visibility="gone" />
                     </RelativeLayout>
 
                     <LinearLayout
