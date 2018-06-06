@@ -6,12 +6,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
+import rs.cod3rs.shopifine.Util;
 import rs.cod3rs.shopifine.db.DatabaseHelper;
 import rs.cod3rs.shopifine.domain.WishlistItem;
 import rs.cod3rs.shopifine.generics.ViewWrapper;
@@ -29,6 +32,8 @@ public class WishlistItemView extends LinearLayout implements ViewWrapper.Binder
 
     @ViewById TextView wishlistProductPrice;
 
+    @ViewById TextView wishlistProductCategory;
+
     @ViewById ImageButton removeFromWishlist;
 
     @ViewById ImageButton addToShoppingCart;
@@ -40,6 +45,9 @@ public class WishlistItemView extends LinearLayout implements ViewWrapper.Binder
 
     @Override
     public void bind(final WishlistItem data) {
-        // TODO actual binding
+        Picasso.get().load(data.product.imageUrl).into(wishlistProductImage);
+        wishlistProductName.setText(data.product.name);
+        wishlistProductPrice.setText(Util.formatPrice(data.product.price));
+        wishlistProductCategory.setText("Category"); // TODO handle null
     }
 }
