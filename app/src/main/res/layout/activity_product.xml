@@ -41,6 +41,7 @@
                 </RelativeLayout>
 
                 <LinearLayout
+                    android:id="@+id/productInfo"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="0.3"
@@ -97,6 +98,35 @@
                     </RelativeLayout>
                 </LinearLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <net.cachapa.expandablelayout.ExpandableLayout
+                        android:id="@+id/productDiscountsExpander"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:el_expanded="false"
+                        android:paddingStart="@dimen/productInfoPaddingSide"
+                        android:paddingEnd="@dimen/productInfoPaddingSide">
+
+                        <LinearLayout
+                            android:id="@+id/productDiscountsHolder"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical" />
+
+                    </net.cachapa.expandablelayout.ExpandableLayout>
+
+                    <View
+                        android:id="@+id/underline"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/underlineHeight"
+                        android:layout_below="@+id/productDiscountsExpander"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="@dimen/defaultMarginSide"
+                        android:background="@color/colorPrimaryDark" />
+                </RelativeLayout>
             </LinearLayout>
 
             <android.support.design.widget.FloatingActionButton

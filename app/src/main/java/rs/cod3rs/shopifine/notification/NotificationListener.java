@@ -43,13 +43,12 @@ public class NotificationListener extends WebSocketListener {
     @Override
     public void onClosing(final WebSocket webSocket, final int code, final String reason) {
         webSocket.close(NORMAL_CLOSURE_STATUS, null);
-
-        Log.e(NotificationListener.class.getSimpleName(), String.format("Closing socket : %s / %s", code, reason));
+        Log.e(this.getClass().getSimpleName(), String.format("Closing socket : %s / %s", code, reason));
     }
 
     @Override
     public void onFailure(final WebSocket webSocket, final Throwable t, final Response response) {
-        Log.e(NotificationListener.class.getSimpleName(), t.getMessage());
+        Log.e(this.getClass().getSimpleName(), "Connection unexpectedly closed.");
     }
 
     private int getID() {

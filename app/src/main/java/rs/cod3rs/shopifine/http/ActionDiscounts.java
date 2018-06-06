@@ -18,7 +18,7 @@ import rs.cod3rs.shopifine.hateoas.buyer_categories.BuyerCategoryResponse;
 )
 public interface ActionDiscounts extends RestClientErrorHandling {
 
-    @Get("api/product-categories/{id}/action-discounts")
-    ActionDiscountCollectionResponse getDiscountsForProductCategory(@Path final Long id);
+    @Get("api/product-categories/{id}/action-discounts?filter[date]={date}")
+    ActionDiscountCollectionResponse getDiscountsForProductCategory(@Path final Long id, @Path final String date);
 
 }

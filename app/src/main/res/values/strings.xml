@@ -81,4 +81,6 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
 
+    <string name="action_discount">- %1s discount of %2.0f%%</string>
+    <string name="no_available_discounts">There are no available discounts for this product</string>
 </resources>

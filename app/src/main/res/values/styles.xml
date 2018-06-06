@@ -69,4 +69,6 @@
     <dimen name="productButtonsSpace">70dp</dimen>
 
     <dimen name="googleAddressClearMargin">13dip</dimen>
+
+    <dimen name="underlineHeight">1dp</dimen>
 </resources>
