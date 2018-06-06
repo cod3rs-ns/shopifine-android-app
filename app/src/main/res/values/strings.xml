@@ -76,4 +76,9 @@
     <string name="one_product_left">Only one product %1s left.</string>
     <string name="order_address_changed">Order with id %1d changed address to %2s.</string>
     <string name="product_price_changed">Product %1s changed its price to %2.2f.".</string>
+
+    <string name="edit_profile_title">Edit profile</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+
 </resources>

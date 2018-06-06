@@ -42,6 +42,7 @@ import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.domain.User;
+import rs.cod3rs.shopifine.fragment.EditProfileFragmentDialog.EditProfileDialogListener;
 import rs.cod3rs.shopifine.fragment.OrdersFragmentTabParent_;
 import rs.cod3rs.shopifine.fragment.ProductsFragment_;
 import rs.cod3rs.shopifine.fragment.ProfileFragment_;
@@ -53,7 +54,7 @@ import rs.cod3rs.shopifine.http.Users;
 import rs.cod3rs.shopifine.http.WebSocketClient;
 
 @EActivity(R.layout.activity_main)
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EditProfileDialogListener {
 
     @Pref
     Prefs_ prefs;
@@ -101,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             prefs.edit()
                     .loggedUserId().put(userId)
                     .loggedUserImageUrl().put(u.getImage())
+                    .loggedUserFirstName().put(u.firstName)
+                    .loggedUserLastName().put(u.lastName)
                     .loggedUserFullName().put(u.getFullName())
                     .loggedUserAddress().put(u.address)
                     .apply();
@@ -147,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @AfterViews
     void setInitialFragment() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame, getFragmentById(R.id.home))
+                .replace(R.id.frame, getFragmentById(R.id.home), String.valueOf(R.id.home))
                 .commit();
     }
 
@@ -207,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             navigationView.setCheckedItem(fragmentId);
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame, getFragmentById(fragmentId))
+                    .replace(R.id.frame, getFragmentById(fragmentId), String.valueOf(fragmentId))
                     .commit();
 
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -235,5 +238,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private int getFragmentIdByPosition(final int position) {
         return fragmentOrders.get(position);
+    }
+
+    @Override
+    public void onFinishEditDialog(final String firstName, final String lastName, final String address) {
+        final Fragment fragment = getSupportFragmentManager().findFragmentByTag(String.valueOf(R.id.profile));
+        if (fragment != null && fragment.isVisible()) {
+            ((EditProfileDialogListener) fragment).onFinishEditDialog(firstName, lastName, address);
+        }
     }
 }

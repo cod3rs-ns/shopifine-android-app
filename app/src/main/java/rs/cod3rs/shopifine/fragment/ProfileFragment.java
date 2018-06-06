@@ -1,5 +1,6 @@
 package rs.cod3rs.shopifine.fragment;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
@@ -24,20 +25,27 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.rest.spring.annotations.RestService;
 import org.springframework.core.NestedRuntimeException;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.activity.LoginActivity_;
 import rs.cod3rs.shopifine.activity.MainActivity;
+import rs.cod3rs.shopifine.fragment.EditProfileFragmentDialog.EditProfileDialogListener;
 import rs.cod3rs.shopifine.hateoas.buyer_categories.BuyerCategoryResponse;
 import rs.cod3rs.shopifine.hateoas.users.UserResponse;
 import rs.cod3rs.shopifine.hateoas.users.UserResponseAttributes;
 import rs.cod3rs.shopifine.http.BuyerCategories;
 import rs.cod3rs.shopifine.http.Users;
 
+import static rs.cod3rs.shopifine.fragment.EditProfileFragmentDialog.ADDRESS_ARG;
+import static rs.cod3rs.shopifine.fragment.EditProfileFragmentDialog.FIRST_NAME_ARG;
+import static rs.cod3rs.shopifine.fragment.EditProfileFragmentDialog.LAST_NAME_ARG;
+
 @EFragment(R.layout.fragment_profile)
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements EditProfileDialogListener {
 
     @Pref
     Prefs_ prefs;
@@ -59,6 +67,18 @@ public class ProfileFragment extends Fragment {
 
     @ViewById
     LinearLayout customerInfo;
+
+    @ViewById
+    TextView profileName;
+
+    @ViewById
+    TextView profileAddress;
+
+    @ViewById
+    TextView profileCategory;
+
+    @ViewById
+    TextView profilePoints;
 
     private GoogleSignInClient googleSignInClient;
 
@@ -93,28 +113,21 @@ public class ProfileFragment extends Fragment {
 
     @UiThread
     void updateProfileInfo() {
-        final TextView name = (TextView) profileInfo.findViewById(R.id.profile_name);
-        final TextView address = (TextView) profileInfo.findViewById(R.id.profile_address);
-
         Picasso.get().load(prefs.loggedUserImageUrl().get()).into(userImage);
-        name.setText(prefs.loggedUserFullName().get());
+        profileName.setText(prefs.loggedUserFullName().get());
 
-        if (prefs.loggedUserAddress().get().isEmpty()) {
-            address.setVisibility(View.INVISIBLE);
-        } else {
-            address.setText(prefs.loggedUserAddress().get());
+        if (!prefs.loggedUserAddress().get().isEmpty()) {
+            profileAddress.setVisibility(View.VISIBLE);
+            profileAddress.setText(prefs.loggedUserAddress().get());
         }
     }
 
     @UiThread
     void updateCustomerInfo(final String categoryName, final Long pointsValue) {
-        final TextView category = (TextView) customerInfo.findViewById(R.id.profile_category);
-        final TextView points = (TextView) customerInfo.findViewById(R.id.profile_points);
-
         final String pointsLabelText = pointsValue == null ? "0" : String.valueOf(pointsValue);
 
-        category.setText(categoryName);
-        points.setText(pointsLabelText);
+        profileCategory.setText(categoryName);
+        profilePoints.setText(pointsLabelText);
     }
 
     @Click
@@ -147,6 +160,18 @@ public class ProfileFragment extends Fragment {
                 });
     }
 
+    @Click
+    void editProfileBtn() {
+        final EditProfileFragmentDialog dialog = EditProfileFragmentDialog_.builder().build();
+
+        final Bundle bundle = new Bundle();
+        bundle.putString(FIRST_NAME_ARG, prefs.loggedUserFirstName().get());
+        bundle.putString(LAST_NAME_ARG, prefs.loggedUserLastName().get());
+        bundle.putString(ADDRESS_ARG, prefs.loggedUserAddress().get());
+        dialog.setArguments(bundle);
+
+        dialog.show(getFragmentManager(), String.valueOf(R.layout.dialog_edit_profile));
+    }
 
     private void changeFragment(final int fragmentId, final int navBarPosition) {
         final Fragment fragment = MainActivity.getFragmentById(fragmentId);
@@ -155,5 +180,26 @@ public class ProfileFragment extends Fragment {
                 .replace(R.id.frame, fragment)
                 .addToBackStack(String.valueOf(navBarPosition))
                 .commit();
+    }
+
+    @Override
+    public void onFinishEditDialog(final String firstName, final String lastName, final String address) {
+        if (Objects.nonNull(firstName)) {
+            prefs.edit().loggedUserFirstName().put(firstName).apply();
+        }
+
+        if (Objects.nonNull(lastName)) {
+            prefs.edit().loggedUserLastName().put(lastName).apply();
+        }
+
+        if (Objects.nonNull(address)) {
+            prefs.edit().loggedUserAddress().put(address).apply();
+        }
+
+        if (Objects.nonNull(firstName) || Objects.nonNull(lastName)) {
+            prefs.edit().loggedUserFullName().put(String.format("%s %s", firstName, lastName)).apply();
+        }
+
+        updateProfileInfo();
     }
 }
