@@ -22,17 +22,23 @@ import rs.cod3rs.shopifine.generics.ViewWrapper;
 @EViewGroup(R.layout.item_order_clause)
 public class OrderClauseView extends LinearLayout implements ViewWrapper.Binder<OrderClause> {
 
-    @ViewById public ExpandableLayout billItemDiscountsExpander;
+    @ViewById
+    public ExpandableLayout billItemDiscountsExpander;
 
-    @ViewById public LinearLayout billItemDiscountsHolder;
+    @ViewById
+    public LinearLayout billItemDiscountsHolder;
 
-    @ViewById TextView productName;
+    @ViewById
+    TextView productName;
 
-    @ViewById TextView amountDetails;
+    @ViewById
+    TextView amountDetails;
 
-    @ViewById TextView discountDetails;
+    @ViewById
+    TextView discountDetails;
 
-    @ViewById TextView orderClauseTotal;
+    @ViewById
+    TextView orderClauseTotal;
 
     public OrderClauseView(final Context context) {
         super(context);

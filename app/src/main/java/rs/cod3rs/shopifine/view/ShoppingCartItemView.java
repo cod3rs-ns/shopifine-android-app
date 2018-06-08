@@ -92,7 +92,7 @@ public class ShoppingCartItemView extends LinearLayout implements ViewWrapper.Bi
                 updateQuantityAndTotalAmount(item.quantity);
             }
         } catch (final SQLException e) {
-            Log.e(this.getClass().getSimpleName(), e.getMessage());
+            Log.e(getClass().getSimpleName(), e.getMessage());
         }
     }
 

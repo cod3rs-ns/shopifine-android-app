@@ -67,13 +67,13 @@ public class ShoppingCartFragment extends Fragment {
             final List<ShoppingCartItem> items = helper.getShoppingCartDAO().queryForAll();
             updateList(items);
         } catch (final SQLException e) {
-            Log.e(this.getClass().getSimpleName(), e.getMessage());
+            Log.e(getClass().getSimpleName(), e.getMessage());
         }
     }
 
     @Click
     void checkout() {
-        Log.i(this.getClass().getSimpleName(), "Clicked on checkout");
+        Log.i(getClass().getSimpleName(), "Clicked on checkout");
     }
 
     @UiThread

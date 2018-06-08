@@ -64,7 +64,7 @@ public class ProductItemView extends LinearLayout implements ViewWrapper.Binder<
         try {
             addItemToShoppingCart(item);
         } catch (final SQLException e) {
-            Log.e(this.getClass().getSimpleName(), e.getMessage());
+            Log.e(getClass().getSimpleName(), e.getMessage());
         }
     }
 

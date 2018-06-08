@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.auth0.android.jwt.JWT;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -48,6 +47,9 @@ import static rs.cod3rs.shopifine.fragment.EditProfileFragmentDialog.LAST_NAME_A
 public class ProfileFragment extends Fragment implements EditProfileDialogListener {
 
     @Pref
+    Credentials_ credentials;
+
+    @Pref
     Prefs_ prefs;
 
     @RestService
@@ -55,9 +57,6 @@ public class ProfileFragment extends Fragment implements EditProfileDialogListen
 
     @RestService
     BuyerCategories buyerCategories;
-
-    @Pref
-    Credentials_ credentials;
 
     @ViewById
     CircleImageView userImage;
@@ -84,8 +83,7 @@ public class ProfileFragment extends Fragment implements EditProfileDialogListen
 
     @AfterInject
     void extractUserIdFromToken() {
-        final JWT jwt = new JWT(credentials.token().get());
-        final Integer userId = jwt.getClaim("id").asInt();
+        final Integer userId = prefs.loggedUserId().get();
 
         updateProfileInfo();
         getLoggedUser(userId);
@@ -107,7 +105,7 @@ public class ProfileFragment extends Fragment implements EditProfileDialogListen
 
             updateCustomerInfo(catResp.getData().getAttributes().getName(), attrs.getPoints());
         } catch (final NestedRuntimeException e) {
-            Log.e(this.getClass().getSimpleName(), e.getMessage());
+            Log.e(getClass().getSimpleName(), e.getMessage());
         }
     }
 
@@ -154,9 +152,9 @@ public class ProfileFragment extends Fragment implements EditProfileDialogListen
     void profileLogoutBtn() {
         credentials.edit().token().remove();
         googleSignInClient.signOut()
-                .addOnCompleteListener(this.getActivity(), task -> {
-                    LoginActivity_.intent(this.getActivity()).start();
-                    this.getActivity().finish();
+                .addOnCompleteListener(getActivity(), task -> {
+                    LoginActivity_.intent(getActivity()).start();
+                    getActivity().finish();
                 });
     }
 

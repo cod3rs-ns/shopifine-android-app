@@ -37,13 +37,6 @@ public class ShoppingCartItem {
         this.quantity = 1;
     }
 
-    public ShoppingCartItem(final Integer userId, final Product product, final Integer quantity) {
-        this.userId = userId;
-        this.productId = product.id;
-        this.product = product;
-        this.quantity = quantity;
-    }
-
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

@@ -125,6 +125,7 @@ public class ProductActivity extends AppCompatActivity {
         final List<String> discounts = actionDiscounts.getDiscountsForProductCategory(productCategoryId, DateTime.now().toString())
                 .getData().stream().map(d -> String.format(getString(R.string.action_discount), d.getAttributes().getName(), d.getAttributes().getDiscount()))
                 .collect(Collectors.toList());
+
         fillDiscounts(discounts);
     }
 
