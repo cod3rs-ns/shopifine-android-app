@@ -114,7 +114,7 @@ public class OrderActivity extends AppCompatActivity {
         discountValue.setText(String.format("%s%%", order.discount));
         order.discounts.forEach(
                 i -> {
-                    TextView textView = new TextView(this);
+                    final TextView textView = new TextView(this);
                     textView.setText(
                             String.format(
                                     "\u2022 %s discount of %s%% %s",
