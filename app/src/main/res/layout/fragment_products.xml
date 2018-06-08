@@ -15,4 +15,15 @@
         android:visibility="visible"
         tools:listitem="@layout/item_product" />
 
+    <TextView
+        android:id="@+id/noProducts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="@dimen/defaultMarginSide"
+        android:text="@string/products_no_items"
+        android:textSize="@dimen/fontDisplaySize"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
 </FrameLayout>

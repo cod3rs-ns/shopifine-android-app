@@ -11,10 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.auth0.android.jwt.JWT;
@@ -43,6 +41,7 @@ import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.domain.User;
 import rs.cod3rs.shopifine.fragment.EditProfileFragmentDialog.EditProfileDialogListener;
+import rs.cod3rs.shopifine.fragment.FiltersFragmentDialog.FiltersDialogListener;
 import rs.cod3rs.shopifine.fragment.OrdersFragmentTabParent_;
 import rs.cod3rs.shopifine.fragment.ProductsFragment_;
 import rs.cod3rs.shopifine.fragment.ProfileFragment_;
@@ -54,7 +53,7 @@ import rs.cod3rs.shopifine.http.Users;
 import rs.cod3rs.shopifine.http.WebSocketClient;
 
 @EActivity(R.layout.activity_main)
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EditProfileDialogListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EditProfileDialogListener, FiltersDialogListener {
 
     @Pref
     Prefs_ prefs;
@@ -126,25 +125,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @AfterViews
     void setToolbar() {
         setSupportActionBar(toolbar);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-        final SearchView search = (SearchView) findViewById(R.id.search);
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(final String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(final String newText) {
-                return false;
-            }
-        });
-
-        return true;
     }
 
     @AfterViews
@@ -245,6 +225,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final Fragment fragment = getSupportFragmentManager().findFragmentByTag(String.valueOf(R.id.profile));
         if (fragment != null && fragment.isVisible()) {
             ((EditProfileDialogListener) fragment).onFinishEditDialog(firstName, lastName, address);
+        }
+    }
+
+    @Override
+    public void onFinishFilterDialog(final Integer priceFilterId, final Integer categoryFilterId) {
+        final Fragment fragment = getSupportFragmentManager().findFragmentByTag(String.valueOf(R.id.home));
+        if (fragment != null && fragment.isVisible()) {
+            ((FiltersDialogListener) fragment).onFinishFilterDialog(priceFilterId, categoryFilterId);
         }
     }
 }

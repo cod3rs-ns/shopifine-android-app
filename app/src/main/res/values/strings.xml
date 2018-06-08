@@ -19,6 +19,7 @@
 
     <string name="product_categories_title">Products from same category</string>
     <string name="product_image">Product Image</string>
+    <string name="products_no_items">No products matching your search criteria. :( </string>
 
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
@@ -44,6 +45,7 @@
     <string name="shopping_cart_no_items">No items in the shopping cart. :(</string>
     <string name="search_hint">Find product…</string>
     <string name="search_filters">Filters</string>
+    <string name="search_action">Search</string>
 
     <string name="mock">Mock</string>
     <string name="mock_date">28–07–1994</string>
@@ -83,4 +85,15 @@
 
     <string name="action_discount">- %1s discount of %2.0f%%</string>
     <string name="no_available_discounts">There are no available discounts for this product</string>
+
+    <!-- Filters dialog -->
+    <string name="filters_dialog_title">Product Filters</string>
+    <string name="filters_apply">Apply Filters</string>
+    <string name="filters_reset">Reset Filters</string>
+    <string name="filters_price_range">Price Range</string>
+    <string name="filters_lowest_price">&lt; 100</string>
+    <string name="filters_low_price">100 &#8211; 1000</string>
+    <string name="filters_medium_price">1000 &#8211; 5000</string>
+    <string name="filters_high_price">&gt; 5000</string>
+    <string name="filters_categories">Product Categories</string>
 </resources>

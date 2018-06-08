@@ -1,0 +1,135 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:minWidth="450dp"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/paddingListItem"
+            android:paddingStart="@dimen/paddingSide"
+            android:text="@string/filters_dialog_title"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/fontTitleSize" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/priceFilters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/paddingSide"
+        android:paddingStart="@dimen/paddingSide"
+        android:layout_marginTop="@dimen/defaultMarginTop">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filters_price_range"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/fontSubheadingSize"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/filterLowestPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filters_lowest_price"
+            android:textColor="@color/colorWhite" />
+
+        <RadioButton
+            android:id="@+id/filterLowPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filters_low_price"
+            android:textColor="@color/colorWhite" />
+
+        <RadioButton
+            android:id="@+id/filterMediumPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filters_medium_price"
+            android:textColor="@color/colorWhite" />
+
+        <RadioButton
+            android:id="@+id/filterHighPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filters_high_price"
+            android:textColor="@color/colorWhite" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/categoryFilters"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/filterContainerHeight"
+        android:layout_marginTop="@dimen/defaultMarginTop"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/paddingSide"
+        android:paddingStart="@dimen/paddingSide">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filters_categories"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/fontSubheadingSize"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/filterContainerHeight">
+
+            <LinearLayout
+                android:id="@+id/categoryFilterContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </ScrollView>
+
+    </RadioGroup>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/defaultMarginSide"
+        android:layout_marginStart="@dimen/defaultMarginSide"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:padding="@dimen/paddingSide">
+
+        <Button
+            android:id="@+id/applyFilters"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_margin="@dimen/defaultMarginTop"
+            android:layout_weight="0.4"
+            android:background="@color/colorPrimaryDark"
+            android:minWidth="@dimen/buttonMinWidth"
+            android:text="@string/filters_apply"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/resetFilters"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_margin="@dimen/defaultMarginTop"
+            android:layout_weight="0.4"
+            android:background="@color/colorPrimaryDark"
+            android:minWidth="@dimen/buttonMinWidth"
+            android:text="@string/filters_reset"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
+
+</LinearLayout>
