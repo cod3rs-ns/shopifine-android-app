@@ -19,7 +19,13 @@ public class Order implements Serializable {
     public Double discount;
     public Integer pointsGained;
     public Integer pointsSpent;
-    public List<Discount> discounts = new ArrayList<>();
+    public List<Discount> discounts;
+    public String address;
+    public Double longitude;
+    public Double latitude;
+
+    public Order() {
+    }
 
     public Order(
             final Long id,
@@ -29,15 +35,20 @@ public class Order implements Serializable {
             final Double amount,
             final Double discount,
             final Integer pointsGained,
-            final Integer pointsSpent) {
+            final Integer pointsSpent,
+            final String address,
+            final Double longitude,
+            final Double latitude) {
         this.id = id;
-        this.createdAt =
-                LocalDateTime.parse(createdAt, DateTimeFormat.forPattern(Util.DATE_PATTERN));
+        this.createdAt = LocalDateTime.parse(createdAt, DateTimeFormat.forPattern(Util.DATE_PATTERN));
         this.state = OrderState.valueOf(state);
         this.totalItems = totalItems;
         this.amount = amount;
         this.discount = discount;
         this.pointsGained = pointsGained;
         this.pointsSpent = pointsSpent;
+        this.address = address;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 }

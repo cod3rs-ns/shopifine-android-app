@@ -2,32 +2,30 @@ package rs.cod3rs.shopifine.notification.messages;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.io.Serializable;
-
 import rs.cod3rs.shopifine.domain.Order;
 import rs.cod3rs.shopifine.domain.OrderState;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OrderStateChanged implements Serializable {
+public class OrderInRadius {
 
     private Long orderId;
     private OrderState state;
+    private String address;
+    private Double latitude;
+    private Double longitude;
     private String createdAt;
     private Integer totalItems;
     private Double amount;
     private Double discount;
     private Integer pointsGained;
     private Integer pointsSpent;
-    private String address;
-    private Double latitude;
-    private Double longitude;
+    private Double distance;
 
-    public OrderStateChanged() {
-        super();
+    public OrderInRadius() {
     }
 
     public Order toDomain() {
-        return new Order(this.orderId, this.createdAt.toString(), this.state.toString(),
+        return new Order(this.orderId, this.createdAt, this.state.toString(),
                 this.totalItems, this.amount, this.discount, this.pointsGained,
                 this.pointsSpent, this.address, this.longitude, this.latitude);
     }
@@ -46,6 +44,30 @@ public class OrderStateChanged implements Serializable {
 
     public void setState(final OrderState state) {
         this.state = state;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(final String address) {
+        this.address = address;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(final Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(final Double longitude) {
+        this.longitude = longitude;
     }
 
     public String getCreatedAt() {
@@ -96,27 +118,11 @@ public class OrderStateChanged implements Serializable {
         this.pointsSpent = pointsSpent;
     }
 
-    public String getAddress() {
-        return address;
+    public Double getDistance() {
+        return distance;
     }
 
-    public void setAddress(final String address) {
-        this.address = address;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(final Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(final Double longitude) {
-        this.longitude = longitude;
+    public void setDistance(final Double distance) {
+        this.distance = distance;
     }
 }
