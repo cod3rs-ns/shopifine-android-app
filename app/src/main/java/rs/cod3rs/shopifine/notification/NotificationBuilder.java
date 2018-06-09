@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.androidannotations.annotations.EBean;
+import org.androidannotations.annotations.RootContext;
 
 import java.io.IOException;
 
@@ -30,11 +31,9 @@ public class NotificationBuilder {
     private static final String NOTIFICATION_NAME = "Shopifine";
 
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private final Context context;
 
-    public NotificationBuilder(final Context context) {
-        this.context = context;
-    }
+    @RootContext
+    Context context;
 
     public Notification buildNotification(final String message) {
         try {
@@ -43,7 +42,7 @@ public class NotificationBuilder {
 
             return parseNotificationContent(message, type);
         } catch (final IOException e) {
-            Log.e(NotificationBuilder.class.getSimpleName(), e.getMessage());
+            Log.e(getClass().getSimpleName(), e.getMessage());
         }
         return null;
     }

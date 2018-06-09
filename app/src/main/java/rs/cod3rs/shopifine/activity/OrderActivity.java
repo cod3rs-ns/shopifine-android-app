@@ -9,11 +9,8 @@ import android.text.format.DateUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.auth0.android.jwt.JWT;
-
 import net.cachapa.expandablelayout.ExpandableLayout;
 
-import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
@@ -30,51 +27,69 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 import rs.cod3rs.shopifine.Credentials_;
+import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.adapter.OrderClausesAdapter;
 import rs.cod3rs.shopifine.domain.Order;
 import rs.cod3rs.shopifine.domain.OrderClause;
-import rs.cod3rs.shopifine.hateoas.discounts.DiscountResponseData;
 import rs.cod3rs.shopifine.hateoas.bill_items.BillItemResponseData;
+import rs.cod3rs.shopifine.hateoas.discounts.DiscountResponseData;
 import rs.cod3rs.shopifine.http.Orders;
 import rs.cod3rs.shopifine.http.Products;
 
 @EActivity(R.layout.activity_order)
 public class OrderActivity extends AppCompatActivity {
 
-    @RestService Orders orders;
+    @Extra
+    Order order;
 
-    @RestService Products products;
+    @Pref
+    Credentials_ credentials;
 
-    @Pref Credentials_ credentials;
+    @Pref
+    Prefs_ prefs;
 
-    @Extra Order order;
+    @RestService
+    Orders orders;
 
-    @ViewById TextView orderId;
+    @RestService
+    Products products;
 
-    @ViewById TextView orderStatus;
+    @ViewById
+    TextView orderId;
 
-    @ViewById TextView orderCreated;
+    @ViewById
+    TextView orderStatus;
 
-    @ViewById TextView orderPointsGained;
+    @ViewById
+    TextView orderCreated;
 
-    @ViewById TextView orderPointsSpent;
+    @ViewById
+    TextView orderPointsGained;
 
-    @ViewById TextView discountValue;
+    @ViewById
+    TextView orderPointsSpent;
 
-    @ViewById TextView totalValue;
+    @ViewById
+    TextView discountValue;
 
-    @ViewById RecyclerView orderClausesRecyclerView;
+    @ViewById
+    TextView totalValue;
 
-    @ViewById ExpandableLayout orderDiscountsExpander;
+    @ViewById
+    RecyclerView orderClausesRecyclerView;
 
-    @ViewById LinearLayout orderDiscountsHolder;
+    @ViewById
+    ExpandableLayout orderDiscountsExpander;
 
-    @ViewById LinearLayout orderSummary;
+    @ViewById
+    LinearLayout orderDiscountsHolder;
 
-    @Bean OrderClausesAdapter adapter;
+    @ViewById
+    LinearLayout orderSummary;
 
-    private Integer user;
+    @Bean
+    OrderClausesAdapter adapter;
 
     @AfterViews
     void setListener() {
@@ -130,8 +145,10 @@ public class OrderActivity extends AppCompatActivity {
 
     @Background
     void getItems() {
+        final Integer userId = prefs.loggedUserId().get();
+
         final List<OrderClause> orderClauses =
-                orders.getBillItems(user, order.id)
+                orders.getBillItems(userId, order.id)
                         .getData()
                         .stream()
                         .map(BillItemResponseData::toDomain)
@@ -145,19 +162,13 @@ public class OrderActivity extends AppCompatActivity {
                                 clause ->
                                         clause.discounts =
                                                 orders.getBillItemDiscounts(
-                                                                user, order.id, clause.id)
+                                                        userId, order.id, clause.id)
                                                         .getData()
                                                         .stream()
                                                         .map(DiscountResponseData::toDomain)
                                                         .collect(Collectors.toList()))
                         .collect(Collectors.toList());
         updateList(orderClauses);
-    }
-
-    @AfterInject
-    void extractUserIdFromToken() {
-        final JWT jwt = new JWT(credentials.token().get());
-        user = jwt.getClaim("id").asInt();
     }
 
     @UiThread

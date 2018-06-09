@@ -71,6 +71,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Bean
     WebSocketClient webSocketClient;
 
+    @ViewById
+    DrawerLayout drawerLayout;
+
+    @ViewById
+    NavigationView navigationView;
+
+    @ViewById
+    Toolbar toolbar;
+
     private GoogleSignInClient googleSignInClient;
 
     private final List<Integer> fragmentOrders = Arrays.asList(R.id.home, R.id.shoppingCart, R.id.wishlist, R.id.orders, R.id.orders);
@@ -113,15 +122,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Log.e(this.getClass().getSimpleName(), e.getMessage());
         }
     }
-
-    @ViewById
-    DrawerLayout drawerLayout;
-
-    @ViewById
-    NavigationView navigationView;
-
-    @ViewById
-    Toolbar toolbar;
 
     @AfterViews
     void setToolbar() {

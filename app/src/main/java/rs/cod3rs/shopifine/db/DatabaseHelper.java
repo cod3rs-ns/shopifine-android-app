@@ -26,10 +26,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(final SQLiteDatabase database, final ConnectionSource connectionSource) {
         try {
-            Log.i(DatabaseHelper.class.getSimpleName(), "Creating database.");
+            Log.i(getClass().getSimpleName(), "Creating database.");
             TableUtils.createTable(connectionSource, ShoppingCartItem.class);
         } catch (final SQLException e) {
-            Log.e(DatabaseHelper.class.getSimpleName(), "Can't create database.", e);
+            Log.e(getClass().getSimpleName(), "Can't create database.", e);
             throw new RuntimeException(e);
         }
     }

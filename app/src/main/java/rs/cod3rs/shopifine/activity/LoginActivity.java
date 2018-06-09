@@ -135,7 +135,7 @@ public class LoginActivity extends Activity {
             final String idToken = account.getIdToken();
             googleAuth(idToken);
         } catch (final ApiException e) {
-            Log.w("googleAuth", "signInResult:failed code=" + e.getStatusCode());
+            Log.w(GoogleSignIn.class.getSimpleName(), "signInResult:failed code=" + e.getStatusCode());
         }
     }
 
@@ -187,13 +187,6 @@ public class LoginActivity extends Activity {
         password.setText("");
         errorMessage.setText(message);
         errorMessage.setVisibility(View.VISIBLE);
-    }
-
-    // TODO Remove this at the end
-    @AfterViews
-    void setDefaults() {
-        username.setText("dmarjanovic94");
-        password.setText("sergioramos");
     }
 
 }

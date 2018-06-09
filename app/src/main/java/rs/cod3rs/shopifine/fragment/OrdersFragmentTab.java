@@ -9,9 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.auth0.android.jwt.JWT;
-
-import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
@@ -27,17 +24,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import rs.cod3rs.shopifine.Credentials_;
+import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.activity.OrderActivity_;
 import rs.cod3rs.shopifine.adapter.OrdersListAdapter;
 import rs.cod3rs.shopifine.domain.Order;
 import rs.cod3rs.shopifine.domain.OrderState;
-import rs.cod3rs.shopifine.hateoas.discounts.DiscountResponseData;
 import rs.cod3rs.shopifine.hateoas.bills.BillResponseData;
+import rs.cod3rs.shopifine.hateoas.discounts.DiscountResponseData;
 import rs.cod3rs.shopifine.http.Orders;
 
 @EFragment(R.layout.fragment_orders_tab)
 public class OrdersFragmentTab extends Fragment {
+
+    @Pref
+    Credentials_ credentials;
+
+    @Pref
+    Prefs_ prefs;
 
     @FragmentArg("orderFragmentType")
     OrderState orderFragmentType;
@@ -45,19 +49,14 @@ public class OrdersFragmentTab extends Fragment {
     @RestService
     Orders orders;
 
-    @Pref Credentials_ credentials;
-
     @ViewById(R.id.ordersRecyclerList)
     RecyclerView ordersList;
 
     @Bean
     OrdersListAdapter adapter;
 
-    private Integer user;
-
     @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_orders_tab, container, false);
     }
 
@@ -73,12 +72,6 @@ public class OrdersFragmentTab extends Fragment {
                                 .withAnimation(0, 0));
     }
 
-    @AfterInject
-    void extractUserIdFromToken() {
-        final JWT jwt = new JWT(credentials.token().get());
-        user = jwt.getClaim("id").asInt();
-    }
-
     @AfterViews
     void getData() {
         getOrders();
@@ -86,16 +79,18 @@ public class OrdersFragmentTab extends Fragment {
 
     @Background
     void getOrders() {
+        final Integer userId = prefs.loggedUserId().get();
+
         try {
             final List<Order> ordersList =
-                    orders.getBills(user, orderFragmentType.name())
+                    orders.getBills(userId, orderFragmentType.name())
                             .getData()
                             .stream()
                             .map(BillResponseData::toDomain)
                             .peek(
                                     order ->
                                             order.discounts =
-                                                    orders.getBillDiscounts(user, order.id)
+                                                    orders.getBillDiscounts(userId, order.id)
                                                             .getData()
                                                             .stream()
                                                             .map(DiscountResponseData::toDomain)
@@ -103,7 +98,7 @@ public class OrdersFragmentTab extends Fragment {
                             .collect(Collectors.toList());
             updateList(ordersList);
         } catch (final NestedRuntimeException e) {
-            Log.e(this.getClass().getSimpleName(), e.getMessage());
+            Log.e(getClass().getSimpleName(), e.getMessage());
         }
     }
 

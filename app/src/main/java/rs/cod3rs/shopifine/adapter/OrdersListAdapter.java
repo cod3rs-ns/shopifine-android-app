@@ -21,5 +21,4 @@ public class OrdersListAdapter extends RecyclerViewAdapterBase<Order, OrderItemV
     protected OrderItemView onCreateItemView(final ViewGroup parent, final int viewType) {
         return OrderItemView_.build(context);
     }
-
 }

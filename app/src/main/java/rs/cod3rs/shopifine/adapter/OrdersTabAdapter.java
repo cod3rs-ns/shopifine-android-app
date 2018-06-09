@@ -8,15 +8,16 @@ import rs.cod3rs.shopifine.domain.OrderState;
 import rs.cod3rs.shopifine.fragment.OrdersFragmentTab_;
 
 public class OrdersTabAdapter extends FragmentStatePagerAdapter {
+
     private int numOfTabs;
 
-    public OrdersTabAdapter(FragmentManager fm, int numOfTabs) {
+    public OrdersTabAdapter(final FragmentManager fm, final int numOfTabs) {
         super(fm);
         this.numOfTabs = numOfTabs;
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public Fragment getItem(final int position) {
 
         switch (position) {
             case 0:

@@ -11,7 +11,7 @@ public class ErrorHandler implements RestErrorHandler {
 
     @Override
     public void onRestClientExceptionThrown(final NestedRuntimeException e) {
-        Log.e(ErrorHandler.class.getSimpleName(), e.getMessage());
+        Log.e(getClass().getSimpleName(), e.getMessage());
         throw e;
     }
 

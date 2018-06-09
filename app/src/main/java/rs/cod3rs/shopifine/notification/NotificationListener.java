@@ -7,6 +7,7 @@ import android.util.Log;
 
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
+import org.androidannotations.annotations.RootContext;
 
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -24,15 +25,12 @@ public class NotificationListener extends WebSocketListener {
     @Bean
     NotificationBuilder notificationBuilder;
 
-    private final Context context;
-
-    public NotificationListener(final Context context) {
-        this.context = context;
-    }
+    @RootContext
+    Context context;
 
     @Override
     public void onMessage(final WebSocket webSocket, final String text) {
-        final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this.context);
+        final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 
         final Notification notification = notificationBuilder.buildNotification(text);
         if (Objects.nonNull(notification)) {
@@ -43,12 +41,12 @@ public class NotificationListener extends WebSocketListener {
     @Override
     public void onClosing(final WebSocket webSocket, final int code, final String reason) {
         webSocket.close(NORMAL_CLOSURE_STATUS, null);
-        Log.e(this.getClass().getSimpleName(), String.format("Closing socket : %s / %s", code, reason));
+        Log.e(getClass().getSimpleName(), String.format("Closing socket : %s / %s", code, reason));
     }
 
     @Override
     public void onFailure(final WebSocket webSocket, final Throwable t, final Response response) {
-        Log.e(this.getClass().getSimpleName(), "Connection unexpectedly closed.");
+        Log.e(getClass().getSimpleName(), "Connection unexpectedly closed.");
     }
 
     private int getID() {
