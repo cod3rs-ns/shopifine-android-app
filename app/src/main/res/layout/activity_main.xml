@@ -22,16 +22,6 @@
                 android:layout_height="match_parent"
                 style="@style/HeaderBar"
                 app:titleTextColor="@color/colorWhite">
-
-                <SearchView
-                    android:id="@+id/search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:iconifiedByDefault="false"
-                    android:searchIcon="@null"
-                    android:queryHint="@string/search_hint"
-                    android:layout_centerHorizontal="true" />
-
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>

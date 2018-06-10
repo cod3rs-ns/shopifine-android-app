@@ -71,4 +71,7 @@
     <dimen name="googleAddressClearMargin">13dip</dimen>
 
     <dimen name="underlineHeight">1dp</dimen>
+
+    <dimen name="searchBox">288dp</dimen>
+    <dimen name="filterContainerHeight">192dp</dimen>
 </resources>

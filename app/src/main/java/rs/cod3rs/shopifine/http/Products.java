@@ -12,13 +12,16 @@ import rs.cod3rs.shopifine.hateoas.products.ProductResponse;
 @Rest(
     rootUrl = Config.SERVICE_URL,
     converters = MappingJackson2HttpMessageConverter.class,
-    interceptors = AuthInterceptor.class,
+    interceptors = {
+            AuthInterceptor.class,
+            CustomQueryInterceptor.class
+    },
     responseErrorHandler = HttpErrorHandler.class
 )
 public interface Products {
 
-    @Get("api/products?filter[active]=ACTIVE&page[offset]={offset}&page[limit]={limit}")
-    ProductCollectionResponse retrieveAll(@Path final Integer offset, @Path final Integer limit);
+    @Get("api/products?filter[active]=ACTIVE&page[offset]={offset}&page[limit]={limit}{query}")
+    ProductCollectionResponse retrieveAll(@Path final Integer offset, @Path final Integer limit, @Path final String query);
 
     @Get("api/products/{productId}")
     ProductResponse retrieveOne(@Path final Long productId);

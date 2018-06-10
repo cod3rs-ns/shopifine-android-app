@@ -6,6 +6,7 @@ import org.androidannotations.rest.spring.annotations.Rest;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 import rs.cod3rs.shopifine.Config;
+import rs.cod3rs.shopifine.hateoas.product_categories.ProductCategoryCollectionResponse;
 import rs.cod3rs.shopifine.hateoas.product_categories.ProductCategoryResponse;
 
 @Rest(
@@ -18,5 +19,8 @@ public interface ProductCategories {
 
     @Get("api/product-categories/{id}")
     ProductCategoryResponse getProductCategory(@Path final Long id);
+
+    @Get("api/product-categories")
+    ProductCategoryCollectionResponse retrieveAll();
 
 }

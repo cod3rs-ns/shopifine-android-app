@@ -8,4 +8,8 @@ public class Util {
     public static String formatPrice(final Double price) {
         return String.format(Locale.getDefault(), "%.2f €", price);
     }
+
+    public static boolean nonEmpty(final String value) {
+        return !value.isEmpty();
+    }
 }
