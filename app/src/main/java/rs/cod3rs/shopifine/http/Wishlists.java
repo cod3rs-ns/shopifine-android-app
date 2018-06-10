@@ -30,5 +30,9 @@ public interface Wishlists {
             @Path final Integer userId, @Body final WishlistItemRequest body);
 
     @Delete("api/users/{userId}/wishlist/{itemId}")
-    DiscountCollectionResponse removeItem(@Path final Integer userId, @Path final Long itemId);
+    void removeItem(@Path final Integer userId, @Path final Long itemId);
+
+    @Delete("api/users/{userId}/wishlist/products/{productId}")
+    void removeProduct(@Path final Integer userId, @Path final Long productId);
+
 }

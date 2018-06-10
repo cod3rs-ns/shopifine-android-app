@@ -5,11 +5,10 @@
     android:layout_marginLeft="@dimen/defaultMarginSide"
     android:layout_marginRight="@dimen/defaultMarginSide"
     android:layout_marginTop="@dimen/defaultMarginTop"
-    android:background="@color/colorAccent"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal"
     android:paddingBottom="@dimen/paddingListItem"
-    android:paddingTop="@dimen/paddingListItem"
-    android:descendantFocusability="blocksDescendants">
+    android:paddingTop="@dimen/paddingListItem">
 
     <ImageView
         android:id="@+id/productImage"
@@ -50,8 +49,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
         android:layout_alignParentBottom="true"
+        android:gravity="end"
         android:orientation="horizontal">
 
         <ImageButton

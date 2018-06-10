@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.adapter.OrderClausesAdapter;
@@ -145,7 +144,7 @@ public class OrderActivity extends AppCompatActivity {
                         .peek(
                                 clause ->
                                         clause.product =
-                                                products.retrieveOne(clause.linkedProductId)
+                                                products.retrieveOne(userId, clause.linkedProductId)
                                                         .getData()
                                                         .toDomain())
                         .peek(

@@ -4,9 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.auth0.android.jwt.JWT;
-
-import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
@@ -20,7 +17,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import rs.cod3rs.shopifine.Credentials_;
+import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.activity.ProductActivity_;
 import rs.cod3rs.shopifine.adapter.WishlistItemsAdapter;
@@ -35,18 +32,21 @@ public class WishlistFragment extends Fragment {
 
     @Bean
     public WishlistItemsAdapter adapter;
+
     @RestService
     Wishlists wishlists;
+
     @RestService
     Products products;
+
     @RestService
     ProductCategories productCategories;
+
     @ViewById(R.id.wishlistRecyclerView)
     RecyclerView wishlistView;
-    @Pref
-    Credentials_ credentials;
 
-    private Integer userId;
+    @Pref
+    Prefs_ prefs;
 
     private LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
@@ -59,12 +59,6 @@ public class WishlistFragment extends Fragment {
         wishlistView.setLayoutManager(layoutManager);
     }
 
-    @AfterInject
-    void extractUserIdFromToken() {
-        final JWT jwt = new JWT(credentials.token().get());
-        userId = jwt.getClaim("id").asInt();
-    }
-
     @AfterViews
     void getData() {
         getWishlist();
@@ -74,7 +68,7 @@ public class WishlistFragment extends Fragment {
     void getWishlist() {
         final List<WishlistItem> wishlist =
                 wishlists
-                        .getWishlist(userId)
+                        .getWishlist(prefs.loggedUserId().get())
                         .getData()
                         .stream()
                         .map(WishlistItemResponseData::toDomain)
@@ -93,7 +87,7 @@ public class WishlistFragment extends Fragment {
     }
 
     private void retrieveProduct(WishlistItem wishlistItem) {
-        wishlistItem.product = products.retrieveOne(wishlistItem.productId).getData().toDomain();
+        wishlistItem.product = products.retrieveOne(prefs.loggedUserId().get(), wishlistItem.productId).getData().toDomain();
     }
 
     private void retrieveProductCategory(WishlistItem wi) {

@@ -42,9 +42,11 @@ import rs.cod3rs.shopifine.domain.ProductCategory;
 import rs.cod3rs.shopifine.hateoas.product_categories.ProductCategoryResponse;
 import rs.cod3rs.shopifine.hateoas.products.ProductCollectionResponse;
 import rs.cod3rs.shopifine.hateoas.products.ProductResponseData;
+import rs.cod3rs.shopifine.hateoas.wishlist.WishlistItemRequest;
 import rs.cod3rs.shopifine.http.ActionDiscounts;
 import rs.cod3rs.shopifine.http.ProductCategories;
 import rs.cod3rs.shopifine.http.Products;
+import rs.cod3rs.shopifine.http.Wishlists;
 
 @EActivity(R.layout.activity_product)
 public class ProductActivity extends AppCompatActivity {
@@ -62,6 +64,9 @@ public class ProductActivity extends AppCompatActivity {
     Products products;
 
     @RestService
+    Wishlists wishlists;
+
+    @RestService
     ActionDiscounts actionDiscounts;
 
     @ViewById
@@ -77,7 +82,7 @@ public class ProductActivity extends AppCompatActivity {
     TextView singleProductCategoryName;
 
     @ViewById
-    FloatingActionButton wishListButton;
+    FloatingActionButton addToWishlist;
 
     @ViewById
     ExpandableLayout productDiscountsExpander;
@@ -111,6 +116,11 @@ public class ProductActivity extends AppCompatActivity {
         Picasso.get().load(product.imageUrl).into(singleProductCover);
         singleProductName.setText(product.name);
         singleProductPrice.setText(Util.formatPrice(product.price));
+        if (product.isInWishlist) {
+            addToWishlist.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_black_24dp));
+        } else {
+            addToWishlist.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_black_24dp));
+        }
     }
 
     @Background
@@ -149,7 +159,7 @@ public class ProductActivity extends AppCompatActivity {
 
     @Background
     public void getProductsFromSameCategory(final Long productCategoryId) {
-        final ProductCollectionResponse productsRes = products.retrieveFromCategory(productCategoryId);
+        final ProductCollectionResponse productsRes = products.retrieveFromCategory(prefs.loggedUserId().get(), productCategoryId);
         final List<Product> products = productsRes.getData().stream()
                 .filter(p -> !p.getId().equals(product.id))
                 .map(ProductResponseData::toDomain)
@@ -182,7 +192,7 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     @Click
-    public void wishListButton() {
+    public void addToWishlist() {
         if (product.isInWishlist) {
             removeProductFromWishlist();
         } else {
@@ -203,16 +213,31 @@ public class ProductActivity extends AppCompatActivity {
 
     @UiThread
     void removeProductFromWishlist() {
-        // TODO Call API to update wishlist for user
         product.isInWishlist = false;
-        wishListButton.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+        addToWishlist.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_black_24dp));
+        apiRemoveProductFromWishlist();
+        Toast.makeText(this, R.string.removed_from_wishlist, Toast.LENGTH_SHORT).show();
+    }
+
+    @Background
+    void apiAddProductToWishlist() {
+        final Integer userId = prefs.loggedUserId().get();
+        final WishlistItemRequest request = WishlistItemRequest.buildRequest(userId, product.id);
+        wishlists.addItem(userId, request);
+    }
+
+    @Background
+    void apiRemoveProductFromWishlist() {
+        final Integer userId = prefs.loggedUserId().get();
+        wishlists.removeProduct(userId, product.id);
     }
 
     @UiThread
     void addProductToWishlist() {
-        // TODO Call API to update wishlist for user
         product.isInWishlist = true;
-        wishListButton.setImageResource(R.drawable.ic_favorite_black_24dp);
+        addToWishlist.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_black_24dp));
+        apiAddProductToWishlist();
+        Toast.makeText(this, R.string.added_to_wishlist, Toast.LENGTH_SHORT).show();
     }
 
     private TextView createDiscountLabel(final String content) {

@@ -17,11 +17,13 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.rest.spring.annotations.RestService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.SearchUtil;
 import rs.cod3rs.shopifine.Util;
@@ -41,6 +43,9 @@ import static rs.cod3rs.shopifine.fragment.FiltersFragmentDialog.SELECTED_PRICE_
 public class ProductsFragment extends Fragment implements FiltersDialogListener {
 
     private static final Integer LIMIT = 10;
+
+    @Pref
+    Prefs_ prefs;
 
     @RestService
     Products products;
@@ -141,8 +146,9 @@ public class ProductsFragment extends Fragment implements FiltersDialogListener 
 
     @Background
     void getProducts(final Integer offset, final Integer limit) {
+        final Integer userId = prefs.loggedUserId().get();
         final List<Product> productList =
-                products.retrieveAll(offset, limit, combineFiltersAndQuery(filters, query))
+                products.retrieveAll(userId, offset, limit, combineFiltersAndQuery(filters, query))
                         .getData()
                         .stream()
                         .map(ProductResponseData::toDomain)

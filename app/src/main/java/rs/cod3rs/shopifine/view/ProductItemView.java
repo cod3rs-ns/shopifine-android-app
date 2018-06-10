@@ -85,16 +85,18 @@ public class ProductItemView extends LinearLayout implements ViewWrapper.Binder<
     }
 
     @Override
-    public void bind(final Product product) {
-        this.product = product;
+    public void bind(final Product data) {
+        this.product = data;
 
-        Picasso.get().load(product.imageUrl).into(productImage);
-        productName.setText(product.name);
-        productPrice.setText(Util.formatPrice(product.price));
-        productCategory.setText(product.category.name);
+        Picasso.get().load(data.imageUrl).into(productImage);
+        productName.setText(data.name);
+        productPrice.setText(Util.formatPrice(data.price));
+        productCategory.setText(data.category.name);
 
         if (product.isInWishlist) {
             addToWishlist.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
+        } else {
+            addToWishlist.setBackgroundResource(R.drawable.ic_favorite_border_black_24dp);
         }
     }
 
@@ -127,7 +129,7 @@ public class ProductItemView extends LinearLayout implements ViewWrapper.Binder<
     @Background
     void apiRemoveProductFromWishlist() {
         final Integer userId = prefs.loggedUserId().get();
-        wishlists.removeItem(userId, product.id);
+        wishlists.removeProduct(userId, product.id);
     }
 
     @UiThread
