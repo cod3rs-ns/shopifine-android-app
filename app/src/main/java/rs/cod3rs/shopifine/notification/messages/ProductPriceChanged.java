@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 
+import rs.cod3rs.shopifine.domain.Product;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductPriceChanged implements Serializable {
 
@@ -15,6 +17,10 @@ public class ProductPriceChanged implements Serializable {
     private Long quantity;
 
     public ProductPriceChanged() {
+    }
+
+    public Product fromDomain() {
+        return new Product(productId, name, imageUrl, categoryId, price);
     }
 
     public Long getProductId() {

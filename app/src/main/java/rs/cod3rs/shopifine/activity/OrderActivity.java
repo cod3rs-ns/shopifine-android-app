@@ -30,6 +30,7 @@ import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.adapter.OrderClausesAdapter;
+import rs.cod3rs.shopifine.domain.Discount;
 import rs.cod3rs.shopifine.domain.Order;
 import rs.cod3rs.shopifine.domain.OrderClause;
 import rs.cod3rs.shopifine.hateoas.bill_items.BillItemResponseData;
@@ -42,9 +43,6 @@ public class OrderActivity extends AppCompatActivity {
 
     @Extra
     Order order;
-
-    @Pref
-    Credentials_ credentials;
 
     @Pref
     Prefs_ prefs;
@@ -127,20 +125,12 @@ public class OrderActivity extends AppCompatActivity {
         orderPointsSpent.setText(String.valueOf(order.pointsSpent));
         totalValue.setText(String.format(Locale.getDefault(), "$%.2f%n", order.amount));
         discountValue.setText(String.format("%s%%", order.discount));
-        order.discounts.forEach(
-                i -> {
-                    final TextView textView = new TextView(this);
-                    textView.setText(
-                            String.format(
-                                    "\u2022 %s discount of %s%% %s",
-                                    StringUtils.capitalize(i.type.toLowerCase()),
-                                    String.valueOf(i.discount),
-                                    i.name.toLowerCase()));
-                    textView.setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
-                    textView.setTypeface(null, Typeface.ITALIC);
 
-                    orderDiscountsHolder.addView(textView);
-                });
+        if (order.discounts != null) {
+            order.discounts.forEach(this::showOrderDiscount);
+        } else {
+            retrieveDiscounts();
+        }
     }
 
     @Background
@@ -175,5 +165,36 @@ public class OrderActivity extends AppCompatActivity {
     void updateList(final List<OrderClause> updated) {
         adapter.addAll(updated);
         orderClausesRecyclerView.setAdapter(adapter);
+    }
+
+    @Background
+    void retrieveDiscounts() {
+        final Integer userId = prefs.loggedUserId().get();
+
+        final List<Discount> discounts = orders.getBillDiscounts(userId, order.id)
+                .getData()
+                .stream()
+                .map(DiscountResponseData::toDomain)
+                .collect(Collectors.toList());
+        updateDiscounts(discounts);
+    }
+
+    @UiThread
+    void updateDiscounts(final List<Discount> discounts) {
+        discounts.forEach(this::showOrderDiscount);
+    }
+
+    void showOrderDiscount(final Discount discount) {
+        final TextView textView = new TextView(this);
+        textView.setText(
+                String.format(
+                        "\u2022 %s discount of %s%% %s",
+                        StringUtils.capitalize(discount.type.toLowerCase()),
+                        String.valueOf(discount.discount),
+                        discount.name.toLowerCase()));
+        textView.setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
+        textView.setTypeface(null, Typeface.ITALIC);
+
+        orderDiscountsHolder.addView(textView);
     }
 }

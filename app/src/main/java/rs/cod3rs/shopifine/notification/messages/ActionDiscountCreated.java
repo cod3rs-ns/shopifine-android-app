@@ -10,8 +10,8 @@ public class ActionDiscountCreated implements Serializable {
 
     private Long discountId;
     private String name;
-    private Date from;
-    private Date to;
+    private String from;
+    private String to;
     private Double discount;
 
     public ActionDiscountCreated() {
@@ -33,19 +33,19 @@ public class ActionDiscountCreated implements Serializable {
         this.name = name;
     }
 
-    public Date getFrom() {
+    public String getFrom() {
         return from;
     }
 
-    public void setFrom(final Date from) {
+    public void setFrom(final String from) {
         this.from = from;
     }
 
-    public Date getTo() {
+    public String getTo() {
         return to;
     }
 
-    public void setTo(final Date to) {
+    public void setTo(final String to) {
         this.to = to;
     }
 

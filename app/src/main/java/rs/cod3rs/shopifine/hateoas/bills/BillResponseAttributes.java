@@ -11,6 +11,9 @@ public class BillResponseAttributes {
     private Double discount;
     private Integer pointsGained;
     private Integer pointsSpent;
+    private String address;
+    private Double longitude;
+    private Double latitude;
 
     public BillResponseAttributes() {
         super();
@@ -70,5 +73,29 @@ public class BillResponseAttributes {
 
     public void setPointsSpent(final Integer pointsSpent) {
         this.pointsSpent = pointsSpent;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(final String address) {
+        this.address = address;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(final Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(final Double latitude) {
+        this.latitude = latitude;
     }
 }

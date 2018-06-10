@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 
+import rs.cod3rs.shopifine.domain.Product;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OneProductLeft implements Serializable {
 
@@ -14,6 +16,10 @@ public class OneProductLeft implements Serializable {
     private Double price;
 
     public OneProductLeft() {
+    }
+
+    public Product fromDomain() {
+        return new Product(productId, name, imageUrl, categoryId, price);
     }
 
     public Long getProductId() {
