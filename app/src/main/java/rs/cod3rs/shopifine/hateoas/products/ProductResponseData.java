@@ -18,7 +18,7 @@ public class ProductResponseData {
 
     public Product toDomain() {
         final Long categoryId = relationships.getCategory().getData().getId();
-        return new Product(id, attributes.getName(), attributes.getImageUrl(), categoryId, attributes.getPrice());
+        return new Product(id, attributes.getName(), attributes.getImageUrl(), categoryId, attributes.getPrice(), attributes.getIsInWishlist());
     }
 
     public String getType() {

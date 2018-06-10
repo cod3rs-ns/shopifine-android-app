@@ -8,6 +8,7 @@ public class ProductResponseAttributes {
     private String name;
     private String imageUrl;
     private Double price;
+    private Boolean isInWishlist;
 
     public ProductResponseAttributes() {
         super();
@@ -33,7 +34,16 @@ public class ProductResponseAttributes {
         return price;
     }
 
-    public void setPrice(final double price) {
+    public void setPrice(final Double price) {
         this.price = price;
     }
+
+    public Boolean getIsInWishlist() {
+        return isInWishlist;
+    }
+
+    public void setIsInWishlist(final Boolean inWishlist) {
+        isInWishlist = inWishlist;
+    }
+
 }

@@ -15,17 +15,18 @@ public class Product implements Serializable {
 
     public ProductCategory category;
 
-    public boolean isInWishlist = false;
+    public Boolean isInWishlist = false;
 
     public Product() {
         super();
     }
 
-    public Product(final Long id, final String name, final String imageUrl, final Long categoryId, final Double price) {
+    public Product(final Long id, final String name, final String imageUrl, final Long categoryId, final Double price, final Boolean isInWishlist) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
         this.categoryId = categoryId;
         this.price = price;
+        this.isInWishlist = isInWishlist;
     }
 }
