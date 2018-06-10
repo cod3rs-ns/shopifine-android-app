@@ -5,49 +5,92 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EViewGroup;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
+import org.androidannotations.rest.spring.annotations.RestService;
 
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.Util;
+import rs.cod3rs.shopifine.adapter.WishlistItemsAdapter;
 import rs.cod3rs.shopifine.db.DatabaseHelper;
 import rs.cod3rs.shopifine.domain.WishlistItem;
 import rs.cod3rs.shopifine.generics.ViewWrapper;
+import rs.cod3rs.shopifine.http.Wishlists;
 
 @EViewGroup(R.layout.item_wishlist_product)
 public class WishlistItemView extends LinearLayout implements ViewWrapper.Binder<WishlistItem> {
 
     private final DatabaseHelper helper;
 
-    @Pref Prefs_ prefs;
+    @Bean
+    WishlistItemsAdapter parentAdapter;
 
-    @ViewById ImageView wishlistProductImage;
+    @Pref
+    Prefs_ prefs;
 
-    @ViewById TextView wishlistProductName;
+    @ViewById
+    ImageView wishlistProductImage;
 
-    @ViewById TextView wishlistProductPrice;
+    @ViewById
+    TextView wishlistProductName;
 
-    @ViewById TextView wishlistProductCategory;
+    @ViewById
+    TextView wishlistProductPrice;
 
-    @ViewById ImageButton removeFromWishlist;
+    @ViewById
+    TextView wishlistProductCategory;
 
-    @ViewById ImageButton addToShoppingCart;
+    @ViewById
+    ImageButton removeFromWishlist;
+
+    @ViewById
+    ImageButton addToShoppingCart;
+
+    @RestService
+    Wishlists wishlists;
+
+    private WishlistItem item;
 
     public WishlistItemView(final Context context) {
         super(context);
         this.helper = new DatabaseHelper(context);
     }
 
+    @Click
+    public void removeFromWishlist() {
+        removeProductFromWishlist();
+    }
+
+    @UiThread
+    void removeProductFromWishlist() {
+        apiRemoveProductFromWishlist();
+        parentAdapter.remove(item);
+        Toast.makeText(getContext(), R.string.removed_from_wishlist, Toast.LENGTH_SHORT).show();
+    }
+
+    @Background
+    void apiRemoveProductFromWishlist() {
+        final Integer userId = prefs.loggedUserId().get();
+        wishlists.removeItem(userId, item.id);
+    }
+
     @Override
     public void bind(final WishlistItem data) {
+        this.item = data;
+
         Picasso.get().load(data.product.imageUrl).into(wishlistProductImage);
-        wishlistProductName.setText(data.product.name);
+        wishlistProductName.setText(String.format("%s", data.product.name));
         wishlistProductPrice.setText(Util.formatPrice(data.product.price));
-        wishlistProductCategory.setText("Category"); // TODO handle null
+        wishlistProductCategory.setText(String.format("%s", data.product.category.name));
     }
 }

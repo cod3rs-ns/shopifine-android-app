@@ -15,6 +15,11 @@ public class WishlistItemRequestRelationships {
         super();
     }
 
+    public WishlistItemRequestRelationships(RequestRelationship product, RequestRelationship customer) {
+        this.product = product;
+        this.customer = customer;
+    }
+
     public RequestRelationship getProduct() {
         return product;
     }

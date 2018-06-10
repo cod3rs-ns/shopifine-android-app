@@ -9,10 +9,10 @@ import org.androidannotations.rest.spring.annotations.Rest;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 import rs.cod3rs.shopifine.Config;
-import rs.cod3rs.shopifine.hateoas.bill_items.BillItemCollectionResponse;
 import rs.cod3rs.shopifine.hateoas.discounts.DiscountCollectionResponse;
 import rs.cod3rs.shopifine.hateoas.wishlist.WishlistItemCollectionResponse;
 import rs.cod3rs.shopifine.hateoas.wishlist.WishlistItemRequest;
+import rs.cod3rs.shopifine.hateoas.wishlist.WishlistItemResponse;
 
 @Rest(
     rootUrl = Config.SERVICE_URL,
@@ -26,7 +26,7 @@ public interface Wishlists {
     WishlistItemCollectionResponse getWishlist(@Path final Integer userId);
 
     @Post("api/users/{userId}/wishlist")
-    BillItemCollectionResponse addItem(
+    WishlistItemResponse addItem(
             @Path final Integer userId, @Body final WishlistItemRequest body);
 
     @Delete("api/users/{userId}/wishlist/{itemId}")

@@ -23,7 +23,6 @@ import org.springframework.core.NestedRuntimeException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.activity.OrderActivity_;
@@ -36,9 +35,6 @@ import rs.cod3rs.shopifine.http.Orders;
 
 @EFragment(R.layout.fragment_orders_tab)
 public class OrdersFragmentTab extends Fragment {
-
-    @Pref
-    Credentials_ credentials;
 
     @Pref
     Prefs_ prefs;

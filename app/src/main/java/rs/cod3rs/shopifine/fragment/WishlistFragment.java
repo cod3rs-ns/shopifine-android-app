@@ -17,6 +17,7 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.rest.spring.annotations.RestService;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import rs.cod3rs.shopifine.Credentials_;
@@ -25,22 +26,28 @@ import rs.cod3rs.shopifine.activity.ProductActivity_;
 import rs.cod3rs.shopifine.adapter.WishlistItemsAdapter;
 import rs.cod3rs.shopifine.domain.WishlistItem;
 import rs.cod3rs.shopifine.hateoas.wishlist.WishlistItemResponseData;
+import rs.cod3rs.shopifine.http.ProductCategories;
 import rs.cod3rs.shopifine.http.Products;
 import rs.cod3rs.shopifine.http.Wishlists;
 
 @EFragment(R.layout.fragment_wishlist)
 public class WishlistFragment extends Fragment {
 
-    @RestService Wishlists wishlists;
-
-    @RestService Products products;
-
+    @Bean
+    public WishlistItemsAdapter adapter;
+    @RestService
+    Wishlists wishlists;
+    @RestService
+    Products products;
+    @RestService
+    ProductCategories productCategories;
     @ViewById(R.id.wishlistRecyclerView)
     RecyclerView wishlistView;
+    @Pref
+    Credentials_ credentials;
 
-    @Bean WishlistItemsAdapter adapter;
-    @Pref Credentials_ credentials;
-    private Integer user;
+    private Integer userId;
+
     private LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
     @AfterViews
@@ -55,7 +62,7 @@ public class WishlistFragment extends Fragment {
     @AfterInject
     void extractUserIdFromToken() {
         final JWT jwt = new JWT(credentials.token().get());
-        user = jwt.getClaim("id").asInt();
+        userId = jwt.getClaim("id").asInt();
     }
 
     @AfterViews
@@ -67,11 +74,12 @@ public class WishlistFragment extends Fragment {
     void getWishlist() {
         final List<WishlistItem> wishlist =
                 wishlists
-                        .getWishlist(user)
+                        .getWishlist(userId)
                         .getData()
                         .stream()
                         .map(WishlistItemResponseData::toDomain)
                         .peek(this::retrieveProduct)
+                        .peek(this::retrieveProductCategory)
                         .collect(Collectors.toList());
         updateList(wishlist);
     }
@@ -79,10 +87,19 @@ public class WishlistFragment extends Fragment {
     @UiThread
     void updateList(final List<WishlistItem> wishlist) {
         adapter.addAll(wishlist);
-        wishlistView.setAdapter(adapter);
+        if (Objects.nonNull(wishlistView)) {
+            wishlistView.setAdapter(adapter);
+        }
     }
 
     private void retrieveProduct(WishlistItem wishlistItem) {
         wishlistItem.product = products.retrieveOne(wishlistItem.productId).getData().toDomain();
+    }
+
+    private void retrieveProductCategory(WishlistItem wi) {
+        wi.product.category = productCategories.
+                getProductCategory(wi.product.categoryId)
+                .getData()
+                .toDomain();
     }
 }

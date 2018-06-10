@@ -11,7 +11,7 @@ import rs.cod3rs.shopifine.generics.RecyclerViewAdapterBase;
 import rs.cod3rs.shopifine.view.WishlistItemView;
 import rs.cod3rs.shopifine.view.WishlistItemView_;
 
-@EBean
+@EBean(scope = EBean.Scope.Singleton)
 public class WishlistItemsAdapter extends RecyclerViewAdapterBase<WishlistItem, WishlistItemView> {
 
     @RootContext Context context;
