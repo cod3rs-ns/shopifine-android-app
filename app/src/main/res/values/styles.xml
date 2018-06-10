@@ -74,4 +74,5 @@
 
     <dimen name="searchBox">288dp</dimen>
     <dimen name="filterContainerHeight">192dp</dimen>
+    <dimen name="spentItemsTextBoxWidth">128dp</dimen>
 </resources>

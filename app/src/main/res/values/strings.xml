@@ -48,6 +48,7 @@
     <string name="search_hint">Find product…</string>
     <string name="search_filters">Filters</string>
     <string name="search_action">Search</string>
+    <string name="shopping_cart_discount">%.0f%% discount!</string>
 
     <string name="mock">Mock</string>
     <string name="mock_date">28–07–1994</string>
@@ -62,8 +63,11 @@
     <string name="order_created">Created</string>
     <string name="order_points_gained">Points Gained</string>
     <string name="order_points_spent">Points Spent</string>
+    <string name="order_points_to_spend">Points to spend:</string>
     <string name="order_discount">Discount:</string>
     <string name="order_total">Total:</string>
+    <string name="order_successfully_created">Order successfully ordered!</string>
+    <string name="order_processing">We\'re processing your order…</string>
 
     <!-- Error messages -->
     <string name="fn_missing_err">You must enter first name.</string>
@@ -99,4 +103,5 @@
     <string name="filters_medium_price">1000 &#8211; 5000</string>
     <string name="filters_high_price">&gt; 5000</string>
     <string name="filters_categories">Product Categories</string>
+    <string name="spent_points_hint">000</string>
 </resources>
