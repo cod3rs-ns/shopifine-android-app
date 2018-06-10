@@ -1,6 +1,7 @@
 package rs.cod3rs.shopifine.view;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,11 +19,14 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.rest.spring.annotations.RestService;
 
+import java.sql.SQLException;
+
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.Util;
 import rs.cod3rs.shopifine.adapter.WishlistItemsAdapter;
 import rs.cod3rs.shopifine.db.DatabaseHelper;
+import rs.cod3rs.shopifine.db.ShoppingCartItem;
 import rs.cod3rs.shopifine.domain.WishlistItem;
 import rs.cod3rs.shopifine.generics.ViewWrapper;
 import rs.cod3rs.shopifine.http.Wishlists;
@@ -54,7 +58,7 @@ public class WishlistItemView extends LinearLayout implements ViewWrapper.Binder
     ImageButton removeFromWishlist;
 
     @ViewById
-    ImageButton addToShoppingCart;
+    ImageButton wishlistAddToShoppingCart;
 
     @RestService
     Wishlists wishlists;
@@ -69,6 +73,30 @@ public class WishlistItemView extends LinearLayout implements ViewWrapper.Binder
     @Click
     public void removeFromWishlist() {
         removeProductFromWishlist();
+    }
+
+    @Click
+    public void wishlistAddToShoppingCart() {
+        final Integer userId = prefs.loggedUserId().get();
+        final ShoppingCartItem cartItem = new ShoppingCartItem(userId, item.product);
+
+        addItemToShoppingCart(cartItem);
+    }
+
+    @UiThread
+    void addItemToShoppingCart(final ShoppingCartItem item) {
+        try {
+            final boolean itemExists = helper.getShoppingCartDAO().queryForEq("product_id", item.productId).size() > 0;
+
+            if (itemExists) {
+                Toast.makeText(getContext(), R.string.already_in_shopping_cart, Toast.LENGTH_SHORT).show();
+            } else {
+                helper.getShoppingCartDAO().create(item);
+                Toast.makeText(getContext(), R.string.added_to_shopping_cart, Toast.LENGTH_SHORT).show();
+            }
+        } catch (final SQLException e) {
+            Log.e(getClass().getSimpleName(), e.getMessage());
+        }
     }
 
     @UiThread

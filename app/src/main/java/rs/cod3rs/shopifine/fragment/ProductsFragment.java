@@ -171,7 +171,6 @@ public class ProductsFragment extends Fragment implements FiltersDialogListener 
             productsView.setVisibility(View.VISIBLE);
             productsNoItems.setVisibility(View.INVISIBLE);
 
-            adapter.clear();
             adapter.addAll(products);
             productsView.setAdapter(adapter);
         }

@@ -10,7 +10,7 @@
         android:id="@+id/wishlistProductImage"
         android:layout_width="@dimen/listItemImageSize"
         android:layout_height="@dimen/listItemImageSize"
-        android:layout_margin="4dp"
+        android:layout_margin="@dimen/defaultMarginSide"
         android:contentDescription="@string/product_image" />
 
     <LinearLayout
@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/wishlistDivider"
-        android:layout_margin="4dp"
+        android:layout_margin="@dimen/defaultMarginSide"
         android:gravity="end"
         android:orientation="horizontal">
 
@@ -76,7 +76,7 @@
     <View
         android:id="@+id/wishlistDivider"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/underlineHeight"
         android:layout_alignParentBottom="true"
         android:background="@color/colorGray"
         android:visibility="visible" />

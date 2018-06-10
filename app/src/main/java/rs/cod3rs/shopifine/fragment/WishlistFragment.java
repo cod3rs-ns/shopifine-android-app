@@ -80,6 +80,7 @@ public class WishlistFragment extends Fragment {
 
     @UiThread
     void updateList(final List<WishlistItem> wishlist) {
+        adapter.clear();
         adapter.addAll(wishlist);
         if (Objects.nonNull(wishlistView)) {
             wishlistView.setAdapter(adapter);

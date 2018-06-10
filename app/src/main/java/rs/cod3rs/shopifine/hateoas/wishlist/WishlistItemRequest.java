@@ -18,7 +18,7 @@ public class WishlistItemRequest {
         super();
     }
 
-    public WishlistItemRequest(WishlistItemRequestData data) {
+    public WishlistItemRequest(final WishlistItemRequestData data) {
         this.data = data;
     }
 

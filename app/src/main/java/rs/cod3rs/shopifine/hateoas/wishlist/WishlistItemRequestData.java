@@ -11,7 +11,7 @@ public class WishlistItemRequestData {
 
     private WishlistItemRequestRelationships relationships;
 
-    public WishlistItemRequestData(String type, WishlistItemRequestAttributes attributes, WishlistItemRequestRelationships relationships) {
+    public WishlistItemRequestData(final String type, final WishlistItemRequestAttributes attributes, final WishlistItemRequestRelationships relationships) {
         this.type = type;
         this.attributes = attributes;
         this.relationships = relationships;

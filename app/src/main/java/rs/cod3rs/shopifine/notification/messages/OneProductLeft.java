@@ -19,7 +19,7 @@ public class OneProductLeft implements Serializable {
     }
 
     public Product fromDomain() {
-        return new Product(productId, name, imageUrl, categoryId, price);
+        return new Product(productId, name, imageUrl, categoryId, price, false);
     }
 
     public Long getProductId() {

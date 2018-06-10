@@ -42,7 +42,7 @@ public class ProductResponseAttributes {
         return isInWishlist;
     }
 
-    public void setIsInWishlist(Boolean inWishlist) {
+    public void setIsInWishlist(final Boolean inWishlist) {
         isInWishlist = inWishlist;
     }
 
