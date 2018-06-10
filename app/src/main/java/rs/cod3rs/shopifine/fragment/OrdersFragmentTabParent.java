@@ -29,6 +29,7 @@ public class OrdersFragmentTabParent extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText(R.string.first_order_tab));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.second_order_tab));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.third_order_tab));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.fourth_order_tab));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final OrdersTabAdapter adapter =

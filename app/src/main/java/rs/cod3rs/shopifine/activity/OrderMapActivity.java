@@ -57,7 +57,7 @@ public class OrderMapActivity extends AppCompatActivity implements OnMapReadyCal
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(final GoogleMap googleMap) {
         map = googleMap;
 
         final LatLng orderPoint = new LatLng(order.latitude, order.longitude);
@@ -67,12 +67,12 @@ public class OrderMapActivity extends AppCompatActivity implements OnMapReadyCal
 
         final MarkerOptions orderMarker = new MarkerOptions()
                 .position(orderPoint)
-                .title("Order")
+                .title(String.valueOf(R.string.map_order))
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.baseline_local_shipping_black_36))
                 .visible(true);
         final MarkerOptions homeMarker = new MarkerOptions()
                 .position(homePoint)
-                .title("Home")
+                .title(String.valueOf(R.string.map_home))
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.baseline_home_black_36))
                 .visible(true);
 
@@ -97,7 +97,7 @@ public class OrderMapActivity extends AppCompatActivity implements OnMapReadyCal
                     final LatLng currentPoint = new LatLng(currentLatitude, currentLongitude);
                     final MarkerOptions currentMarker = new MarkerOptions()
                             .position(currentPoint)
-                            .title("Me")
+                            .title(String.valueOf(R.string.map_me))
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.baseline_person_pin_circle_black_36))
                             .visible(true);
                     map.addMarker(currentMarker);

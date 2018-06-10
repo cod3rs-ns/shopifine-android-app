@@ -23,8 +23,10 @@ public class OrdersTabAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return OrdersFragmentTab_.builder().orderFragmentType(OrderState.ORDERED).build();
             case 1:
-                return OrdersFragmentTab_.builder().orderFragmentType(OrderState.SUCCESSFUL).build();
+                return OrdersFragmentTab_.builder().orderFragmentType(OrderState.DISPATCHED).build();
             case 2:
+                return OrdersFragmentTab_.builder().orderFragmentType(OrderState.SUCCESSFUL).build();
+            case 3:
                 return OrdersFragmentTab_.builder().orderFragmentType(OrderState.CANCELLED).build();
             default:
                 return null;
