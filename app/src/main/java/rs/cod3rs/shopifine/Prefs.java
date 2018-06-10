@@ -17,4 +17,8 @@ public interface Prefs {
 
     String loggedUserAddress();
 
+    String loggedUserHomeLatitude();
+
+    String loggedUserHomeLongitude();
+
 }
