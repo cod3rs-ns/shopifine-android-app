@@ -76,6 +76,8 @@ dependencies {
     // Google
     implementation 'com.google.android.gms:play-services-auth:11.8.0'
     implementation 'com.google.android.gms:play-services-places:11.8.0'
+    implementation 'com.google.android.gms:play-services-maps:11.8.0'
+    implementation "com.google.android.gms:play-services-location:11.8.0"
 
     // ORMLite
     implementation 'com.j256.ormlite:ormlite-android:5.1'

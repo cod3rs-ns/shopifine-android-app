@@ -54,9 +54,10 @@
     <string name="mock_date">28–07–1994</string>
     <string name="mock_number">19</string>
 
-    <string name="second_order_tab">Successful</string>
     <string name="first_order_tab">Ordered</string>
-    <string name="third_order_tab">Cancelled</string>
+    <string name="second_order_tab">Dispatched</string>
+    <string name="third_order_tab">Successful</string>
+    <string name="fourth_order_tab">Cancelled</string>
 
     <string name="order_id">Order ID</string>
     <string name="order_status">Status</string>
@@ -104,4 +105,8 @@
     <string name="filters_high_price">&gt; 5000</string>
     <string name="filters_categories">Product Categories</string>
     <string name="spent_points_hint">000</string>
+
+    <string name="map_me">Me</string>
+    <string name="map_order">Order</string>
+    <string name="map_home">Home</string>
 </resources>
