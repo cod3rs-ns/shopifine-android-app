@@ -3,6 +3,8 @@ package rs.cod3rs.shopifine.fragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -45,6 +47,9 @@ public class WishlistFragment extends Fragment {
     @ViewById(R.id.wishlistRecyclerView)
     RecyclerView wishlistView;
 
+    @ViewById
+    TextView wishlistNoProducts;
+
     @Pref
     Prefs_ prefs;
 
@@ -80,10 +85,21 @@ public class WishlistFragment extends Fragment {
 
     @UiThread
     void updateList(final List<WishlistItem> wishlist) {
-        adapter.clear();
-        adapter.addAll(wishlist);
-        if (Objects.nonNull(wishlistView)) {
-            wishlistView.setAdapter(adapter);
+        if (wishlist.isEmpty()) {
+            if (Objects.nonNull(wishlistView)) {
+                wishlistView.setAdapter(adapter);
+                wishlistView.setVisibility(View.INVISIBLE);
+            }
+            wishlistNoProducts.setVisibility(View.VISIBLE);
+        } else {
+            if (Objects.nonNull(wishlistView)) {
+                wishlistView.setAdapter(adapter);
+                wishlistView.setVisibility(View.VISIBLE);
+            }
+            wishlistNoProducts.setVisibility(View.INVISIBLE);
+
+            adapter.clear();
+            adapter.addAll(wishlist);
         }
     }
 

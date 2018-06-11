@@ -111,4 +111,5 @@
     <string name="map_home">Кућна адреса</string>
 
     <string name="orders_no_items">Нема порудџбина. :(</string>
+    <string name="wishlist_no_items">Нема производа. :(</string>
 </resources>
