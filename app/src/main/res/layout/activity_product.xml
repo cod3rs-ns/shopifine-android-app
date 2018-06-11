@@ -45,7 +45,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="0.3"
-                    android:background="@color/colorPrimaryLight"
+                    android:background="@color/colorPrimary"
                     android:baselineAligned="false"
                     android:orientation="horizontal">
 
@@ -67,7 +67,8 @@
                             android:maxLines="2"
                             android:minLines="2"
                             android:paddingTop="@dimen/productPricePadding"
-                            android:textSize="@dimen/fontHeadlineSize" />
+                            android:textColor="@android:color/white"
+                            android:textSize="18sp" />
 
                         <TextView
                             android:id="@+id/singleProductCategoryName"
@@ -75,7 +76,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/productPricePadding"
                             android:layout_marginTop="@dimen/productPricePadding"
-                            android:textSize="@dimen/fontSubheadingSize" />
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <RelativeLayout
@@ -91,6 +93,7 @@
                             android:layout_centerInParent="true"
                             android:paddingBottom="@dimen/productPricePadding"
                             android:paddingEnd="@dimen/productPricePadding"
+                            android:textColor="@android:color/white"
                             android:textSize="@dimen/fontHeadlineSize"
                             android:textStyle="bold"
                             tools:ignore="RtlSymmetry" />
@@ -155,8 +158,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.45"
-            android:background="@color/colorAccent"
+            android:layout_weight="0.5"
+            android:background="@android:color/white"
             android:orientation="vertical">
 
             <TextView
