@@ -112,4 +112,6 @@
 
     <string name="orders_no_items">Nema porudžbina. :(</string>
     <string name="wishlist_no_items">Nema proizvoda. :(</string>
+    <string name="discount_details">-%2.2f%% u ukupnoj vrednosti od $%s</string>
+    <string name="discount_clause_bullet">"\u2022 %s popust od %2.2f%% %s"</string>
 </resources>
