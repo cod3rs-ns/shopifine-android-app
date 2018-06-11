@@ -19,15 +19,24 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.FragmentById;
 import org.androidannotations.annotations.SystemService;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.sharedpreferences.Pref;
+import org.androidannotations.rest.spring.annotations.RestService;
+
+import java.util.Objects;
 
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.domain.Order;
+import rs.cod3rs.shopifine.domain.User;
+import rs.cod3rs.shopifine.hateoas.users.UserResponse;
+import rs.cod3rs.shopifine.hateoas.users.UserResponseAttributes;
+import rs.cod3rs.shopifine.http.Users;
 
 
 @EActivity(R.layout.activity_order_map)
@@ -51,6 +60,9 @@ public class OrderMapActivity extends AppCompatActivity implements OnMapReadyCal
 
     private GoogleMap map;
 
+    @RestService
+    Users users;
+
     @AfterViews
     void init() {
         mapFragment.getMapAsync(this);
@@ -59,31 +71,42 @@ public class OrderMapActivity extends AppCompatActivity implements OnMapReadyCal
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         map = googleMap;
+        getUser();
+    }
 
+    @Background
+    public void getUser() {
+        final UserResponse res = users.getUser(prefs.loggedUserId().get());
+        final UserResponseAttributes attrs = res.getData().getAttributes();
+        showMap(attrs.getLatitude(), attrs.getLongitude());
+    }
+
+    @UiThread
+    public void showMap(final Double homeLatitude, final Double homeLongitude) {
         final LatLng orderPoint = new LatLng(order.latitude, order.longitude);
-        final LatLng homePoint = new LatLng(
-                Double.valueOf(prefs.loggedUserHomeLatitude().get()),
-                Double.valueOf(prefs.loggedUserHomeLongitude().get()));
 
         final MarkerOptions orderMarker = new MarkerOptions()
                 .position(orderPoint)
                 .title(String.valueOf(R.string.map_order))
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.baseline_local_shipping_black_36))
                 .visible(true);
-        final MarkerOptions homeMarker = new MarkerOptions()
-                .position(homePoint)
-                .title(String.valueOf(R.string.map_home))
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.baseline_home_black_36))
-                .visible(true);
-
         map.addMarker(orderMarker);
-        map.addMarker(homeMarker);
 
-        final LatLngBounds bounds = new LatLngBounds.Builder().include(orderPoint).include(homePoint).build();
-        final CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 100);
+        if (Objects.nonNull(homeLatitude) && Objects.nonNull(homeLongitude)) {
+            final LatLng homePoint = new LatLng(homeLatitude, homeLongitude);
 
-        map.animateCamera(cu);
-        map.moveCamera(cu);
+            final MarkerOptions homeMarker = new MarkerOptions()
+                    .position(homePoint)
+                    .title(String.valueOf(R.string.map_home))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.baseline_home_black_36))
+                    .visible(true);
+            map.addMarker(homeMarker);
+
+            final LatLngBounds bounds = new LatLngBounds.Builder().include(orderPoint).include(homePoint).build();
+            final CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 100);
+            map.animateCamera(cu);
+            map.moveCamera(cu);
+        }
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -102,17 +125,18 @@ public class OrderMapActivity extends AppCompatActivity implements OnMapReadyCal
                             .visible(true);
                     map.addMarker(currentMarker);
 
+                    if (Objects.nonNull(homeLatitude) && Objects.nonNull(homeLongitude)) {
+                        final LatLng homePoint = new LatLng(homeLatitude, homeLongitude);
+                        final LatLngBounds threeWayBounds = new LatLngBounds.Builder().include(orderPoint).include(homePoint).include(currentPoint).build();
+                        final CameraUpdate threeWayCU = CameraUpdateFactory.newLatLngBounds(threeWayBounds, 100);
 
-                    final LatLngBounds threeWayBounds = new LatLngBounds.Builder().include(orderPoint).include(homePoint).include(currentPoint).build();
-                    final CameraUpdate threeWayCU = CameraUpdateFactory.newLatLngBounds(threeWayBounds, 100);
-
-                    map.animateCamera(threeWayCU);
-                    map.moveCamera(threeWayCU);
+                        map.animateCamera(threeWayCU);
+                        map.moveCamera(threeWayCU);
+                    }
                 } else {
                     Log.i(getClass().getName(), "No location.");
                 }
             });
         }
-
     }
 }
