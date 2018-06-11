@@ -109,4 +109,9 @@
     <string name="map_me">Моја локација</string>
     <string name="map_order">Поруџбина</string>
     <string name="map_home">Кућна адреса</string>
+
+    <string name="orders_no_items">Нема порудџбина. :(</string>
+    <string name="wishlist_no_items">Нема производа. :(</string>
+    <string name="discount_details">-%2.2f%% у укупној вредности од $%s</string>
+    <string name="discount_clause_bullet">"\u2022 %s попуст од %2.2f%% %s"</string>
 </resources>

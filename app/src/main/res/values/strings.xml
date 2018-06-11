@@ -109,4 +109,10 @@
     <string name="map_me">Me</string>
     <string name="map_order">Order</string>
     <string name="map_home">Home</string>
+
+    <string name="orders_no_items">No orders. :(</string>
+    <string name="wishlist_no_items">No products. :(</string>
+
+    <string name="discount_details">-%2.2f%% in total of $%s</string>
+    <string name="discount_clause_bullet">"\u2022 %s discount of %2.2f%% %s"</string>
 </resources>

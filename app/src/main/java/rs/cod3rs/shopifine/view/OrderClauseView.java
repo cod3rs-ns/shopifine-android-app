@@ -49,8 +49,7 @@ public class OrderClauseView extends LinearLayout implements ViewWrapper.Binder<
         amountDetails.setText(String.format(Locale.US, "%d x $%s", item.quantity, item.price));
         discountDetails.setText(
                 String.format(
-                        Locale.US,
-                        "-%s%% in total of $%s",
+                        getResources().getString(R.string.discount_details),
                         item.discount,
                         new DecimalFormat("#.##").format(item.discountAmount)));
         orderClauseTotal.setText(String.format(Locale.getDefault(), "$ %.2f%n", item.amount));
@@ -59,9 +58,9 @@ public class OrderClauseView extends LinearLayout implements ViewWrapper.Binder<
                     TextView textView = new TextView(this.getContext());
                     textView.setText(
                             String.format(
-                                    "\u2022 %s discount of %s%% %s",
+                                    getResources().getString(R.string.discount_clause_bullet),
                                     StringUtils.capitalize(i.type.toLowerCase()),
-                                    String.valueOf(i.discount),
+                                    i.discount,
                                     i.name.toLowerCase()));
                     textView.setTextColor(
                             ContextCompat.getColor(this.getContext(), R.color.colorPrimaryDark));

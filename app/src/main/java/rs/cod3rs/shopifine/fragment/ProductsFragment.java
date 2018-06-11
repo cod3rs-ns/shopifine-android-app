@@ -93,6 +93,13 @@ public class ProductsFragment extends Fragment implements FiltersDialogListener 
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        adapter.clear();
+        getData();
+    }
+
+    @Override
     public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
         inflater.inflate(R.menu.toolbar_menu, menu);
         final MenuItem searchItem = menu.findItem(R.id.action_search);
