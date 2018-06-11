@@ -31,8 +31,8 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.rest.spring.annotations.RestService;
 import org.springframework.core.NestedRuntimeException;
 
-import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.Config;
+import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.hateoas.users.GoogleAuthRequest;
 import rs.cod3rs.shopifine.hateoas.users.UserAuthRequest;

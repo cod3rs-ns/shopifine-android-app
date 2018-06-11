@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Shopifine</string>
+
+    <string name="navigation_drawer_open">Otvori meni</string>
+    <string name="navigation_drawer_close">Zatvori meni</string>
+
+    <string name="navigation_drawer_home">Proizvodi</string>
+    <string name="navigation_drawer_shopping_cart">Korpa</string>
+    <string name="navigation_drawer_wishlist">Lista želja</string>
+    <string name="navigation_drawer_orders">Porudžbine</string>
+    <string name="navigation_drawer_profile">Profil</string>
+
+    <string name="username">Korisničko ime</string>
+    <string name="password">Šifra</string>
+    <string name="first_name">Ime</string>
+    <string name="last_name">Prezime</string>
+    <string name="repeated_password">Ponovi šifru</string>
+    <string name="address">Address</string>
+
+    <string name="product_categories_title">Proizvodi iz iste kategorije</string>
+    <string name="product_image">Slika proizvoda</string>
+    <string name="products_no_items">Nijedan proizvod ne odgovara zadatoj kriteriji. :( </string>
+
+    <string name="log_in">Prijavi se</string>
+    <string name="sign_up">Registruj se</string>
+    <string name="log_out">Odjavi se</string>
+
+    <string name="add_to_shopping_cart">Dodaj u korpu</string>
+    <string name="already_in_shopping_cart">Proizvod se već nalazi u korpi!</string>
+    <string name="added_to_shopping_cart">Proizvod dodat u korpu!</string>
+    <string name="removed_from_shopping_cart">Proizvod izbačen iz korpe!</string>
+    <string name="add_to_wishlist">Dodaj u listu želja</string>
+    <string name="added_to_wishlist">Proizvod dodat u listu želja.</string>
+    <string name="removed_from_wishlist">Proizvod izbačen iz liste želja.</string>
+    <string name="plus_one">Dodaj još jedan.</string>
+    <string name="minus_one">Ukloni jedan.</string>
+
+    <string name="lets_shopping">Nastavi kupovinu</string>
+    <string name="category">Kategorija</string>
+    <string name="extra_points">Dodatni poeni</string>
+
+    <string name="checkout">Idi na kasu</string>
+    <string name="home">Početna</string>
+    <string name="orders">Porudžbine</string>
+    <string name="wishlist">Lista želja</string>
+    <string name="shopping_cart">Korpa</string>
+    <string name="shopping_cart_no_items">Nema proizvoda u korpi. :(</string>
+    <string name="search_hint">Pretraži proizvode…</string>
+    <string name="search_filters">Filteri</string>
+    <string name="search_action">Pretraži</string>
+    <string name="shopping_cart_discount">%.0f%% popust!</string>
+
+    <string name="mock">Test</string>
+    <string name="mock_date">28–07–1994</string>
+    <string name="mock_number">19</string>
+
+    <string name="first_order_tab">Poručene</string>
+    <string name="second_order_tab">U obradi</string>
+    <string name="third_order_tab">Dostavljene</string>
+    <string name="fourth_order_tab">Otkazane</string>
+
+    <string name="order_id">ID porudžbine</string>
+    <string name="order_status">Status</string>
+    <string name="order_created">Datum</string>
+    <string name="order_points_gained">Zarađenih poena</string>
+    <string name="order_points_spent">Potrošenih poena</string>
+    <string name="order_points_to_spend">Iskoristi poena:</string>
+    <string name="order_discount">Popust:</string>
+    <string name="order_total">Ukupno:</string>
+    <string name="order_successfully_created">Porudžbina uspešno završena!</string>
+    <string name="order_processing">Pordužbina se obrađuje…</string>
+
+    <!-- Error messages -->
+    <string name="fn_missing_err">Morate uneti Vaše ime.</string>
+    <string name="ln_missing_err">Morate uneti Vaše prezime.</string>
+    <string name="username_missing_err">Morate uneti korisničko ime.</string>
+    <string name="pass_min_err">Šifra se mora sastojati od minimum 6 karaktera.</string>
+    <string name="pass_match_err">Šifre se ne poklapaju.</string>
+    <string name="address_missing_err">Morate navesti Vašu adresu.</string>
+
+    <!-- Notification messages -->
+    <string name="order_state_changed">Status porudžbine promenjen u %1$s.</string>
+    <string name="action_discount_created">%1s popust %2.0f%% je stigao.</string>
+    <string name="one_product_left">Poslednji %1s ostao na lageru.</string>
+    <string name="order_address_changed">Adresa porudžbine %1d ažurirana na %2s.</string>
+    <string name="product_price_changed">Cena %1s promenjena na %2.2f.".</string>
+    <string name="order_in_radius">Vaša porudžbina je samo %1.2fkm udaljena od Vas.</string>
+
+    <string name="edit_profile_title">Izmeni profil</string>
+    <string name="save">Sačuvaj</string>
+    <string name="cancel">Otkaži</string>
+
+    <string name="action_discount">- %1s popust od %2.0f%%</string>
+    <string name="no_available_discounts">Nema aktivnih popusta za ovaj proizvod.</string>
+
+    <!-- Filters dialog -->
+    <string name="filters_dialog_title">Filteri proizvoda</string>
+    <string name="filters_apply">Primeni</string>
+    <string name="filters_reset">Resetuj</string>
+    <string name="filters_price_range">Raspon cene</string>
+    <string name="filters_lowest_price">&lt; 100</string>
+    <string name="filters_low_price">100 &#8211; 1000</string>
+    <string name="filters_medium_price">1000 &#8211; 5000</string>
+    <string name="filters_high_price">&gt; 5000</string>
+    <string name="filters_categories">Kategorije proizvoda</string>
+    <string name="spent_points_hint">000</string>
+
+    <string name="map_me">Moja lokacija</string>
+    <string name="map_order">Porudžbina</string>
+    <string name="map_home">Kućna adresa</string>
+</resources>
