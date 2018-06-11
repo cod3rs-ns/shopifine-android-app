@@ -109,4 +109,6 @@
     <string name="map_me">Me</string>
     <string name="map_order">Order</string>
     <string name="map_home">Home</string>
+
+    <string name="orders_no_items">No orders. :(</string>
 </resources>

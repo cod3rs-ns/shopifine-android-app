@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -19,6 +20,7 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.rest.spring.annotations.RestService;
 import org.springframework.core.NestedRuntimeException;
+import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,6 +49,9 @@ public class OrdersFragmentTab extends Fragment {
 
     @ViewById(R.id.ordersRecyclerList)
     RecyclerView ordersList;
+
+    @ViewById
+    TextView noOrders;
 
     @Bean
     OrdersListAdapter adapter;
@@ -100,7 +105,15 @@ public class OrdersFragmentTab extends Fragment {
 
     @UiThread
     void updateList(final List<Order> orders) {
-        adapter.addAll(orders);
-        ordersList.setAdapter(adapter);
+        if (orders.isEmpty()) {
+            ordersList.setVisibility(View.INVISIBLE);
+            noOrders.setVisibility(View.VISIBLE);
+        } else {
+            ordersList.setVisibility(View.VISIBLE);
+            noOrders.setVisibility(View.INVISIBLE);
+
+            adapter.addAll(orders);
+            ordersList.setAdapter(adapter);
+        }
     }
 }

@@ -109,4 +109,6 @@
     <string name="map_me">Moja lokacija</string>
     <string name="map_order">Porudžbina</string>
     <string name="map_home">Kućna adresa</string>
+
+    <string name="orders_no_items">Nema porudžbina. :(</string>
 </resources>
