@@ -130,22 +130,22 @@ public class ProfileFragment extends Fragment implements EditProfileDialogListen
 
     @Click
     void profileShoppingCartBtn() {
-        changeFragment(R.id.shoppingCart, 1);
+        changeFragment(R.id.shoppingCart);
     }
 
     @Click
     void profileWishListBtn() {
-        // TODO Call Wishlist fragment
+        changeFragment(R.id.wishlist);
     }
 
     @Click
     void profileOrdersBtn() {
-        // TODO Call Orders fragment
+        changeFragment(R.id.orders);
     }
 
     @Click
     void profileHomeBtn() {
-        changeFragment(R.id.home, 0);
+        changeFragment(R.id.home);
     }
 
     @Click
@@ -171,12 +171,11 @@ public class ProfileFragment extends Fragment implements EditProfileDialogListen
         dialog.show(getFragmentManager(), String.valueOf(R.layout.dialog_edit_profile));
     }
 
-    private void changeFragment(final int fragmentId, final int navBarPosition) {
+    private void changeFragment(final int fragmentId) {
         final Fragment fragment = MainActivity.getFragmentById(fragmentId);
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.frame, fragment)
-                .addToBackStack(String.valueOf(navBarPosition))
                 .commit();
     }
 

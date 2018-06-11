@@ -115,8 +115,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .loggedUserLastName().put(u.lastName)
                     .loggedUserFullName().put(u.getFullName())
                     .loggedUserAddress().put(u.address)
-                    .loggedUserHomeLatitude().put(attrs.getLatitude().toString())
-                    .loggedUserHomeLongitude().put(attrs.getLongitude().toString())
                     .apply();
 
             setHeader();
