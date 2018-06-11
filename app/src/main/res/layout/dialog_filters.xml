@@ -26,10 +26,10 @@
         android:id="@+id/priceFilters"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/defaultMarginTop"
         android:orientation="vertical"
         android:paddingEnd="@dimen/paddingSide"
-        android:paddingStart="@dimen/paddingSide"
-        android:layout_marginTop="@dimen/defaultMarginTop">
+        android:paddingStart="@dimen/paddingSide">
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,36 +68,30 @@
             android:textColor="@color/colorWhite" />
     </RadioGroup>
 
-    <RadioGroup
-        android:id="@+id/categoryFilters"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/filterContainerHeight"
-        android:layout_marginTop="@dimen/defaultMarginTop"
-        android:orientation="vertical"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filters_categories"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/fontSubheadingSize"
         android:paddingEnd="@dimen/paddingSide"
-        android:paddingStart="@dimen/paddingSide">
+        android:paddingStart="@dimen/paddingSide"
+        android:layout_marginTop="@dimen/defaultMarginTop"
+        android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/filters_categories"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/fontSubheadingSize"
-            android:textStyle="bold" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/filterContainerHeight">
 
-        <ScrollView
+        <RadioGroup
+            android:id="@+id/categoryFilters"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/filterContainerHeight">
+            android:layout_height="@dimen/filterContainerHeight"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/paddingSide"
+            android:paddingStart="@dimen/paddingSide" />
 
-            <LinearLayout
-                android:id="@+id/categoryFilterContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-
-        </ScrollView>
-
-    </RadioGroup>
+    </ScrollView>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

@@ -84,7 +84,7 @@ public class ProductsFragment extends Fragment implements FiltersDialogListener 
 
     @AfterViews
     void getData() {
-        getProducts(0, LIMIT);
+        getProducts(0, LIMIT, true);
     }
 
     @AfterViews
@@ -110,6 +110,11 @@ public class ProductsFragment extends Fragment implements FiltersDialogListener 
         if (searchView != null) {
             searchView.setQueryHint(getResources().getString(R.string.search_hint));
             searchView.setMaxWidth(getResources().getDimensionPixelSize(R.dimen.searchBox));
+
+            searchView.setOnCloseListener(() -> {
+                updateSearchQuery("");
+                return false;
+            });
 
             final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
                 @Override
@@ -145,7 +150,7 @@ public class ProductsFragment extends Fragment implements FiltersDialogListener 
     }
 
     @Background
-    void getProducts(final Integer offset, final Integer limit) {
+    void getProducts(final Integer offset, final Integer limit, boolean isFirstTimeSearch) {
         final Integer userId = prefs.loggedUserId().get();
         final List<Product> productList =
                 products.retrieveAll(userId, offset, limit, combineFiltersAndQuery(filters, query))
@@ -159,20 +164,29 @@ public class ProductsFragment extends Fragment implements FiltersDialogListener 
                                         .toDomain())
                         .collect(Collectors.toList());
 
+        if (isFirstTimeSearch) {
+            firstTimeSearch(productList.size());
+        }
+
         updateList(productList);
     }
 
     @UiThread
     void updateList(final List<Product> products) {
-        if (products.isEmpty()) {
+        adapter.addAll(products);
+        productsView.setAdapter(adapter);
+    }
+
+    @UiThread
+    void firstTimeSearch(final int itemsCount) {
+        adapter.clear();
+
+        if (0 == itemsCount) {
             productsView.setVisibility(View.INVISIBLE);
             productsNoItems.setVisibility(View.VISIBLE);
         } else {
             productsView.setVisibility(View.VISIBLE);
             productsNoItems.setVisibility(View.INVISIBLE);
-
-            adapter.addAll(products);
-            productsView.setAdapter(adapter);
         }
     }
 
@@ -190,13 +204,13 @@ public class ProductsFragment extends Fragment implements FiltersDialogListener 
     private EndlessRecyclerViewScrollListener onScrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
         @Override
         public void onLoadMore(final int page, final int totalItemsCount, final RecyclerView view) {
-            getProducts(totalItemsCount, LIMIT);
+            getProducts(totalItemsCount, LIMIT, false);
         }
     };
 
     private void updateSearchQuery(final String query) {
         this.query = String.format("&filter[name]=%s", query);
-        getProducts(0, LIMIT);
+        getProducts(0, LIMIT, true);
     }
 
     private String combineFiltersAndQuery(final String filters, final String query) {
@@ -217,6 +231,6 @@ public class ProductsFragment extends Fragment implements FiltersDialogListener 
         this.categoryFilterId = categoryFilterId;
 
         this.filters = SearchUtil.formatQuery(priceFilterId, categoryFilterId);
-        getProducts(0, LIMIT);
+        getProducts(0, LIMIT, true);
     }
 }

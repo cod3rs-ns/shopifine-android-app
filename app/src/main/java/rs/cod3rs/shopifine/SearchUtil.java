@@ -36,6 +36,6 @@ public class SearchUtil {
             return categoryQuery;
         }
 
-        return null;
+        return "";
     }
 }

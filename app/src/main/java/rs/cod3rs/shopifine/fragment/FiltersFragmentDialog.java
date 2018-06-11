@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -40,9 +39,6 @@ public class FiltersFragmentDialog extends DialogFragment {
 
     @ViewById
     RadioGroup categoryFilters;
-
-    @ViewById
-    LinearLayout categoryFilterContainer;
 
     private FiltersDialogListener listener;
 
@@ -82,7 +78,7 @@ public class FiltersFragmentDialog extends DialogFragment {
                 }
             }
 
-            categoryFilterContainer.addView(rb);
+            categoryFilters.addView(rb);
         });
 
         updateSelectedFields();
