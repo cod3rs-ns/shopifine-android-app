@@ -7,15 +7,22 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorSecondary">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="android:editTextColor">@color/colorWhite</item>
+    </style>
+
+    <style name="HeaderBar">
+        <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
     <dimen name="navHeight">192dp</dimen>
     <dimen name="navImageBorder">2dp</dimen>
-    
+
     <dimen name="paddingSide">16dp</dimen>
     <dimen name="paddingIconLabel">16dp</dimen>
     <dimen name="paddingListItemSide">16dp</dimen>
     <dimen name="paddingListItem">8dp</dimen>
+    <dimen name="paddingLinearLayoutSide">8sp</dimen>
 
     <dimen name="buttonHeight">36dp</dimen>
     <dimen name="buttonMinWidth">64dp</dimen>
@@ -24,6 +31,7 @@
     <dimen name="buttonMarginOutside">6dp</dimen>
 
     <dimen name="defaultMarginTop">12dp</dimen>
+    <dimen name="defaultMarginSide">4dp</dimen>
     <dimen name="defaultBlockHeight">64dp</dimen>
     <dimen name="smallBlockHeight">20dp</dimen>
 
@@ -31,6 +39,8 @@
 
     <dimen name="listItemHeight">148dp</dimen>
     <dimen name="listItemImageSize">132dp</dimen>
+    <dimen name="listShoppingCartItemImageSize">64dp</dimen>
+    <dimen name="marginImageSize">20dp</dimen>
 
     <dimen name="fontDisplaySize">34sp</dimen>
     <dimen name="fontHeadlineSize">24sp</dimen>
@@ -59,4 +69,10 @@
     <dimen name="productButtonsSpace">70dp</dimen>
 
     <dimen name="googleAddressClearMargin">13dip</dimen>
+
+    <dimen name="underlineHeight">1dp</dimen>
+
+    <dimen name="searchBox">288dp</dimen>
+    <dimen name="filterContainerHeight">192dp</dimen>
+    <dimen name="spentItemsTextBoxWidth">128dp</dimen>
 </resources>

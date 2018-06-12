@@ -20,7 +20,9 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:titleTextColor="@color/colorWhite" />
+                style="@style/HeaderBar"
+                app:titleTextColor="@color/colorWhite">
+            </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>
 

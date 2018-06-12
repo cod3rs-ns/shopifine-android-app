@@ -24,7 +24,10 @@ public class BillResponseData {
                 attributes.getAmount(),
                 attributes.getDiscount(),
                 attributes.getPointsGained(),
-                attributes.getPointsSpent());
+                attributes.getPointsSpent(),
+                attributes.getAddress(),
+                attributes.getLongitude(),
+                attributes.getLatitude());
     }
 
     public String getType() {

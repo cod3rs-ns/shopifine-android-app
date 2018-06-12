@@ -5,24 +5,61 @@
     android:layout_height="match_parent"
     tools:context=".fragment.ShoppingCartFragment">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/shopping_cart_no_items"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="@dimen/defaultMarginSide"
+        android:text="@string/shopping_cart_no_items"
+        android:textSize="@dimen/fontDisplaySize"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+    <RelativeLayout
+        android:id="@+id/shopping_cart_items_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/shoppingCartProducts"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/shoppingCartItemsRecyclerList"
             android:layout_width="match_parent"
-            android:layout_height="430dp" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:orientation="vertical"
-            android:paddingEnd="@dimen/paddingSide"
-            android:paddingStart="@dimen/paddingSide">
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/paddingSide">
 
-            <!-- Points to Spent -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/pointsToSpend"
+                    android:paddingEnd="@dimen/paddingSide"
+                    android:paddingStart="@dimen/paddingSide"
+                    android:text="@string/order_points_to_spend"
+                    android:textSize="@dimen/fontHeadlineSize" />
+
+                <EditText
+                    android:id="@+id/pointsToSpend"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:maxWidth="@dimen/spentItemsTextBoxWidth"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="@dimen/fontHeadlineSize"
+                    android:layout_marginTop="-10dp"
+                    android:hint="@string/spent_points_hint"
+                    android:inputType="number" />
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -33,14 +70,16 @@
                     android:layout_height="wrap_content"
                     android:layout_toStartOf="@id/cartTotalAmount"
                     android:paddingEnd="@dimen/paddingSide"
-                    android:text="Total Amount:" />
+                    android:paddingStart="@dimen/paddingSide"
+                    android:text="@string/order_total"
+                    android:textSize="@dimen/fontHeadlineSize" />
 
                 <TextView
                     android:id="@+id/cartTotalAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="$100" />
+                    android:textSize="@dimen/fontHeadlineSize" />
 
             </RelativeLayout>
 
@@ -50,12 +89,39 @@
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_marginTop="@dimen/buttonMarginOutside"
                 android:background="@color/colorPrimaryDark"
-                android:minWidth="@dimen/buttonMinWidth"
                 android:text="@string/checkout"
                 android:textColor="@color/colorWhite" />
 
         </LinearLayout>
 
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/orderProcessingContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/defaultMarginSide"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/order_processing"
+            android:textSize="@dimen/fontDisplaySize"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/defaultMarginTop"
+            android:indeterminate="true" />
     </LinearLayout>
+
 
 </FrameLayout>

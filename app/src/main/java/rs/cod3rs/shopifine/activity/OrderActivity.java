@@ -9,11 +9,8 @@ import android.text.format.DateUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.auth0.android.jwt.JWT;
-
 import net.cachapa.expandablelayout.ExpandableLayout;
 
-import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
@@ -29,52 +26,67 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import rs.cod3rs.shopifine.Credentials_;
+import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.adapter.OrderClausesAdapter;
+import rs.cod3rs.shopifine.domain.Discount;
 import rs.cod3rs.shopifine.domain.Order;
 import rs.cod3rs.shopifine.domain.OrderClause;
-import rs.cod3rs.shopifine.hateoas.discounts.DiscountResponseData;
 import rs.cod3rs.shopifine.hateoas.bill_items.BillItemResponseData;
+import rs.cod3rs.shopifine.hateoas.discounts.DiscountResponseData;
 import rs.cod3rs.shopifine.http.Orders;
 import rs.cod3rs.shopifine.http.Products;
 
 @EActivity(R.layout.activity_order)
 public class OrderActivity extends AppCompatActivity {
 
-    @RestService Orders orders;
+    @Extra
+    Order order;
 
-    @RestService Products products;
+    @Pref
+    Prefs_ prefs;
 
-    @Pref Credentials_ credentials;
+    @RestService
+    Orders orders;
 
-    @Extra Order order;
+    @RestService
+    Products products;
 
-    @ViewById TextView orderId;
+    @ViewById
+    TextView orderId;
 
-    @ViewById TextView orderStatus;
+    @ViewById
+    TextView orderStatus;
 
-    @ViewById TextView orderCreated;
+    @ViewById
+    TextView orderCreated;
 
-    @ViewById TextView orderPointsGained;
+    @ViewById
+    TextView orderPointsGained;
 
-    @ViewById TextView orderPointsSpent;
+    @ViewById
+    TextView orderPointsSpent;
 
-    @ViewById TextView discountValue;
+    @ViewById
+    TextView discountValue;
 
-    @ViewById TextView totalValue;
+    @ViewById
+    TextView totalValue;
 
-    @ViewById RecyclerView orderClausesRecyclerView;
+    @ViewById
+    RecyclerView orderClausesRecyclerView;
 
-    @ViewById ExpandableLayout orderDiscountsExpander;
+    @ViewById
+    ExpandableLayout orderDiscountsExpander;
 
-    @ViewById LinearLayout orderDiscountsHolder;
+    @ViewById
+    LinearLayout orderDiscountsHolder;
 
-    @ViewById LinearLayout orderSummary;
+    @ViewById
+    LinearLayout orderSummary;
 
-    @Bean OrderClausesAdapter adapter;
-
-    private Integer user;
+    @Bean
+    OrderClausesAdapter adapter;
 
     @AfterViews
     void setListener() {
@@ -112,40 +124,34 @@ public class OrderActivity extends AppCompatActivity {
         orderPointsSpent.setText(String.valueOf(order.pointsSpent));
         totalValue.setText(String.format(Locale.getDefault(), "$%.2f%n", order.amount));
         discountValue.setText(String.format("%s%%", order.discount));
-        order.discounts.forEach(
-                i -> {
-                    TextView textView = new TextView(this);
-                    textView.setText(
-                            String.format(
-                                    "\u2022 %s discount of %s%% %s",
-                                    StringUtils.capitalize(i.type.toLowerCase()),
-                                    String.valueOf(i.discount),
-                                    i.name.toLowerCase()));
-                    textView.setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
-                    textView.setTypeface(null, Typeface.ITALIC);
 
-                    orderDiscountsHolder.addView(textView);
-                });
+        if (order.discounts != null) {
+            order.discounts.forEach(this::showOrderDiscount);
+        } else {
+            retrieveDiscounts();
+        }
     }
 
     @Background
     void getItems() {
+        final Integer userId = prefs.loggedUserId().get();
+
         final List<OrderClause> orderClauses =
-                orders.getBillItems(user, order.id)
+                orders.getBillItems(userId, order.id)
                         .getData()
                         .stream()
                         .map(BillItemResponseData::toDomain)
                         .peek(
                                 clause ->
                                         clause.product =
-                                                products.retrieveOne(clause.linkedProductId)
+                                                products.retrieveOne(userId, clause.linkedProductId)
                                                         .getData()
                                                         .toDomain())
                         .peek(
                                 clause ->
                                         clause.discounts =
                                                 orders.getBillItemDiscounts(
-                                                                user, order.id, clause.id)
+                                                        userId, order.id, clause.id)
                                                         .getData()
                                                         .stream()
                                                         .map(DiscountResponseData::toDomain)
@@ -154,15 +160,40 @@ public class OrderActivity extends AppCompatActivity {
         updateList(orderClauses);
     }
 
-    @AfterInject
-    void extractUserIdFromToken() {
-        final JWT jwt = new JWT(credentials.token().get());
-        user = jwt.getClaim("id").asInt();
-    }
-
     @UiThread
     void updateList(final List<OrderClause> updated) {
         adapter.addAll(updated);
         orderClausesRecyclerView.setAdapter(adapter);
+    }
+
+    @Background
+    void retrieveDiscounts() {
+        final Integer userId = prefs.loggedUserId().get();
+
+        final List<Discount> discounts = orders.getBillDiscounts(userId, order.id)
+                .getData()
+                .stream()
+                .map(DiscountResponseData::toDomain)
+                .collect(Collectors.toList());
+        updateDiscounts(discounts);
+    }
+
+    @UiThread
+    void updateDiscounts(final List<Discount> discounts) {
+        discounts.forEach(this::showOrderDiscount);
+    }
+
+    void showOrderDiscount(final Discount discount) {
+        final TextView textView = new TextView(this);
+        textView.setText(
+                String.format(
+                        "\u2022 %s discount of %s%% %s",
+                        StringUtils.capitalize(discount.type.toLowerCase()),
+                        String.valueOf(discount.discount),
+                        discount.name.toLowerCase()));
+        textView.setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
+        textView.setTypeface(null, Typeface.ITALIC);
+
+        orderDiscountsHolder.addView(textView);
     }
 }

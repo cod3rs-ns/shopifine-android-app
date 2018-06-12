@@ -10,6 +10,8 @@ public class UserResponseAttributes {
     private String lastName;
     private String address;
     private Long points;
+    private Double latitude;
+    private Double longitude;
 
     public UserResponseAttributes() {
         super();
@@ -51,7 +53,23 @@ public class UserResponseAttributes {
         return points;
     }
 
-    public void setPoints(Long points) {
+    public void setPoints(final Long points) {
         this.points = points;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(final Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(final Double longitude) {
+        this.longitude = longitude;
     }
 }

@@ -3,11 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragment.ProductsFragment">
 
-    <ListView
-        android:id="@+id/products"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/productsRecyclerList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:visibility="visible"
+        tools:listitem="@layout/item_product" />
+
+    <TextView
+        android:id="@+id/noProducts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="@dimen/defaultMarginSide"
+        android:text="@string/products_no_items"
+        android:textSize="@dimen/fontDisplaySize"
+        android:textStyle="bold"
+        android:visibility="invisible" />
 
 </FrameLayout>

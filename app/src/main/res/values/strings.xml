@@ -18,14 +18,22 @@
     <string name="address">Address</string>
 
     <string name="product_categories_title">Products from same category</string>
-    <string name="product_image">Product image</string>
+    <string name="product_image">Product Image</string>
+    <string name="products_no_items">No products matching your search criteria. :( </string>
 
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
     <string name="log_out">Logout</string>
 
     <string name="add_to_shopping_cart">Add to Shopping Cart</string>
+    <string name="already_in_shopping_cart">Item is already in shopping cart!</string>
+    <string name="added_to_shopping_cart">Added to shopping cart!</string>
+    <string name="removed_from_shopping_cart">Item removed from shopping cart!</string>
     <string name="add_to_wishlist">Add to Wishlist</string>
+    <string name="added_to_wishlist">Product added to Wishlist</string>
+    <string name="removed_from_wishlist">Product removed from Wishlist</string>
+    <string name="plus_one">Add one item.</string>
+    <string name="minus_one">Remove one item.</string>
 
     <string name="lets_shopping">Let\'s shopping!</string>
     <string name="category">Category</string>
@@ -36,22 +44,31 @@
     <string name="orders">Orders</string>
     <string name="wishlist">Wishlist</string>
     <string name="shopping_cart">Shopping cart</string>
+    <string name="shopping_cart_no_items">No items in the shopping cart. :(</string>
+    <string name="search_hint">Find product…</string>
+    <string name="search_filters">Filters</string>
+    <string name="search_action">Search</string>
+    <string name="shopping_cart_discount">%.0f%% discount!</string>
 
     <string name="mock">Mock</string>
     <string name="mock_date">28–07–1994</string>
     <string name="mock_number">19</string>
 
-    <string name="second_order_tab">Successful</string>
     <string name="first_order_tab">Ordered</string>
-    <string name="third_order_tab">Cancelled</string>
+    <string name="second_order_tab">Dispatched</string>
+    <string name="third_order_tab">Successful</string>
+    <string name="fourth_order_tab">Cancelled</string>
 
     <string name="order_id">Order ID</string>
     <string name="order_status">Status</string>
     <string name="order_created">Created</string>
     <string name="order_points_gained">Points Gained</string>
     <string name="order_points_spent">Points Spent</string>
+    <string name="order_points_to_spend">Points to spend:</string>
     <string name="order_discount">Discount:</string>
     <string name="order_total">Total:</string>
+    <string name="order_successfully_created">Order successfully ordered!</string>
+    <string name="order_processing">We\'re processing your order…</string>
 
     <!-- Error messages -->
     <string name="fn_missing_err">You must enter first name.</string>
@@ -68,5 +85,34 @@
     <string name="one_product_left">Only one product %1s left.</string>
     <string name="order_address_changed">Order with id %1d changed address to %2s.</string>
     <string name="product_price_changed">Product %1s changed its price to %2.2f.".</string>
+    <string name="order_in_radius">Your order is %1.2fkm near you.</string>
 
+    <string name="edit_profile_title">Edit profile</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="action_discount">- %1s discount of %2.0f%%</string>
+    <string name="no_available_discounts">There are no available discounts for this product</string>
+
+    <!-- Filters dialog -->
+    <string name="filters_dialog_title">Product Filters</string>
+    <string name="filters_apply">Apply Filters</string>
+    <string name="filters_reset">Reset Filters</string>
+    <string name="filters_price_range">Price Range</string>
+    <string name="filters_lowest_price">&lt; 100</string>
+    <string name="filters_low_price">100 &#8211; 1000</string>
+    <string name="filters_medium_price">1000 &#8211; 5000</string>
+    <string name="filters_high_price">&gt; 5000</string>
+    <string name="filters_categories">Product Categories</string>
+    <string name="spent_points_hint">000</string>
+
+    <string name="map_me">Me</string>
+    <string name="map_order">Order</string>
+    <string name="map_home">Home</string>
+
+    <string name="orders_no_items">No orders. :(</string>
+    <string name="wishlist_no_items">No products. :(</string>
+
+    <string name="discount_details">-%2.2f%% in total of $%s</string>
+    <string name="discount_clause_bullet">"\u2022 %s discount of %2.2f%% %s"</string>
 </resources>

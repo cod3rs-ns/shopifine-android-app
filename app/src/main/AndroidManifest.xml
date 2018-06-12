@@ -3,13 +3,21 @@
     package="rs.cod3rs.shopifine">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_shopifine"
         android:label="@string/app_name"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity android:name=".activity.LoginActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,10 +29,11 @@
         <activity android:name=".activity.RegisterActivity_" />
         <activity android:name=".activity.ProductActivity_" />
         <activity android:name=".activity.OrderActivity_" />
+        <activity android:name=".activity.OrderMapActivity_" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC3VqtRheS_qHzsN3V4qOsIYrbDhxHjTz0" />
+            android:value="AIzaSyC9F3Do7z1PEiSX0tFfbS-I_16LFgtmxbA"/>
     </application>
 
 </manifest>

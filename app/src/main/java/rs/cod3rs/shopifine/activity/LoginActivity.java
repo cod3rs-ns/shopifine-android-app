@@ -31,8 +31,8 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.rest.spring.annotations.RestService;
 import org.springframework.core.NestedRuntimeException;
 
-import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.Config;
+import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.hateoas.users.GoogleAuthRequest;
 import rs.cod3rs.shopifine.hateoas.users.UserAuthRequest;
@@ -135,7 +135,7 @@ public class LoginActivity extends Activity {
             final String idToken = account.getIdToken();
             googleAuth(idToken);
         } catch (final ApiException e) {
-            Log.w("googleAuth", "signInResult:failed code=" + e.getStatusCode());
+            Log.w(GoogleSignIn.class.getSimpleName(), "signInResult:failed code=" + e.getStatusCode());
         }
     }
 
@@ -187,12 +187,6 @@ public class LoginActivity extends Activity {
         password.setText("");
         errorMessage.setText(message);
         errorMessage.setVisibility(View.VISIBLE);
-    }
-
-    @AfterViews
-    void setDefaults() {
-        username.setText("dmarjanovic");
-        password.setText("sergioramos");
     }
 
 }

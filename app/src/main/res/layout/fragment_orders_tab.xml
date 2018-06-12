@@ -5,6 +5,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/noOrders"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="@dimen/defaultMarginSide"
+        android:text="@string/orders_no_items"
+        android:textSize="@dimen/fontDisplaySize"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/ordersRecyclerList"
         android:layout_width="match_parent"
@@ -12,6 +23,7 @@
         android:clipToPadding="false"
         android:scrollbars="vertical"
         android:visibility="visible"
-        tools:listitem="@layout/item_order" />
+        tools:listitem="@layout/item_order" >
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

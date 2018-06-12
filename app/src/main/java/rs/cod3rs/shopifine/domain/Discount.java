@@ -8,7 +8,12 @@ public class Discount implements Serializable {
     public String type;
     public Double discount;
 
+    public Discount() {
+        super();
+    }
+
     public Discount(final Long id, final String name, final String type, final Double discount) {
+        super();
         this.id = id;
         this.name = name;
         this.type = type;

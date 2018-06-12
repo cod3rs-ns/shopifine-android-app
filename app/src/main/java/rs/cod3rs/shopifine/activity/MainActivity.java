@@ -40,10 +40,13 @@ import rs.cod3rs.shopifine.Credentials_;
 import rs.cod3rs.shopifine.Prefs_;
 import rs.cod3rs.shopifine.R;
 import rs.cod3rs.shopifine.domain.User;
+import rs.cod3rs.shopifine.fragment.EditProfileFragmentDialog.EditProfileDialogListener;
+import rs.cod3rs.shopifine.fragment.FiltersFragmentDialog.FiltersDialogListener;
 import rs.cod3rs.shopifine.fragment.OrdersFragmentTabParent_;
 import rs.cod3rs.shopifine.fragment.ProductsFragment_;
 import rs.cod3rs.shopifine.fragment.ProfileFragment_;
 import rs.cod3rs.shopifine.fragment.ShoppingCartFragment_;
+import rs.cod3rs.shopifine.fragment.WishlistFragment_;
 import rs.cod3rs.shopifine.hateoas.users.UserResponse;
 import rs.cod3rs.shopifine.hateoas.users.UserResponseAttributes;
 import rs.cod3rs.shopifine.http.ErrorHandler;
@@ -51,7 +54,7 @@ import rs.cod3rs.shopifine.http.Users;
 import rs.cod3rs.shopifine.http.WebSocketClient;
 
 @EActivity(R.layout.activity_main)
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EditProfileDialogListener, FiltersDialogListener {
 
     @Pref
     Prefs_ prefs;
@@ -67,6 +70,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Bean
     WebSocketClient webSocketClient;
+
+    @ViewById
+    DrawerLayout drawerLayout;
+
+    @ViewById
+    NavigationView navigationView;
+
+    @ViewById
+    Toolbar toolbar;
 
     private GoogleSignInClient googleSignInClient;
 
@@ -94,10 +106,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         try {
             final UserResponse res = users.getUser(userId);
             final UserResponseAttributes attrs = res.getData().getAttributes();
-            final User u = new User(attrs.getUsername(), attrs.getFirstName(), attrs.getLastName(), attrs.getAddress());
+            final User u = new User(userId, attrs.getUsername(), attrs.getFirstName(), attrs.getLastName(), attrs.getAddress());
 
             prefs.edit()
+                    .loggedUserId().put(userId)
                     .loggedUserImageUrl().put(u.getImage())
+                    .loggedUserFirstName().put(u.firstName)
+                    .loggedUserLastName().put(u.lastName)
                     .loggedUserFullName().put(u.getFullName())
                     .loggedUserAddress().put(u.address)
                     .apply();
@@ -108,15 +123,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @ViewById
-    DrawerLayout drawerLayout;
-
-    @ViewById
-    NavigationView navigationView;
-
-    @ViewById
-    Toolbar toolbar;
-
     @AfterViews
     void setToolbar() {
         setSupportActionBar(toolbar);
@@ -125,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @AfterViews
     void setInitialFragment() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame, getFragmentById(R.id.home))
+                .replace(R.id.frame, getFragmentById(R.id.home), String.valueOf(R.id.home))
                 .commit();
     }
 
@@ -185,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             navigationView.setCheckedItem(fragmentId);
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame, getFragmentById(fragmentId))
+                    .replace(R.id.frame, getFragmentById(fragmentId), String.valueOf(fragmentId))
                     .commit();
 
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -201,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.shoppingCart:
                 return ShoppingCartFragment_.builder().build();
             case R.id.wishlist:
-                // TODO Provide Wishlist fragment
+                return WishlistFragment_.builder().build();
             case R.id.orders:
                 return OrdersFragmentTabParent_.builder().build();
             case R.id.profile:
@@ -213,5 +219,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private int getFragmentIdByPosition(final int position) {
         return fragmentOrders.get(position);
+    }
+
+    @Override
+    public void onFinishEditDialog(final String firstName, final String lastName, final String address) {
+        final Fragment fragment = getSupportFragmentManager().findFragmentByTag(String.valueOf(R.id.profile));
+        if (fragment != null && fragment.isVisible()) {
+            ((EditProfileDialogListener) fragment).onFinishEditDialog(firstName, lastName, address);
+        }
+    }
+
+    @Override
+    public void onFinishFilterDialog(final Integer priceFilterId, final Integer categoryFilterId) {
+        final Fragment fragment = getSupportFragmentManager().findFragmentByTag(String.valueOf(R.id.home));
+        if (fragment != null && fragment.isVisible()) {
+            ((FiltersDialogListener) fragment).onFinishFilterDialog(priceFilterId, categoryFilterId);
+        }
     }
 }

@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import rs.cod3rs.shopifine.R;
+import rs.cod3rs.shopifine.Util;
 import rs.cod3rs.shopifine.activity.ProductActivity_;
 import rs.cod3rs.shopifine.domain.Product;
 
@@ -41,7 +42,7 @@ public class RecommendedProductListAdapter extends RecyclerView.Adapter<Recommen
         Picasso.get().load(product.imageUrl).into(holder.image);
 
         holder.productName.setText(product.name);
-        holder.productPrice.setText(String.format("%.2f$", product.price));
+        holder.productPrice.setText(Util.formatPrice(product.price));
     }
 
     @Override

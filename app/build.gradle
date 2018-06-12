@@ -7,7 +7,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 25
         versionCode 1
-        versionName "1.1.0"
+        versionName "1.5.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -57,6 +57,8 @@ dependencies {
     implementation "org.androidannotations:rest-spring-api:$AAVersion"
     annotationProcessor "org.androidannotations:rest-spring:$AAVersion"
     implementation "org.androidannotations:rest-spring:$AAVersion"
+    annotationProcessor "org.androidannotations:ormlite:$AAVersion"
+    implementation "org.androidannotations:ormlite:$AAVersion"
 
     // Dependencies for JSON Mapping
     implementation 'org.springframework.android:spring-android-rest-template:2.0.0.M1'
@@ -74,4 +76,9 @@ dependencies {
     // Google
     implementation 'com.google.android.gms:play-services-auth:11.8.0'
     implementation 'com.google.android.gms:play-services-places:11.8.0'
+    implementation 'com.google.android.gms:play-services-maps:11.8.0'
+    implementation "com.google.android.gms:play-services-location:11.8.0"
+
+    // ORMLite
+    implementation 'com.j256.ormlite:ormlite-android:5.1'
 }
